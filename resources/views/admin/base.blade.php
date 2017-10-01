@@ -7,6 +7,8 @@
     @section('title')
         <title>Website | Admin </title>
     @show
+    <script src="https://use.typekit.net/icq2ocy.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
     <link rel="stylesheet"
           href="{{ mix('css/app.css') }}"/>
     <meta id="csrf-token-meta"

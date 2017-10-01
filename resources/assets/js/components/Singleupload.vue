@@ -233,10 +233,10 @@
 
     }
     .clear-image.btn.btn-red {
-        transform: scale(.6);
-        transform-origin: right top;
+        transform-origin: center bottom;
         position: absolute;
-        top: 0;
-        right: 0;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%) scale(.7);
     }
 </style>

@@ -6,5 +6,6 @@ body {
   min-height: 100%;
   color: $admin-dark;
   background-color: $body-bg;
-  font-family: 'Raleway', sans-serif;
+  font-family: $body_font;
+  padding-bottom: 100px;
 }

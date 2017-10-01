@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('front.home.page');
 });
 
 $this->get('admin/login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -42,6 +42,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function() {
         Route::delete('super-admins/{user}', 'SuperAdminsController@delete');
 
         Route::post('me/password', 'UserPasswordController@update');
+
+        Route::get('slideshow/slides', 'SlidesController@index');
+        Route::get('slideshow/slides/{slide}', 'SlidesController@show');
     });
 
     Route::group(['middleware' => 'auth', 'prefix' => 'services', 'namespace' => 'Services'], function() {

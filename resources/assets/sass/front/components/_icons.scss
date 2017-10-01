@@ -1,0 +1,43 @@
+.icon {
+  .colour-fill {
+    fill: $site_primary;
+  }
+
+  .stroke-fill {
+    stroke: $site_primary;
+  }
+}
+
+.icon.icon-d {
+  .colour-fill {
+    fill: $site_dark;
+  }
+
+  .stroke-fill {
+    stroke: $site_dark;
+  }
+}
+
+.icon.ih1 {
+  height: 3rem;
+}
+
+.icon.ih2 {
+  height: 2.25rem;
+}
+
+.icon.ih3 {
+  height: 1.5rem;
+}
+
+.icon.ih4 {
+  height: 1.25rem;
+}
+
+.icon.ih5 {
+  height: 1rem;
+}
+
+.icon.ih6 {
+  height: .875rem;
+}

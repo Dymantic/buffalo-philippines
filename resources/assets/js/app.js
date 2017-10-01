@@ -17,6 +17,7 @@ window.swal = swal;
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+import DatePicker from "vuejs-datepicker";
 
 Vue.component('dropdown', require('./components/Dropdown.vue'));
 Vue.component('modal', require('./components/Modal.vue'));
@@ -28,6 +29,15 @@ Vue.component('user-list', require('./components/UserList.vue'));
 Vue.component('user-item', require('./components/User.vue'));
 Vue.component('toggle-switch', require('./components/Toggle.vue'));
 Vue.component('image-upload', require('./components/Singleupload.vue'));
+Vue.component('article-page', require('./components/Article.vue'));
+Vue.component('articles-list', require('./components/ArticlesList.vue'));
+Vue.component('article-form', require('./components/ArticleInfoForm.vue'));
+Vue.component('article-publisher', require('./components/ArticlePublisher.vue'));
+Vue.component('editor', require('./components/Editor.vue'));
+Vue.component('banner-slide', require('./components/BannerSlide.vue'));
+Vue.component('slide-index', require('./components/SlidesIndex.vue'));
+Vue.component('date-picker', DatePicker);
+
 
 window.eventHub = new Vue();
 

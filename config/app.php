@@ -167,6 +167,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Dymantic\Slideshow\SlideshowServiceProvider::class,
 
         /*
          * Application Service Providers...

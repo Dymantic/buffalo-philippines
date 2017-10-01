@@ -1,12 +1,17 @@
 <nav class="flex justify-between items-center h3 col-p-bg">
-    <div class="flex items-start">
-        <a href="/admin"><img src="'/ogo/goes/here.jpg"
+    <div class="flex items-start items-center">
+        <a href="/admin" class="pl2 flex items-center"><img src="/images/logos/navbar.png"
                               alt="Logo"
                               height="60px"
             >
         </a>
+        <a href="/admin/articles" class="mh3 col-w link">Insights</a>
+        <a href="/admin/slideshow/slides" class="mh3 col-w link">Banner</a>
     </div>
     <div class="flex justify-end items-center h-100">
+        @if(auth()->user()->superadmin)
+        <a href="/admin/users" class="mh3 col-w link">Users</a>
+        @endif
         <dropdown name="{{ auth()->user()->email }}">
             <div slot="dropdown">
                 <reset-password url="/admin/me/password" button-text="Reset"></reset-password>
