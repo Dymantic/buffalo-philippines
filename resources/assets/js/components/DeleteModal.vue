@@ -68,7 +68,7 @@
             },
 
             onSuccess() {
-                this.$emit('item-deleted')
+                this.$emit('item-deleted');
                 this.modalOpen = false;
             },
 

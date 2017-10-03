@@ -341,16 +341,16 @@
         },
         {
             "name": "dymantic/slideshow",
-            "version": "v0.1.1",
+            "version": "v0.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Dymantic/slideshow.git",
-                "reference": "3c4c44ce160cb8d6633785dad77bb1c7db98647d"
+                "reference": "9f19887f2b58dfc4ea92c3bba025dbe529fff385"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Dymantic/slideshow/zipball/3c4c44ce160cb8d6633785dad77bb1c7db98647d",
-                "reference": "3c4c44ce160cb8d6633785dad77bb1c7db98647d",
+                "url": "https://api.github.com/repos/Dymantic/slideshow/zipball/9f19887f2b58dfc4ea92c3bba025dbe529fff385",
+                "reference": "9f19887f2b58dfc4ea92c3bba025dbe529fff385",
                 "shasum": ""
             },
             "require": {
@@ -380,7 +380,7 @@
                 }
             ],
             "description": "Simple package for managing user created slideshows. Does not include frontend or view stuff.",
-            "time": "2017-09-29 02:07:43"
+            "time": "2017-10-01 03:59:40"
         },
         {
             "name": "egulias/email-validator",

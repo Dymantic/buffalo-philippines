@@ -25,6 +25,7 @@
             </form>
         </div>
     </div>
+    <p class="f4 black-40">You may drag slides into the order you prefer.</p>
     <slide-index :slides='@json($slides->map->toJsonableArray())'
                  sync_order_url="/admin/slideshow/slide-order"></slide-index>
 @endsection

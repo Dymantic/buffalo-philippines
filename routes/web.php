@@ -33,6 +33,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function() {
             return view('welcome');
         });
 
+        Route::get('map', function() {
+            return view('admin.maptest');
+        });
+
         Route::get('users', 'UsersController@index');
         Route::post('users', 'UsersController@store');
         Route::post('users/{user}', 'UsersController@update');
@@ -45,6 +49,12 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function() {
 
         Route::get('slideshow/slides', 'SlidesController@index');
         Route::get('slideshow/slides/{slide}', 'SlidesController@show');
+
+        Route::get('locations', 'LocationsController@index');
+        Route::get('locations/create', 'LocationsController@create');
+        Route::post('locations', 'LocationsController@store');
+        Route::post('locations/{location}', 'LocationsController@update');
+        Route::delete('locations/{location}', 'LocationsController@delete');
     });
 
     Route::group(['middleware' => 'auth', 'prefix' => 'services', 'namespace' => 'Services'], function() {

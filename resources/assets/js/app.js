@@ -36,6 +36,10 @@ Vue.component('article-publisher', require('./components/ArticlePublisher.vue'))
 Vue.component('editor', require('./components/Editor.vue'));
 Vue.component('banner-slide', require('./components/BannerSlide.vue'));
 Vue.component('slide-index', require('./components/SlidesIndex.vue'));
+Vue.component('location-finder', require('./components/LocationFinder.vue'));
+Vue.component('location-item', require('./components/Location.vue'));
+Vue.component('location-form', require('./components/LocationNameForm.vue'));
+Vue.component('location-index', require('./components/LocationsIndex.vue'));
 Vue.component('date-picker', DatePicker);
 
 

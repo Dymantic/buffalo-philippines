@@ -79,6 +79,10 @@ export default  {
             this.uploading = false;
             this.server_confirmed_src = res.data.url;
 
+            if(!this.is_video) {
+                this.image_src = res.data.url;
+            }
+
             if (this.is_video) {
                 this.revokeObjectUrlVideoSrc();
                 this.video_src = res.data.url;

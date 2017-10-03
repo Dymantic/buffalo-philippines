@@ -7,6 +7,7 @@
         </a>
         <a href="/admin/articles" class="mh3 col-w link">Insights</a>
         <a href="/admin/slideshow/slides" class="mh3 col-w link">Banner</a>
+        <a href="/admin/locations" class="mh3 col-w link">Locations</a>
     </div>
     <div class="flex justify-end items-center h-100">
         @if(auth()->user()->superadmin)
