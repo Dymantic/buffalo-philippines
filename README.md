@@ -1,3 +1,3 @@
-# Seedling
+# Buffalo Philippines
 
-Starter template for laravel app with admin users
+Just a website.
