@@ -12,6 +12,9 @@ window.Vue = require('vue');
 import swal from "sweetalert";
 window.swal = swal;
 
+import Flickity from "flickity-imagesloaded";
+window.Flickity = Flickity;
+
 Vue.component('modal', require('./components/Modal.vue'));
 
 

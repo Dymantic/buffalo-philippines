@@ -19,6 +19,8 @@
         "vue": "^2.1.10"
     },
     "dependencies": {
+        "flickity": "^2.0.10",
+        "flickity-imagesloaded": "^2.0.0",
         "moment": "^2.18.1",
         "sortablejs": "^1.6.1",
         "sweetalert": "^2.0.3",

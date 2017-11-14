@@ -1,5 +1,5 @@
 <nav class="flex justify-between items-center h3 col-p-bg">
-    <div class="flex items-start items-center">
+    <div class="flex items-start items-center h-100">
         <a href="/admin" class="pl2 flex items-center"><img src="/images/logos/navbar.png"
                               alt="Logo"
                               height="60px"
@@ -8,6 +8,14 @@
         <a href="/admin/articles" class="mh3 col-w link">Insights</a>
         <a href="/admin/slideshow/slides" class="mh3 col-w link">Banner</a>
         <a href="/admin/locations" class="mh3 col-w link">Locations</a>
+        <dropdown name="Products">
+            <div slot="dropdown">
+                <a href="#"
+                   class="mh3 col-p mv2 tr link">Search</a>
+                <a href="/admin/categories"
+                   class="mh3 col-p mv2 tr link">Categories</a>
+            </div>
+        </dropdown>
     </div>
     <div class="flex justify-end items-center h-100">
         @if(auth()->user()->superadmin)

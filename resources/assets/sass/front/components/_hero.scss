@@ -1,0 +1,47 @@
+.hero-slide {
+  img {
+    width: 100vw;
+  }
+}
+
+.banner-text {
+  top: 100px;
+  left: 100px;
+  max-width: 60%;
+}
+
+.banner-action {
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.hero-slide.light {
+  .banner-text {
+    color: $white;
+  }
+
+  .banner-action {
+    color: $white;
+  }
+}
+
+.hero-slide.primary {
+  .banner-text {
+    color: $site_primary;
+  }
+
+  .banner-action {
+    color: $site_primary;
+  }
+}
+
+.hero-slide.dark {
+  .banner-text {
+    color: $site_dark;
+  }
+
+  .banner-action {
+    color: $site_dark;
+  }
+}

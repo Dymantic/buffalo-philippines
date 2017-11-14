@@ -41,6 +41,21 @@ Vue.component('location-item', require('./components/Location.vue'));
 Vue.component('location-form', require('./components/LocationNameForm.vue'));
 Vue.component('location-index', require('./components/LocationsIndex.vue'));
 Vue.component('date-picker', DatePicker);
+Vue.component('category-form', require('./components/CategoryForm.vue'));
+Vue.component('categories-index', require('./components/CategoriesIndex.vue'));
+Vue.component('category-card', require('./components/CategoryCard.vue'));
+Vue.component('category-page', require('./components/Category.vue'));
+Vue.component('subcategories-list', require('./components/SubcategoriesList.vue'));
+Vue.component('subcategory-page', require('./components/Subcategory.vue'));
+Vue.component('toolgroup-list', require('./components/ToolGroupsList.vue'));
+Vue.component('tool-group', require('./components/ToolGroup.vue'));
+Vue.component('product-form', require('./components/ProductForm.vue'));
+Vue.component('product-list', require('./components/ProductList.vue'));
+Vue.component('product-page', require('./components/Product.vue'));
+Vue.component('product-gallery', require('./components/ProductGallery.vue'));
+Vue.component('image-gallery', require('./components/ImageGallery.vue'));
+Vue.component('uploading-image', require('./components/UploadingImage.vue'));
+Vue.component('gallery-image', require('./components/GalleryImage.vue'));
 
 
 window.eventHub = new Vue();
@@ -49,7 +64,8 @@ const app = new Vue({
     el: '#app',
 
     created() {
-        eventHub.$on('user-alert', this.showAlert)
+        eventHub.$on('user-alert', this.showAlert);
+        eventHub.$on('user-error', this.showError);
     },
 
     methods: {
@@ -59,6 +75,14 @@ const app = new Vue({
                 title: message.title,
                 text: message.text,
                 button: message.confirm
+            });
+        },
+
+        showError(message) {
+            swal({
+                icon: 'error',
+                title: 'An error occurred',
+                text: message
             });
         }
     }

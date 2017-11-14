@@ -4,11 +4,15 @@
 @import "mixins/media";
 
 @import "~tachyons-sass/tachyons";
+@import "~flickity/dist/flickity";
 
 @import "front/type";
 @import "front/colours";
 
+@import "utilities/dimensions";
+
 @import "front/components/navbar";
 @import "front/components/icons";
+@import "front/components/hero";
 
 @import "front/pages/home";
