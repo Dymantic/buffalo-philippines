@@ -17,6 +17,18 @@ Route::get('/', function () {
     return view('front.home.page', ['banner_slides' => $slides, 'featured' => $featured]);
 });
 
+Route::get('categories', function() {
+    $categories = \App\Products\Category::where('published', true)->get();
+
+    return view('front.categories.page', ['categories' => $categories]);
+});
+
+Route::get('categories/{slug}', function($slug) {
+    $category = \App\Products\Category::where('slug', $slug)->first();
+
+    return view('front.categories.show', ['categoryMenu' => $category->menu(), 'slug' => $slug]);
+});
+
 $this->get('admin/login', 'Auth\LoginController@showLoginForm')->name('login');
 $this->post('admin/login', 'Auth\LoginController@login');
 $this->post('admin/logout', 'Auth\LoginController@logout')->name('logout');
@@ -25,6 +37,12 @@ $this->post('admin/logout', 'Auth\LoginController@logout')->name('logout');
 $this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 $this->post('password/reset', 'Auth\ResetPasswordController@reset');
+
+Route::group(['prefix' => 'services', 'namespace' => 'Services'], function() {
+   
+    Route::get('categories/{slug}/products', 'CategoryProductsController@index');
+    
+});
 
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
@@ -62,6 +80,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::post('categories', 'CategoriesController@store');
         Route::post('categories/{category}', 'CategoriesController@update');
         Route::delete('categories/{category}', 'CategoriesController@delete');
+
+        Route::post('categories/{category}/image', 'CategoryImageController@store');
+        Route::delete('categories/{category}/image', 'CategoryImageController@delete');
 
         Route::post('published-categories', 'PublishedCategoriesController@store');
         Route::delete('published-categories/{category}', 'PublishedCategoriesController@delete');

@@ -7,6 +7,7 @@ use App\Products\Product;
 use App\Products\Subcategory;
 use App\Products\ToolGroup;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
 use Tests\TestCase;
 
 class CategoriesTest extends TestCase
@@ -32,7 +33,7 @@ class CategoriesTest extends TestCase
     }
 
     /**
-     *@test
+     * @test
      */
     public function a_product_can_be_created_for_a_category()
     {
@@ -56,7 +57,7 @@ class CategoriesTest extends TestCase
     }
 
     /**
-     *@test
+     * @test
      */
     public function an_existing_product_can_be_added_to_a_category()
     {
@@ -70,13 +71,13 @@ class CategoriesTest extends TestCase
     }
 
     /**
-     *@test
+     * @test
      */
     public function deleting_a_category_deletes_all_its_subcategories_and_tool_groups()
     {
         $category = factory(Category::class)->create();
         $subcategories = factory(Subcategory::class, 2)->create(['category_id' => $category->id]);
-        $subcategories->each(function($subcategory) {
+        $subcategories->each(function ($subcategory) {
             factory(ToolGroup::class, 2)->create(['subcategory_id' => $subcategory->id]);
         });
 
@@ -90,7 +91,7 @@ class CategoriesTest extends TestCase
     }
 
     /**
-     *@test
+     * @test
      */
     public function a_category_can_be_published()
     {
@@ -102,7 +103,7 @@ class CategoriesTest extends TestCase
     }
 
     /**
-     *@test
+     * @test
      */
     public function a_category_may_be_retracted()
     {
@@ -114,21 +115,112 @@ class CategoriesTest extends TestCase
     }
 
     /**
-     *@test
+     * @test
      */
     public function a_category_can_be_presented_as_a_jsonable_array()
     {
         $category = factory(Category::class)->create([
-            'title' => 'TEST CATEGORY TITLE',
+            'title'       => 'TEST CATEGORY TITLE',
             'description' => 'TEST CATEGORY DESCRIPTION'
         ]);
+        $image = $category->setImage(UploadedFile::fake()->image('testpic.jpg'));
 
         $expected = [
-            'id' => $category->id,
-            'title' => 'TEST CATEGORY TITLE',
-            'description' => 'TEST CATEGORY DESCRIPTION'
+            'id'          => $category->id,
+            'title'       => 'TEST CATEGORY TITLE',
+            'description' => 'TEST CATEGORY DESCRIPTION',
+            'image'       => [
+                'thumb'    => $image->getUrl('thumb'),
+                'original' => $image->getUrl()
+            ]
         ];
 
         $this->assertEquals($expected, $category->toJsonableArray());
+    }
+
+    /**
+     * @test
+     */
+    public function a_category_can_present_its_menu()
+    {
+        $category = factory(Category::class)->create(['title' => 'TEST CATEGORY TITLE']);
+        $subcategoryA = factory(Subcategory::class)->create([
+            'title'       => 'TEST SUBCATEGORY_A',
+            'category_id' => $category->id
+        ]);
+        $subcategoryB = factory(Subcategory::class)->create([
+            'title'       => 'TEST SUBCATEGORY_B',
+            'category_id' => $category->id
+        ]);
+        $subcategoryC = factory(Subcategory::class)->create([
+            'title'       => 'TEST SUBCATEGORY_C',
+            'category_id' => $category->id
+        ]);
+        $tool_groupA = factory(ToolGroup::class)->create([
+            'title'          => 'TEST TOOL_GROUP_A',
+            'subcategory_id' => $subcategoryA->id
+        ]);
+        $tool_groupB = factory(ToolGroup::class)->create([
+            'title'          => 'TEST TOOL_GROUP_B',
+            'subcategory_id' => $subcategoryA->id
+        ]);
+        $tool_groupC = factory(ToolGroup::class)->create([
+            'title'          => 'TEST TOOL_GROUP_C',
+            'subcategory_id' => $subcategoryC->id
+        ]);
+        $tool_groupD = factory(ToolGroup::class)->create([
+            'title'          => 'TEST TOOL_GROUP_D',
+            'subcategory_id' => $subcategoryC->id
+        ]);
+
+        $expected = [
+            'id'       => $category->id,
+            'title'    => 'TEST CATEGORY TITLE',
+            'link'     => "/categories/{$category->slug}",
+            'children' => [
+                [
+                    'id'       => $subcategoryA->id,
+                    'title'    => 'TEST SUBCATEGORY_A',
+                    'link'     => "/subcategories/{$subcategoryA->slug}",
+                    'children' => [
+                        [
+                            'id'    => $tool_groupA->id,
+                            'title' => 'TEST TOOL_GROUP_A',
+                            'link'  => "/tool-groups/{$tool_groupA->slug}"
+                        ],
+                        [
+                            'id'    => $tool_groupB->id,
+                            'title' => 'TEST TOOL_GROUP_B',
+                            'link'  => "/tool-groups/{$tool_groupB->slug}"
+                        ]
+                    ]
+                ],
+                [
+                    'id'       => $subcategoryB->id,
+                    'title'    => 'TEST SUBCATEGORY_B',
+                    'link'     => "/subcategories/{$subcategoryB->slug}",
+                    'children' => []
+                ],
+                [
+                    'id'       => $subcategoryC->id,
+                    'title'    => 'TEST SUBCATEGORY_C',
+                    'link'     => "/subcategories/{$subcategoryC->slug}",
+                    'children' => [
+                        [
+                            'id'    => $tool_groupC->id,
+                            'title' => 'TEST TOOL_GROUP_C',
+                            'link'  => "/tool-groups/{$tool_groupC->slug}"
+                        ],
+                        [
+                            'id'    => $tool_groupD->id,
+                            'title' => 'TEST TOOL_GROUP_D',
+                            'link'  => "/tool-groups/{$tool_groupD->slug}"
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        $this->assertEquals($expected, $category->menu());
     }
 }

@@ -25,5 +25,7 @@ trait Stockable
     public function addProduct(Product $product)
     {
         $this->products()->attach($product);
+
+        return $product->fresh();
     }
 }
