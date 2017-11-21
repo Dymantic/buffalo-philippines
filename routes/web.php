@@ -11,23 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    $slides = \Dymantic\Slideshow\Slide::all();
-    $featured = \App\Products\Product::where('featured', true)->take(8)->get();
-    return view('front.home.page', ['banner_slides' => $slides, 'featured' => $featured]);
-});
+Route::get('/', 'HomePageController@show');
 
-Route::get('categories', function() {
-    $categories = \App\Products\Category::where('published', true)->get();
+Route::get('categories', 'CategoriesController@index');
+Route::get('categories/{slug}', 'CategoriesController@show');
 
-    return view('front.categories.page', ['categories' => $categories]);
-});
+Route::get('products/{slug}', 'ProductsController@show');
 
-Route::get('categories/{slug}', function($slug) {
-    $category = \App\Products\Category::where('slug', $slug)->first();
-
-    return view('front.categories.show', ['categoryMenu' => $category->menu(), 'slug' => $slug]);
-});
+Route::get('stores', 'StoreLocationsController@index');
 
 $this->get('admin/login', 'Auth\LoginController@showLoginForm')->name('login');
 $this->post('admin/login', 'Auth\LoginController@login');
@@ -48,13 +39,7 @@ Route::group(['prefix' => 'services', 'namespace' => 'Services'], function() {
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
     Route::group(['middleware' => 'auth'], function () {
-        Route::get('/', function () {
-            return view('welcome');
-        });
-
-        Route::get('map', function () {
-            return view('admin.maptest');
-        });
+        Route::get('/', 'DashboardController@show');
 
         Route::get('users', 'UsersController@index');
         Route::post('users', 'UsersController@store');

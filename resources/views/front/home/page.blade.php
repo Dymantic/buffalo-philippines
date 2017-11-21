@@ -18,9 +18,13 @@
             excepturi itaque iure minus officia optio, quod quos ratione sitsuscipit tempora unde? Dolore laborum
             molestias nam!
         </p>
-        <a href="#"
-           class="col-p f3 center db strong-type mt4 link tc flex items-center justify-center ttu"
-        >More about us @include('svgicons.button-arrow', ['classes' => 'ml3 ih3'])</a>
+        @include('front.partials.button-link', [
+            'link' => '/stores',
+            'block' => true,
+            'buttonText' => 'More About Us',
+            'classes' => 'col-p'
+        ])
+
     </section>
     @include('front.home.featured-products')
     <section class="col-d-bg pv6">
@@ -30,10 +34,12 @@
             excepturi itaque iure minus officia optio, quod quos ratione sit suscipit tempora unde? Dolore laborum
             molestias nam!
         </p>
-        <a href="#"
-           class="col-p f3 center db strong-type mt4 link tc flex items-center justify-center ttu">
-            Find a store @include('svgicons.button-arrow', ['classes' => 'ml3 ih3'])
-        </a>
+        @include('front.partials.button-link', [
+            'link' => '/stores',
+            'block' => true,
+            'buttonText' => 'Find a Store',
+            'classes' => 'col-p'
+        ])
     </section>
     <section class="col-lg-bg pv6">
         <h3 class="tc ttu strong-type col-d ma0 f1 mb5">News</h3>
@@ -42,9 +48,10 @@
                 @include('front.home.news-card')
             @endforeach
         </div>
-        <a href="#"
-           class="col-d f3 center db strong-type mt4 link tc flex items-center justify-center ttu">
-            More News @include('svgicons.button-arrow', ['classes' => 'ml3 ih3 icon-d'])
-        </a>
+        @include('front.partials.button-link', [
+            'link' => '/news',
+            'block' => true,
+            'buttonText' => 'More News'
+        ])
     </section>
 @endsection

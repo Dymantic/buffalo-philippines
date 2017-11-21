@@ -17,4 +17,9 @@ trait Publishable
         $this->published = false;
         $this->save();
     }
+
+    public function scopePublished($query)
+    {
+        return $query->where('published', true);
+    }
 }

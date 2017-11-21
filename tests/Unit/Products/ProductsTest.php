@@ -113,6 +113,23 @@ class ProductsTest extends TestCase
     }
 
     /**
+     *@test
+     */
+    public function products_can_be_scoped_to_featured()
+    {
+        $featured_products = factory(Product::class, 2)->create(['featured' => true]);
+        $unfeatured_products = factory(Product::class, 3)->create(['featured' => false]);
+
+        $scoped = Product::featured()->get();
+
+        $this->assertCount(2, $scoped);
+
+        $scoped->each(function($product) use ($featured_products) {
+            $this->assertTrue($featured_products->contains($product));
+        });
+    }
+
+    /**
      * @test
      */
     public function a_product_can_be_presented_as_a_jsonable_array()

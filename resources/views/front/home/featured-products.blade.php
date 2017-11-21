@@ -5,10 +5,9 @@
             @include('front.home.featured-product')
         @endforeach
     </div>
-    {{--<div class="flex justify-around mw8 center">--}}
-        {{--@foreach(range(1,4) as $item)--}}
-            {{--@include('front.home.featured-product')--}}
-        {{--@endforeach--}}
-    {{--</div>--}}
-    <a href="#" class="col-d f3 center db strong-type mt4 link tc flex items-center justify-center ttu">View Products @include('svgicons.button-arrow', ['classes' => 'ml3 ih3 icon-d'])</a>
+    @include('front.partials.button-link', [
+            'link' => '/categories',
+            'block' => true,
+            'buttonText' => 'View Products'
+        ])
 </section>

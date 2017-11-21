@@ -67,7 +67,6 @@
         methods: {
 
             init() {
-                console.log('initing');
                 this.map = new google.maps.Map(document.getElementById('map-box'), {
                     zoom: this.default_zoom,
                     center: this.default_center,

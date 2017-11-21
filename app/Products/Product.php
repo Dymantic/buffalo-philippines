@@ -103,6 +103,11 @@ class Product extends Model implements HasMediaConversions
         $this->save();
     }
 
+    public function scopeFeatured($query)
+    {
+        return $query->where('featured', true);
+    }
+
     public function addDaysToNewUntil($days)
     {
         $new_date = $this->new_until ?? Carbon::today();

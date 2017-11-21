@@ -15,9 +15,12 @@ window.swal = swal;
 import Flickity from "flickity-imagesloaded";
 window.Flickity = Flickity;
 
+
+
 Vue.component('modal', require('./components/Modal.vue'));
 Vue.component('nested-menu', require('./components/NestedMenu.vue'));
 Vue.component('product-list', require('./components/ProductsList.vue'));
+Vue.component('store-locator', require('./components/Locator.vue'));
 
 
 window.eventHub = new Vue();
