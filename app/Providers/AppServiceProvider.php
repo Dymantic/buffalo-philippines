@@ -6,6 +6,7 @@ use App\Observers\CategoryObserver;
 use App\Observers\SubcategoryObserver;
 use App\Products\Category;
 use App\Products\Subcategory;
+use App\Secretary;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
@@ -33,6 +34,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(Secretary::class, function($app) {
+            return new Secretary([
+                'email' => 'test@example.com',
+                'slack' => null
+            ]);
+        });
     }
 }

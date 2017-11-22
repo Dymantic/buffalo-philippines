@@ -63,6 +63,11 @@ export default {
             }
 
             this.mainError = 'Unable to complete action. Please refresh and try again later.';
+            this.handleFailure();
+        },
+
+        handleFailure() {
+
         },
 
         emitEvent(updated_data) {

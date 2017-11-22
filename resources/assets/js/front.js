@@ -21,6 +21,7 @@ Vue.component('modal', require('./components/Modal.vue'));
 Vue.component('nested-menu', require('./components/NestedMenu.vue'));
 Vue.component('product-list', require('./components/ProductsList.vue'));
 Vue.component('store-locator', require('./components/Locator.vue'));
+Vue.component('contact-form', require('./components/ContactForm.vue'));
 
 
 window.eventHub = new Vue();
@@ -29,7 +30,9 @@ const app = new Vue({
     el: '#app',
 
     created() {
-        eventHub.$on('user-alert', this.showAlert)
+        eventHub.$on('user-alert', this.showAlert);
+        eventHub.$on('user-warning', this.showWarning);
+        eventHub.$on('user-error', this.showError);
     },
 
     methods: {
@@ -39,6 +42,22 @@ const app = new Vue({
                 title: message.title,
                 text: message.text,
                 button: message.confirm
+            });
+        },
+
+        showWarning(message) {
+            swal({
+                icon: 'warning',
+                title: 'Hold on there..',
+                text: message
+            });
+        },
+
+        showError(message) {
+            swal({
+                icon: 'error',
+                title: 'Oh dear, an error.',
+                text: message
             });
         }
     }

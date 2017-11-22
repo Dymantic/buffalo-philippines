@@ -13,12 +13,22 @@
 
 Route::get('/', 'HomePageController@show');
 
+Route::get('about', 'AboutPageController@show');
+
 Route::get('categories', 'CategoriesController@index');
 Route::get('categories/{slug}', 'CategoriesController@show');
 
 Route::get('products/{slug}', 'ProductsController@show');
 
 Route::get('stores', 'StoreLocationsController@index');
+
+Route::get('news', 'NewsController@index');
+Route::get('news/{slug}', 'NewsController@show');
+
+Route::get('contact', 'ContactMessageController@create');
+Route::post('contact', 'ContactMessageController@store');
+
+
 
 $this->get('admin/login', 'Auth\LoginController@showLoginForm')->name('login');
 $this->post('admin/login', 'Auth\LoginController@login');

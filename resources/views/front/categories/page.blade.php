@@ -1,7 +1,7 @@
 @extends('front.base', ['pageName' => 'col-lg-bg'])
 
 @section('content')
-    <header class="banner-heading h5 flex items-center justify-center tc">
+    <header class="banner-heading mesh-bg h4 mb5 bb bw2 flex items-center justify-center tc">
         <h1 class="strong-type f1">Our Product Categories</h1>
     </header>
     <section class="flex flex-wrap justify-around contained center">

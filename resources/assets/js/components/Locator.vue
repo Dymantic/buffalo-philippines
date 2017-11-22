@@ -14,7 +14,7 @@
                 </div>
             </div>
         </div>
-        <section>
+        <section class="mv5 mw8 center-ns mh3">
             <p class="f2">You can find our products at these locations</p>
             <div v-for="place in store_locations"
                  :key="place.id"
