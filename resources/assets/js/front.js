@@ -12,8 +12,8 @@ window.Vue = require('vue');
 import swal from "sweetalert";
 window.swal = swal;
 
-import Flickity from "flickity-imagesloaded";
-window.Flickity = Flickity;
+// import Flickity from "flickity-imagesloaded";
+// window.Flickity = Flickity;
 
 
 
@@ -22,6 +22,8 @@ Vue.component('nested-menu', require('./components/NestedMenu.vue'));
 Vue.component('product-list', require('./components/ProductsList.vue'));
 Vue.component('store-locator', require('./components/Locator.vue'));
 Vue.component('contact-form', require('./components/ContactForm.vue'));
+Vue.component('search-bar', require('./components/SearchBar.vue'));
+Vue.component('related-products', require('./components/RelatedProducts.vue'));
 
 
 window.eventHub = new Vue();
@@ -62,3 +64,21 @@ const app = new Vue({
         }
     }
 });
+
+
+document.body.addEventListener('keyup', (ev) => {
+    console.log(ev);
+    switch (ev.keyCode) {
+        case 27:
+            eventHub.$emit('KEY_ESC');
+            break;
+        case 191:
+            eventHub.$emit('KEY_SEARCH');
+            break;
+        default:
+            return;
+    }
+}, false);
+
+import SuperHero from "./components/SuperHero";
+window.SuperHero = SuperHero;

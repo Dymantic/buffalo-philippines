@@ -19,6 +19,7 @@
            href="/news">News</a>
         <a class="ph4-ns f3 link ttu col-w hov-s @activeclass('contact')"
            href="/contact">Contact</a>
+        <search-bar></search-bar>
         <label class="dn-ns ph4-ns f3 link ttu col-w"
                for="nav-trigger">Close</label>
     </nav>

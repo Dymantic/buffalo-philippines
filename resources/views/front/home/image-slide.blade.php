@@ -9,8 +9,10 @@
         >
     </picture>
     <p class="absolute banner-text ttu strong-type ma0 f1">{{ $slide->slide_text }}</p>
+    @if($slide->action_link)
     <a class="absolute banner-action link strong-type f3 ttu flex items-center"
        href="{{ $slide->action_link }}">{{ $slide->action_text }}
         @include('svgicons.button-arrow', ['classes' => 'ml3 ih3'])
     </a>
+    @endif
 </div>

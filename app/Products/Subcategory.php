@@ -6,9 +6,9 @@ use App\Publishable;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 
-class Subcategory extends Model
+class Subcategory extends Model implements Stockable
 {
-    use Sluggable, Stockable, Publishable;
+    use Sluggable, StockableTrait, Publishable;
 
     protected $fillable = ['title', 'description'];
 
@@ -19,6 +19,11 @@ class Subcategory extends Model
         return [
             'slug' => ['source' => 'title']
         ];
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 
     public function toolGroups()
@@ -41,4 +46,21 @@ class Subcategory extends Model
             'published'   => $this->published
         ];
     }
+
+    public function descendants()
+    {
+        $direct_children = $this->products;
+        $descendants = $this->toolGroups->flatMap(function($tool_group) {
+            return $tool_group->products;
+        });
+
+        return $direct_children->merge($descendants);
+    }
+
+    public function parent()
+    {
+        return $this->category;
+    }
+
+
 }

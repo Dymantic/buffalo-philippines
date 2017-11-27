@@ -22,6 +22,8 @@ Route::get('products/{slug}', 'ProductsController@show');
 
 Route::get('stores', 'StoreLocationsController@index');
 
+Route::get('search/products', 'ProductsSearchController@index');
+
 Route::get('news', 'NewsController@index');
 Route::get('news/{slug}', 'NewsController@show');
 
@@ -42,6 +44,8 @@ $this->post('password/reset', 'Auth\ResetPasswordController@reset');
 Route::group(['prefix' => 'services', 'namespace' => 'Services'], function() {
    
     Route::get('categories/{slug}/products', 'CategoryProductsController@index');
+
+    Route::get('products/{slug}/related-products', 'RelatedProductsController@index');
     
 });
 
@@ -120,6 +124,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::get('products/{product}/gallery', 'ProductGalleryController@show');
         Route::post('products/{product}/gallery-images', 'ProductGalleryImagesController@store');
         Route::delete('gallery-images/{image}', 'ProductGalleryImagesController@delete');
+
+        Route::get('search/products', 'ProductSearchController@index');
+
     });
 
     Route::group(['middleware' => 'auth', 'prefix' => 'services', 'namespace' => 'Services'], function () {
@@ -133,6 +140,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::get('categories/{category}/products', 'CategoryProductsController@index');
         Route::get('subcategories/{subcategory}/products', 'SubcategoryProductsController@index');
         Route::get('tool-groups/{toolGroup}/products', 'ToolGroupProductsController@index');
+
+        Route::get('search/products', 'ProductSearchController@index');
     });
 });
 

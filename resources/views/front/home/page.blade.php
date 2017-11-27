@@ -1,10 +1,10 @@
 @extends('front.base', ['pageName' => 'home-page'])
 
 @section('content')
-    <section class=""
-             data-flickity>
+    <section class="col-d-bg"
+             id="hero-banner">
         @foreach($banner_slides as $slide)
-            @if($slide->is_ideo)
+            @if($slide->is_video)
                 @include("front.home.video-slide")
             @else
                 @include("front.home.image-slide")
@@ -54,4 +54,11 @@
             'buttonText' => 'More News'
         ])
     </section>
+@endsection
+
+@section('bodyscripts')
+    <script>
+        var hero = new SuperHero('#hero-banner', 8000);
+        hero.fly();
+    </script>
 @endsection

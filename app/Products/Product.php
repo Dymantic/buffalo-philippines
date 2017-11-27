@@ -124,6 +124,11 @@ class Product extends Model implements HasMediaConversions
         return !$this->new_until->isPast();
     }
 
+    public function parents()
+    {
+        return $this->toolGroups->merge($this->subcategories)->merge($this->categories);
+    }
+
     public function toJsonableArray()
     {
         return [

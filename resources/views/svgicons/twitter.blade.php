@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg"
-     height="30px"
+     height="{{ $height ?? '30px' }}"
      class="{{ $classes ?? '' }}"
      viewBox="0 0 32.49 26.4">
     <path class="colour-fill"

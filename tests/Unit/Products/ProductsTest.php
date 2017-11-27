@@ -6,6 +6,7 @@ namespace Tests\Unit\Products;
 
 use App\Products\Category;
 use App\Products\Product;
+use App\Products\Subcategory;
 use App\Products\ToolGroup;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
@@ -128,6 +129,32 @@ class ProductsTest extends TestCase
             $this->assertTrue($featured_products->contains($product));
         });
     }
+
+    /**
+     *@test
+     */
+    public function a_product_can_return_a_collection_of_its_parents()
+    {
+        $product = factory(Product::class)->create();
+        $tool_group = factory(ToolGroup::class)->create();
+        $unrelated_tool_group = factory(ToolGroup::class)->create();
+        $subcategory = factory(Subcategory::class)->create();
+        $category = factory(Category::class)->create();
+
+        $tool_group->addProduct($product);
+        $subcategory->addProduct($product);
+        $category->addProduct($product);
+
+        $parents = $product->parents();
+
+        $this->assertCount(3, $parents);
+
+        $this->assertTrue($parents->contains($tool_group));
+        $this->assertFalse($parents->contains($unrelated_tool_group));
+        $this->assertTrue($parents->contains($subcategory));
+        $this->assertTrue($parents->contains($category));
+    }
+
 
     /**
      * @test

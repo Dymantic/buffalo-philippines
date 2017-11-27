@@ -6,12 +6,24 @@
   background-color: $admin-primary;
 }
 
+.col-s {
+  color: $admin-secondary;
+}
+
+.col-s-bg {
+  background-color: $admin-secondary;
+}
+
 .col-w {
   color: $white;
 }
 
 .col-w-bg {
   background-color: $white;
+}
+
+.col-d {
+  color: $admin-dark;
 }
 
 .col-d-bg {

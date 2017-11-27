@@ -1,11 +1,11 @@
 @extends('front.base')
 
 @section('content')
-    <header class="banner-heading mesh-bg bb bw2 mb4 h5 flex items-center justify-center tc">
+    <header class="banner-heading mesh-bg bb bw2 mb4 h4 flex items-center justify-center tc">
         <h1 class="strong-type f1">{{ $product['title'] }}</h1>
     </header>
-    <section class="flex justify-between">
-        <div class="w-50">
+    <section class="mw8 center-ns mh3 flex justify-between">
+        <div class="w-50 pa4">
             <img src="{{ $product['main_image']['web'] }}"
                  alt="Product image of {{ $product['title'] }}">
             <div>
@@ -17,11 +17,12 @@
                 @endforeach
             </div>
         </div>
-        <div class="w-50">
-            <p class="f3 f2-ns mb2">{{ ucwords(strtolower($product['title'])) }}</p>
+        <div class="w-50 pa4">
+            <p class="f3 f2-ns mb2 mt0 b">{{ ucwords(strtolower($product['title'])) }}</p>
             <p class="col-p mt0 mb4">{{ $product['code'] }}</p>
             <p>{!! $product['writeup'] !!}</p>
             @include('front.partials.button-link', ['link' => '/stores', 'block' => true, 'buttonText' => 'Find Location'])
         </div>
     </section>
+    <related-products fetch-url="/services/products/{{ $product['slug'] }}/related-products"></related-products>
 @endsection

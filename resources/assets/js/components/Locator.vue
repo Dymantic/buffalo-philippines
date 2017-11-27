@@ -16,7 +16,7 @@
         </div>
         <section class="mv5 mw8 center-ns mh3">
             <p class="f2">You can find our products at these locations</p>
-            <div v-for="place in store_locations"
+            <div v-for="place in locations"
                  :key="place.id"
                  class="ma1 pa3 col-w-bg">
                 <p>{{ place.name }}</p>

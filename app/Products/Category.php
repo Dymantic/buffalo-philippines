@@ -10,9 +10,9 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\HasMedia\Interfaces\HasMediaConversions;
 use Spatie\MediaLibrary\Media;
 
-class Category extends Model implements HasMediaConversions
+class Category extends Model implements HasMediaConversions, Stockable
 {
-    use Sluggable, Stockable, Publishable, HasMediaTrait;
+    use Sluggable, StockableTrait, Publishable, HasMediaTrait;
 
     const MAIN_IMG = 'main-image';
     const DEFAULT_IMG_SRC = '/images/defaults/category.png';
@@ -103,5 +103,25 @@ class Category extends Model implements HasMediaConversions
             'link'     => "/categories/{$this->slug}",
             'children' => $children
         ];
+    }
+
+    public function descendants()
+    {
+        $direct_children = $this->products;
+        $subcategory_products = $this->subcategories->flatMap(function($subcategory) {
+            return $subcategory->products;
+        });
+        $tool_group_products = $this->subcategories->flatMap(function($subcategory) {
+            return $subcategory->toolGroups;
+        })->flatMap(function($tool_group) {
+            return $tool_group->products;
+        });
+
+        return $direct_children->merge($subcategory_products)->merge($tool_group_products);
+    }
+
+    public function parent()
+    {
+        return null;
     }
 }

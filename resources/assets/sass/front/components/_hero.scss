@@ -45,3 +45,14 @@
     color: $site_dark;
   }
 }
+
+#hero-banner {
+  .flickity-page-dots {
+    bottom: 20px;
+    text-align: right;
+
+    li {
+      border-radius: 0;
+    }
+  }
+}

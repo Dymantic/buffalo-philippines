@@ -1,4 +1,4 @@
-<nav class="flex justify-between items-center h3 col-p-bg">
+<nav class="flex justify-between items-center h3 col-d-bg">
     <div class="flex items-start items-center h-100">
         <a href="/admin" class="pl2 flex items-center"><img src="/images/logos/navbar.png"
                               alt="Logo"
@@ -10,7 +10,7 @@
         <a href="/admin/locations" class="mh3 col-w link">Locations</a>
         <dropdown name="Products">
             <div slot="dropdown">
-                <a href="#"
+                <a href="/admin/search/products"
                    class="mh3 col-p mv2 tr link">Search</a>
                 <a href="/admin/categories"
                    class="mh3 col-p mv2 tr link">Categories</a>

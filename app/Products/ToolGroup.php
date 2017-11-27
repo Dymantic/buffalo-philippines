@@ -6,9 +6,9 @@ use App\Publishable;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 
-class ToolGroup extends Model
+class ToolGroup extends Model implements Stockable
 {
-    use Sluggable, Stockable, Publishable;
+    use Sluggable, StockableTrait, Publishable;
 
     protected $fillable = ['title', 'description'];
 
@@ -21,6 +21,11 @@ class ToolGroup extends Model
         ];
     }
 
+    public function subcategory()
+    {
+        return $this->belongsTo(Subcategory::class);
+    }
+
     public function toJsonableArray()
     {
         return [
@@ -31,4 +36,16 @@ class ToolGroup extends Model
             'published'   => $this->published
         ];
     }
+
+    public function descendants()
+    {
+        return $this->products;
+    }
+
+    public function parent()
+    {
+        return $this->subcategory;
+    }
+
+
 }
