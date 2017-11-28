@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 
 class ProductsSearchController extends Controller
 {
-    public function index()
+    public function index(ProductsRepository $repository)
     {
-        $products = ProductsRepository::searchByName(request('q'))->filter(function($product) {
+        $products = $repository->searchByName(request('q'))->filter(function($product) {
             return $product->published;
         });
 
