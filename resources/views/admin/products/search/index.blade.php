@@ -8,5 +8,8 @@
                class="btn">See Categories</a>
         </div>
     </div>
-    <product-search search-url="/admin/services/search/products"></product-search>
+    <product-search search-url="/admin/services/search/products"
+                    :initial-results='{{ json_encode($products) }}'
+                    initial-term="{{ $search_term }}"
+    ></product-search>
 @endsection

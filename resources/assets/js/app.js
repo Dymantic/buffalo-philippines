@@ -88,3 +88,10 @@ const app = new Vue({
         }
     }
 });
+
+document.body.addEventListener('keyup', (ev) => {
+    const ignores = ['INPUT', 'TEXTAREA'];
+    if(ev.keyCode === 191 && ignores.indexOf(ev.target.tagName) === -1) {
+        document.querySelector('#nav-search').focus();
+    }
+}, false);

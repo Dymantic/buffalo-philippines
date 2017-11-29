@@ -113,6 +113,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::post('published-products', 'PublishedProductsController@store');
         Route::delete('published-products/{product}', 'PublishedProductsController@delete');
 
+        Route::get('featured-products', 'FeaturedProductsController@index');
         Route::post('featured-products', 'FeaturedProductsController@store');
         Route::delete('featured-products/{product}', 'FeaturedProductsController@delete');
 

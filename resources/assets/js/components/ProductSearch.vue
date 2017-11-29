@@ -26,12 +26,12 @@
 
     export default {
 
-        props: ['search-url'],
+        props: ['search-url', 'initial-results', 'initial-term'],
 
         data() {
             return {
-                search_term: '',
-                results: []
+                search_term: this.initialTerm,
+                results: this.initialResults || []
             };
         },
 
@@ -42,6 +42,10 @@
 
             getResults: debounce(
                 function() {
+                    if(this.search_term.length < 3) {
+                        return;
+                    }
+
                     axios.get(`${this.searchUrl}?q=${this.search_term}`)
                         .then(({data}) => this.results = data)
                         .catch(err =>console.log(err));
