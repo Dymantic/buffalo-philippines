@@ -1,4 +1,4 @@
-<footer class="relative col-d-bg col-w pt6 flex flex-column items-center">
+<footer class="relative col-d-bg col-w pt6 flex flex-column items-center mesh-d-bg">
     <img src="/images/logos/navbar.png"
          alt="Bufalo Tools logo"
          height="90px"

@@ -12,8 +12,8 @@
         @endforeach
     </section>
     <section class="col-d-bg pv6">
-        <h3 class="tc ttu strong-type col-w ma0 f1">The Right Tools For You</h3>
-        <p class="f3 col-w tc measure-wide lh-copy body-type center">
+        <h3 class="tc ff-headline col-w ma0">The Right Tools For You</h3>
+        <p class="col-w tc measure-wide lh-copy ff-large-body center">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium asperiores debitis deserunt ducimus
             excepturi itaque iure minus officia optio, quod quos ratione sitsuscipit tempora unde? Dolore laborum
             molestias nam!
@@ -28,8 +28,8 @@
     </section>
     @include('front.home.featured-products')
     <section class="col-d-bg pv6">
-        <h3 class="tc ttu strong-type col-w ma0 f1">Locations</h3>
-        <p class="f3 col-w tc measure-wide lh-copy body-type center">
+        <h3 class="tc ff-headline col-w ma0">Locations</h3>
+        <p class="ff-large-body col-w tc measure-wide lh-copy center">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium asperiores debitis deserunt ducimus
             excepturi itaque iure minus officia optio, quod quos ratione sit suscipit tempora unde? Dolore laborum
             molestias nam!
@@ -42,9 +42,9 @@
         ])
     </section>
     <section class="col-lg-bg pv6">
-        <h3 class="tc ttu strong-type col-d ma0 f1 mb5">News</h3>
-        <div class="mw8 flex justify-around center mv5">
-            @foreach(range(1,4) as $item)
+        <h3 class="tc ff-headline col-d ma0 mb5">News</h3>
+        <div class="mw8 center-ns mh3 mv5">
+            @foreach($articles as $article)
                 @include('front.home.news-card')
             @endforeach
         </div>

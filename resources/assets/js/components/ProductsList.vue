@@ -2,13 +2,13 @@
     <div class="flex flex-wrap justify-around">
         <div v-for="product in matching_products"
              :key="product.id"
-             class="w-25 mh2 mb3 col-w-bg pa3">
+             class="w-20 mh2 mb3 col-w-bg pa3">
             <a :href="`/products/${product.slug}`">
                 <img :src="product.main_image.thumb"
                      :alt="product.title">
             </a>
             <p class="b mb0">{{ product.title }}</p>
-            <p class="col-p strong-type mb0 mt2">{{ product.code }}</p>
+            <p class="col-p mb0 mt2">{{ product.code }}</p>
         </div>
     </div>
 </template>

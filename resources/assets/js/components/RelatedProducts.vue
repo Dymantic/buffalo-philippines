@@ -10,8 +10,8 @@
                     <img :src="product.main_image.thumb"
                          :alt="`Image of ${product.title}`">
                 </a>
-                <p class="b f6 mb0">{{ product.title }}</p>
-                <p class="col-p mt1 strong-type f6">{{ product.code }}</p>
+                <p class="ff-title mb0">{{ product.title }}</p>
+                <p class="col-p mt1 ff-fine-body">{{ product.code }}</p>
             </div>
         </div>
 

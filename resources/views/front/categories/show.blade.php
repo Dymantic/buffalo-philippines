@@ -1,8 +1,8 @@
-@extends('front.base', ['pageName' => 'col-lg-bg'])
+@extends('front.base', ['pageName' => ''])
 
 @section('content')
-    <header class="banner-heading mesh-bg bb bw2 mb4 h4 flex items-center justify-center tc">
-        <h1 class="strong-type f1">{{ $category->title }}</h1>
+    <header class="banner-heading mesh-bg bb bw2 mb4 flex items-center justify-center tc">
+        <h1 class="ff-headline">{{ $category->title }}</h1>
     </header>
     <section class="flex">
         <div class="w-25">

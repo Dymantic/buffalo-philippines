@@ -1,10 +1,16 @@
-<div class="flex flex-column ma3 col-w-bg pa2">
-    <div>
-        <img src="/images/news.jpg"
-             alt="" class="mw-100">
+<div class="flex ma3 col-w-bg pa2">
+    <div class="w-20">
+        <img src="{{ $article->titleImage('thumb') }}"
+             alt="Title image for {{ $article->title }}" class="mw-100">
     </div>
-    <p class="col-d mv1 b body-type">Title of Article</p>
-    <p class="col-d mv1 body-type f6 col-mg">20 May 2017</p>
-    <p class="col-d mv1 body-type">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid asperiores dolor dolore doloremque inventore nisi quisquam ut! Accusantium.</p>
-    <p class="tr ma0">@include('svgicons.button-arrow', ['classes' => 'icon-d ih3'])</p>
+    <div class="ph5 flex-auto">
+        <p class="col-d mv1 ff-title">{{ $article->title }}</p>
+        <p class="col-d mv1 ff-fine-body col-mg">{{ $article->published_on->toFormattedDateString() }}</p>
+        <p class="col-d measure-wide mv1 ff-fine-body">{{ $article->intro }}</p>
+        <p class="tr ma0 w-100">
+            <a href="/news/{{ $article->slug }}" class="link">
+                @include('svgicons.button-arrow', ['classes' => 'icon-d ih3'])
+            </a>
+        </p>
+    </div>
 </div>

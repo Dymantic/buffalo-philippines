@@ -21,7 +21,9 @@
     "dependencies": {
         "flickity": "^2.0.10",
         "flickity-imagesloaded": "^2.0.0",
+        "geolib": "^2.0.24",
         "js-marker-clusterer": "^1.0.0",
+        "jump.js": "^1.0.2",
         "moment": "^2.18.1",
         "sortablejs": "^1.6.1",
         "sweetalert": "^2.0.3",

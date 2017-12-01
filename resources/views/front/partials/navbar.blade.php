@@ -10,14 +10,14 @@
            id="nav-trigger"
            class="dn">
     <nav class="nav-list flex justify-end pr2 items-center strong-type col-d-bg">
-        <a class="ph4-ns f3 link ttu col-w hov-s @activeclass('about')"
+        <a class="ph4-ns link ff-sub-headline col-w hov-s @activeclass('about')"
            href="/about">About</a>
-        <a class="ph4-ns f3 link ttu col-w hov-s @activeclass('stores')" href="/stores">Stores</a>
-        <a class="ph4-ns f3 link ttu col-w hov-s @activeclass('categories')"
+        <a class="ph4-ns link ff-sub-headline col-w hov-s @activeclass('stores')" href="/stores">Stores</a>
+        <a class="ph4-ns link ff-sub-headline col-w hov-s @activeclass('categories')"
            href="/categories">Products</a>
-        <a class="ph4-ns f3 link ttu col-w hov-s @activeclass('news')"
+        <a class="ph4-ns link ff-sub-headline col-w hov-s @activeclass('news')"
            href="/news">News</a>
-        <a class="ph4-ns f3 link ttu col-w hov-s @activeclass('contact')"
+        <a class="ph4-ns link ff-sub-headline col-w hov-s @activeclass('contact')"
            href="/contact">Contact</a>
         <search-bar></search-bar>
         <label class="dn-ns ph4-ns f3 link ttu col-w"

@@ -8,7 +8,7 @@
              class="w-100 z-0"
         >
     </picture>
-    <p class="absolute banner-text ttu strong-type ma0 f1">{{ $slide->slide_text }}</p>
+    <p class="absolute banner-text ff-headline ma0">{{ $slide->slide_text }}</p>
     @if($slide->action_link)
     <a class="absolute banner-action link strong-type f3 ttu flex items-center"
        href="{{ $slide->action_link }}">{{ $slide->action_text }}

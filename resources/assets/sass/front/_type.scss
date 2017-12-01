@@ -6,3 +6,40 @@
 .body-type {
   font-family: $body_font;
 }
+
+.ff-title {
+  font-family: $body_font;
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+.ff-large-body {
+  font-family: $body_font;
+  font-size: 1.5rem;
+}
+
+
+.ff-body {
+  font-family: $body_font;
+  font-size: 1.125rem;
+}
+
+.ff-fine-body {
+  font-family: $body_font;
+  font-size: .875rem;
+}
+
+.ff-headline {
+  font-family: $strong;
+  font-weight: 900;
+  font-size: 3.25rem;
+  text-transform: uppercase;
+}
+
+.ff-sub-headline {
+  font-family: $strong;
+  font-weight: 900;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+}

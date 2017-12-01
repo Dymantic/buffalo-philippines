@@ -10,17 +10,26 @@
                 <p>{{ picked_location.name }}</p>
                 <p>{{ picked_location.address }}</p>
                 <div @click="resetMap"
-                     class="f1 ma0 absolute top-0 right-1">&times;
+                     class="f1 ma0 absolute top-0 right-1 def-cursor">&times;
                 </div>
             </div>
         </div>
+        <div class="tc pv5">
+            <button class="ff-sub-headline pv2 ph3 col-w col-d-bg br2 bn"
+                  @click="findNearestLocation"
+                  :disabled="!can_get_location"
+            >
+                {{ location_button_text }}
+            </button>
+            <p class="ff-fine-body tc">{{ location_info }}</p>
+        </div>
         <section class="mv5 mw8 center-ns mh3">
-            <p class="f2">You can find our products at these locations</p>
-            <div v-for="place in locations"
+            <p class="ff-title">You can find our products at these locations</p>
+            <div v-for="place in store_locations"
                  :key="place.id"
-                 class="ma1 pa3 col-w-bg">
-                <p>{{ place.name }}</p>
-                <p class="flex items-center">
+                 class="mv1 pa3 col-w-bg relative">
+                <p class="ff-title">{{ place.name }}</p>
+                <p class="flex items-center w-80">
                     <span class="col-p mr2">
                         <svg xmlns="http://www.w3.org/2000/svg"
                              height="16px"
@@ -31,6 +40,7 @@
                     </span>
                     {{ place.address }}
                 </p>
+                <span class="absolute col-p ba def-cursor pa2 bottom-1 right-1" @click="highLightLocation(place)">See on map</span>
             </div>
         </section>
 
@@ -40,6 +50,9 @@
 <script type="text/babel">
 
     import "js-marker-clusterer";
+    import position from "./position";
+    import geolib from "geolib";
+    import jump from "jump.js"
 
     export default {
 
@@ -51,12 +64,80 @@
                 default_center: {lat: 12.5964957, lng: 120.9445403},
                 default_zoom: 6,
                 store_locations: [],
-                picked_location: {id: null, name: '', address: ''}
+                picked_location: {id: null, name: '', address: ''},
+                user_location: null,
+                awaiting_permission: false,
+                location_permission: 'unknown',
+                location_unavailable: false,
+                waiting_on_location: false,
+                nearest_store: null
             };
+        },
+
+        computed: {
+            location_button_text() {
+                if(this.waiting_on_location && !this.awaiting_permission) {
+                    return 'Waiting for location';
+                }
+
+                if(this.user_location && this.store_locations.length) {
+                    return 'See your nearest location';
+                }
+
+                if (this.awaiting_permission) {
+                    return 'Waiting for permission';
+                }
+
+                if (this.location_unavailable) {
+                    return 'Location unavailable';
+                }
+
+                return 'Find your nearest store';
+            },
+
+            can_get_location() {
+                return !this.location_unavailable && !this.waiting_on_location;
+            },
+
+            location_info() {
+                if(this.user_location && this.nearest_store) {
+                    const distance = geolib.getDistance(
+                        {latitude: this.user_location.latitude, longitude: this.user_location.longitude},
+                        {latitude: this.nearest_store.latLng.lat, longitude: this.nearest_store.latLng.lng}
+                    ) / 1000;
+                    return `Your nearest store is approx. ${distance.toFixed(1)}km away`;
+                }
+
+                if(this.location_unavailable) {
+                    return 'Unfortunately we cannot access your location';
+                }
+
+                if(this.awaiting_permission || this.waiting_on_location) {
+                    return 'Waiting for location data. Please be patient';
+                }
+
+                return 'Allow us to see your location and we can help you find your nearest Buffalo dealer.';
+            }
+        },
+
+        watch: {
+            location_permission(new_position) {
+                switch (new_position) {
+                    case 'granted':
+                        this.getUserLocation();
+                        break;
+                    case 'denied':
+                        this.location_unavailable = true;
+                        break;
+                    default:
+                        return;
+                }
+            }
         },
 
         mounted() {
             eventHub.$on('maps-loaded', this.init);
+            this.getLocationPermission();
         },
 
         methods: {
@@ -88,7 +169,8 @@
                 });
 
                 let clusterer = new MarkerClusterer(this.map, this.store_locations.map(loc => loc.marker), {
-                    imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
+                    imagePath: '/images/map_cluster',
+                    imageExtension: 'svg',
                     gridSize: 20
                 });
             },
@@ -101,12 +183,86 @@
                 this.map.setZoom(13);
                 this.map.panTo(location.latLng);
                 this.picked_location = location;
+                jump('.map', {offset: -100});
             },
 
             resetMap() {
                 this.map.panTo(this.default_center);
                 this.map.setZoom(this.default_zoom);
                 this.picked_location = {id: null, name: '', address: ''}
+            },
+
+            findNearestLocation() {
+                console.log('req');
+                if (!this.user_location) {
+                    return this.getUserLocation().then(() => this.showNearestStore());
+                }
+
+                this.showNearestStore();
+            },
+
+            askForUserLocation() {
+                this.awaiting_permission = true;
+                this.getUserLocation();
+            },
+
+            getUserLocation() {
+                this.waiting_on_location = true;
+
+                position.watchCurrent(
+                    (pos) => this.user_location = pos,
+                    (message) => eventHub.$emit('user-error', message)
+                );
+
+                return new Promise((resolve, reject) => {
+                    position.getCurrent()
+                            .then((position) => {
+                                this.user_location = position;
+                                this.awaiting_permission = false;
+                                this.waiting_on_location = false;
+                                this.findNearestStore();
+                                resolve();
+                            })
+                            .catch(message => {
+                                eventHub.$emit('user-error', message);
+                                this.location_unavailable = true;
+                                this.awaiting_permission = false;
+                                this.waiting_on_location = false;
+
+                                reject('Failed to get location');
+                            });
+                });
+
+
+
+            },
+
+            getLocationPermission() {
+                if (!window.navigator.permissions || !window.navigator.permissions.query) {
+                    return;
+                }
+
+                window.navigator.permissions.query({name: 'geolocation'})
+                      .then(permission => this.location_permission = permission.state)
+                      .catch(() => {});
+            },
+
+            findNearestStore() {
+                const stores = this.store_locations.map(store => ({
+                    store: store,
+                    distance: geolib.getDistance({latitude: store.latLng.lat, longitude: store.latLng.lng},
+                        {latitude: this.user_location.latitude, longitude: this.user_location.longitude})
+
+                })).sort((a, b) => a.distance - b.distance);
+
+                if (stores.length) {
+                    this.nearest_store = stores[0].store;
+                }
+            },
+
+            showNearestStore() {
+                console.log('clicking');
+                this.highLightLocation(this.nearest_store);
             }
         }
     }
@@ -135,5 +291,9 @@
         p {
             font-weight: 700;
         }
+    }
+
+    button[disabled] {
+        opacity: .5;
     }
 </style>
