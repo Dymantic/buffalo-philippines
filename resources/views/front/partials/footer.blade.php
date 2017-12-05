@@ -38,7 +38,7 @@
     </div>
     <div class="col-p mv5">
         {{--top button--}}
-        @include('svgicons.top-button')
+        @include('svgicons.top-button', ['classes' => 'top-button'])
     </div>
     <p>
         {{--credits and copyright--}}

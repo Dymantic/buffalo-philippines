@@ -4,11 +4,15 @@
 namespace App\Products;
 
 
+use Illuminate\Support\Facades\Cache;
+
 class ProductsRepository
 {
     public function productsUnder(Stockable $stockable)
     {
-        return $stockable->descendants();
+        return Cache::remember($stockable->slug, 60*24, function() use ($stockable) {
+            return $stockable->descendants();
+        });
     }
 
     public function searchByName($search_term)

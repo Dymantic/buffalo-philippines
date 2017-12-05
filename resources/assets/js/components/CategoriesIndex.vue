@@ -1,13 +1,10 @@
 <template>
     <div>
-        <div class="flex flex-wrap justify-around">
-            <category-card v-for="category in categories"
-                           :key="category.id"
-                           :item-attributes="category"
-            >
-            </category-card>
-        </div>
-
+        <category-card v-for="category in categories"
+                       :key="category.id"
+                       :item-attributes="category"
+        >
+        </category-card>
     </div>
 </template>
 

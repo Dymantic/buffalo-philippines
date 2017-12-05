@@ -35,7 +35,7 @@
 
         mounted() {
             eventHub.$on('KEY_SEARCH', this.toggleSearch);
-            eventHub.$on('KEY_ESC', () => this.open = false);
+            eventHub.$on('KEY_ESC', this.hide);
         },
 
         methods: {
@@ -54,6 +54,11 @@
 
             submit() {
                 window.location = `/search/products?q=${this.search_term}`;
+            },
+
+            hide() {
+                this.open = false;
+                this.$refs.searchinput.blur();
             }
         }
     }

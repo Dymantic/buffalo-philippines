@@ -12,18 +12,18 @@ window.Vue = require('vue');
 import swal from "sweetalert";
 window.swal = swal;
 
-// import Flickity from "flickity-imagesloaded";
-// window.Flickity = Flickity;
-
+import jump from "jump.js";
 
 
 Vue.component('modal', require('./components/Modal.vue'));
 Vue.component('nested-menu', require('./components/NestedMenu.vue'));
 Vue.component('product-list', require('./components/ProductsList.vue'));
+Vue.component('show-category', require('./components/ShowCategory'));
 Vue.component('store-locator', require('./components/Locator.vue'));
 Vue.component('contact-form', require('./components/ContactForm.vue'));
 Vue.component('search-bar', require('./components/SearchBar.vue'));
 Vue.component('related-products', require('./components/RelatedProducts.vue'));
+Vue.component('image-gallery', require('./components/ProductImageGallery'));
 
 
 window.eventHub = new Vue();
@@ -67,13 +67,15 @@ const app = new Vue({
 
 
 document.body.addEventListener('keyup', (ev) => {
-    console.log(ev);
+    const ignores = ['INPUT', 'TEXTAREA'];
     switch (ev.keyCode) {
         case 27:
             eventHub.$emit('KEY_ESC');
             break;
         case 191:
-            eventHub.$emit('KEY_SEARCH');
+            if(ignores.indexOf(ev.target.tagName) === -1) {
+                eventHub.$emit('KEY_SEARCH');
+            }
             break;
         default:
             return;
@@ -82,3 +84,7 @@ document.body.addEventListener('keyup', (ev) => {
 
 import SuperHero from "./components/SuperHero";
 window.SuperHero = SuperHero;
+
+if(document.querySelector('.top-button')) {
+    document.querySelector('.top-button').addEventListener('click', () => jump(document.body));
+}

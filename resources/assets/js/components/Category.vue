@@ -1,11 +1,17 @@
 <template>
     <div>
         <div class="flex justify-between items-center">
-            <h1 class="f1 normal">{{ title }}</h1>
+            <h1 class="f1 normal">{{ category_title }}</h1>
             <div class="flex justify-end items-center">
                 <category-form :url="`/admin/categories/${id}/subcategories`"
                                resource-type="subcategory"
                                button-text="add subcategory"
+                ></category-form>
+                <category-form :url="`/admin/categories/${id}`"
+                               :form-attributes="{title,description}"
+                               form-type="update"
+                               button-text="Edit"
+                               @updated-category="updateCategory"
                 ></category-form>
                 <delete-modal :item-name="title"
                               :redirect="true"
@@ -27,9 +33,22 @@
         </div>
         <div class="card mv3">
             <p class="col-p ttu f6">Description</p>
-            <p>{{ description }}</p>
+            <p>{{ category_description }}</p>
         </div>
-        <subcategories-list :fetch-url="`/admin/services/categories/${id}/subcategories`"></subcategories-list>
+        <div class="flex justify-between mv3 items-stretch">
+                <subcategories-list class="w-50 mr3" :fetch-url="`/admin/services/categories/${id}/subcategories`"></subcategories-list>
+            <div class="w-50 card">
+                <p class="col-p ttu f6">Image</p>
+                <image-upload :default="image"
+                              :url="`/admin/categories/${id}/image`"
+                              size="preview"
+                              :preview-width="300"
+                              :preview-height="300"
+                              :unique="parseInt(id)"
+                              :delete-url="`/admin/categories/${id}/image`"
+                ></image-upload>
+            </div>
+        </div>
         <div class="card mv3">
             <div class="flex justify-between items-center">
                 <p class="ttu col-p f6">Products</p>
@@ -45,17 +64,26 @@
 <script type="text/babel">
     export default {
 
-        props: ['id', 'title', 'description', 'published'],
+        props: ['id', 'title', 'description', 'published', 'image'],
 
         data() {
             return {
-                is_published: this.published
+                is_published: this.published,
+                category_title: this.title,
+                category_description: this.category
             };
         },
 
         computed: {
             publish_status() {
                 return this.is_published ? 'Published! This category is live and visible on the site.' : 'Not published. Use the switch on the right to publish this category.';
+            }
+        },
+
+        methods: {
+            updateCategory({title, description}) {
+                this.category_title = title;
+                this.category_description = description
             }
         }
     }

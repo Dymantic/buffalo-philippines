@@ -46,6 +46,29 @@ class ProductsRepositoryTest extends TestCase
     /**
      *@test
      */
+    public function the_repository_caches_the_category_products()
+    {
+        $category = factory(Category::class)->create();
+        $subcategory = factory(Subcategory::class)->create(['category_id' => $category->id]);
+        $tool_group = factory(ToolGroup::class)->create(['subcategory_id' => $subcategory->id]);
+
+        $productA = $category->addProduct(factory(Product::class)->create());
+        $productB = $subcategory->addProduct(factory(Product::class)->create());
+        $productC = $subcategory->addProduct(factory(Product::class)->create());
+        $productD = $tool_group->addProduct(factory(Product::class)->create());
+        $productE = $tool_group->addProduct(factory(Product::class)->create());
+
+        $this->assertFalse(cache()->has($category->slug));
+
+
+        $fetched_products = (new ProductsRepository())->productsUnder($category);
+
+        $this->assertTrue(cache()->has($category->slug));
+    }
+
+    /**
+     *@test
+     */
     public function it_returns_the_products_under_a_given_subcategory()
     {
         $subcategory = factory(Subcategory::class)->create();

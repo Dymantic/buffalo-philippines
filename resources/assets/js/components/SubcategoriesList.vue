@@ -1,9 +1,9 @@
 <template>
-    <div class="card mv3">
+    <div class="card">
         <p class="ttu col-p f6">Subcategories</p>
         <p v-if="!subcategories.length">This category has no subcategories yet.</p>
         <div v-for="subcategory in subcategories" :key="subcategory.id">
-            <a :href="`/admin/subcategories/${subcategory.id}`">{{ subcategory.title }}</a>
+            <a class="link b col-d" :href="`/admin/subcategories/${subcategory.id}`">{{ subcategory.title }}</a>
         </div>
     </div>
 </template>

@@ -36,4 +36,28 @@ class ProductGalleryImagesTest extends TestCase
         $this->assertTrue($product->fresh()->getFirstMedia(Product::GALLERY_IMGS)->is($image));
         $this->assertTrue(file_exists($image->getPath()));
     }
+
+    /**
+     *@test
+     */
+    public function a_thumbnail_conversion_is_made()
+    {
+        $product = factory(Product::class)->create();
+
+        $image = $product->addGalleryImage(UploadedFile::fake()->image('testpic.png'));
+
+        $this->assertTrue(file_exists($image->getPath('thumb')));
+    }
+
+    /**
+     *@test
+     */
+    public function a_web_conversion_is_made()
+    {
+        $product = factory(Product::class)->create();
+
+        $image = $product->addGalleryImage(UploadedFile::fake()->image('testpic.png'));
+
+        $this->assertTrue(file_exists($image->getPath('web')));
+    }
 }

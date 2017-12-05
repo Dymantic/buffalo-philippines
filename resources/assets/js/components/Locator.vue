@@ -10,7 +10,7 @@
                 <p>{{ picked_location.name }}</p>
                 <p>{{ picked_location.address }}</p>
                 <div @click="resetMap"
-                     class="f1 ma0 absolute top-0 right-1 def-cursor">&times;
+                     class="f1 ma0 absolute top-0 right-1 cursor-def">&times;
                 </div>
             </div>
         </div>
@@ -40,7 +40,7 @@
                     </span>
                     {{ place.address }}
                 </p>
-                <span class="absolute col-p ba def-cursor pa2 bottom-1 right-1" @click="highLightLocation(place)">See on map</span>
+                <span class="absolute col-p ba cursor-def ff-fine-body pa2 bottom-1 right-1" @click="highLightLocation(place)">See on map</span>
             </div>
         </section>
 
@@ -210,7 +210,7 @@
                 this.waiting_on_location = true;
 
                 position.watchCurrent(
-                    (pos) => this.user_location = pos,
+                    (pos) => {console.log('updated loc'); this.user_location = pos},
                     (message) => eventHub.$emit('user-error', message)
                 );
 

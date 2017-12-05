@@ -16,7 +16,7 @@
 <script type="text/babel">
     export default {
 
-        props: ['fetch-url'],
+        props: ['fetch-url', 'parent-type', 'subcategory-id', 'tool-groups'],
 
         data() {
             return {
@@ -30,7 +30,7 @@
 
         computed: {
             matching_products() {
-                if (!this.show_subcategory && !this.show_tool_groups.length) {
+                if (this.parentType === 'Category') {
                     return this.products;
                 }
 
@@ -41,9 +41,6 @@
 
         mounted() {
             this.fetchProducts();
-            eventHub.$on('subcategory-chosen', this.showSubcategory);
-            eventHub.$on('toolgroup-chosen', this.showToolGroup);
-            eventHub.$on('reset-category-list', this.resetList);
         },
 
         methods: {
@@ -70,21 +67,21 @@
             },
 
             belongsToSelectedParent(product) {
-                if (this.show_subcategory) {
+                if (this.parentType === 'Subcategory') {
                     return this.belongsToSubcategory(product) || this.belongsToToolGroup(product);
                 }
 
-                if (this.show_tool_groups.length) {
+                if (this.parentType === 'Tool Group') {
                     return this.belongsToToolGroup(product);
                 }
             },
 
             belongsToSubcategory(product) {
-                return product.parents.some(parent => parent.type === 'Subcategory' && parent.id === this.show_subcategory);
+                return product.parents.some(parent => parent.type === 'Subcategory' && parent.id === this.subcategoryId);
             },
 
             belongsToToolGroup(product) {
-                return product.parents.some(parent => (parent.type === 'Tool Group') && (this.show_tool_groups.indexOf(parent.id) !== -1))
+                return product.parents.some(parent => (parent.type === 'Tool Group') && (this.toolGroups.indexOf(parent.id) !== -1))
             }
         }
     }

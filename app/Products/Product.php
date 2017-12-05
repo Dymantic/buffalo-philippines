@@ -44,7 +44,7 @@ class Product extends Model implements HasMediaConversions
              ->fit(Manipulations::FIT_MAX, 600, 600)
              ->keepOriginalImageFormat()
              ->optimize()
-             ->performOnCollections(static::MAIN_IMG);
+             ->performOnCollections(static::MAIN_IMG, static::GALLERY_IMGS);
     }
 
     public function mainImage()
@@ -74,6 +74,11 @@ class Product extends Model implements HasMediaConversions
     public function addGalleryImage($image)
     {
         return $this->addMedia($image)->preservingOriginal()->toMediaCollection(static::GALLERY_IMGS);
+    }
+
+    public function stockables()
+    {
+        return $this->morphTo();
     }
 
     public function categories()
@@ -156,18 +161,16 @@ class Product extends Model implements HasMediaConversions
 
     private function parentsJson()
     {
-        $parents = [];
-        $this->categories->each(function ($category) use (&$parents) {
-            $parents[] = ['id' => $category->id, 'type' => 'Category', 'title' => $category->title];
-        });
-        $this->subcategories->each(function ($subcategory) use (&$parents) {
-            $parents[] = ['id' => $subcategory->id, 'type' => 'Subcategory', 'title' => $subcategory->title];
-        });
-        $this->toolGroups->each(function ($tool_group) use (&$parents) {
-            $parents[] = ['id' => $tool_group->id, 'type' => 'Tool Group', 'title' => $tool_group->title];
-        });
 
-        return $parents;
+        return \DB::table('stockables')->where('product_id', $this->id)->get()->map(function($stockable) {
+            return (new $stockable->stockable_type)->find($stockable->stockable_id);
+        })->map(function($parent) {
+            return [
+                'id' => $parent->id,
+                'type' => $parent instanceof Category ? 'Category' : ($parent instanceof Subcategory ? 'Subcategory' : 'Tool Group'),
+                'title' => $parent->title
+            ];
+        })->all();
     }
 
     private function galleryJson()
