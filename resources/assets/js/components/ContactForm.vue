@@ -1,7 +1,7 @@
 <template>
     <div>
         <form action=""
-              @submit.stop.prevent="submit">
+              @submit.stop.prevent="submit" class="mb5">
             <p></p>
             <div class="form-group mv3"
                  :class="{'has-error': form.errors.name}">
@@ -38,11 +38,11 @@
             <div class="form-group mv3">
                 <button type="submit"
                         :disabled="waiting"
-                        class="f3 strong-type mt4 link center db flex items-center justify-center ttu col-w-bg pv2 col-d bn"
+                        class="ff-sub-headline mt4 link center db flex items-center justify-center ttu col-w-bg pv2 col-p bn"
                 >
                     <span>{{ button_msg }}</span>
                     <span>
-                        <svg class="icon icon-d ih3 ml3 pt1"
+                        <svg class="icon ih4 ml3 pt1"
                              xmlns="http://www.w3.org/2000/svg"
                              viewBox="0 0 22 22">
     <path class="colour-fill"

@@ -160,7 +160,7 @@
                         position: {lat: location.lat, lng: location.lng},
                         map: this.map,
                         animation: google.maps.Animation.DROP,
-                        icon: '/images/location_icon.svg'
+                        icon: 'images/location_icon.svg'
                     })
                 }));
 

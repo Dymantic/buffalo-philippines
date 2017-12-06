@@ -1,10 +1,11 @@
 <div class="main-navbar fixed flex justify-end relative items-center bw2 col-p col-d-bg w-100 top-0 z-999 strong-type">
     <a href="/"
        class="absolute nav-logo link">
-        <img src="/images/logos/navbar.png"
-             alt="Buffalo Tools logo"
-             class="fixed z-999"
-             height="95px">
+        <div class="fixed z-999">
+            @include('svgicons.logo_top')
+            @include('svgicons.logo_bottom')
+        </div>
+
     </a>
     <input type="checkbox"
            id="nav-trigger"

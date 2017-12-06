@@ -5,10 +5,10 @@
          class="absolute top-0 left-1"
     >
     <div class="flex justify-between mw7 center-ns mh3 w-90">
-        <div class="w-50 tl">
+        <div class="w-50 tc">
             {{--connect--}}
             <p class="ttu b">Connect</p>
-            <div class="flex items-center justify-start">
+            <div class="flex items-center justify-center">
                 <a href="#" class="mr3 col-w link">
                     @include('svgicons.twitter', ['height' => '20px'])
                 </a>
@@ -23,9 +23,9 @@
                 </a>
             </div>
         </div>
-        <div class="w-50 flex justify-end">
+        <div class="w-50 flex justify-center">
             {{--quick links--}}
-            <div class="tl">
+            <div class="tc">
                 <p class="ttu b mb0">Quicklinks</p>
                 <ul class="list pl0 pt0 mt2">
                     <li class="mb1 mt0"><a class="col-w link" href="#">Locations</a></li>

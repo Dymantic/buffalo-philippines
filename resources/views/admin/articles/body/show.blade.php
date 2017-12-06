@@ -9,7 +9,7 @@
         <h1 class="f1 normal">{{ $article->title }}</h1>
         <div class="flex justify-end items-center">
             <a href="/admin/articles/{{ $article->id }}"
-               class="btn">Article</a>
+               class="btn">Back to Article</a>
         </div>
     </div>
     <editor post-id="{{ $article->id }}"

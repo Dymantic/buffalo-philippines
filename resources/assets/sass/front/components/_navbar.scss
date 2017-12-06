@@ -1,3 +1,16 @@
+.scrolled .nav-logo-bottom {
+  transform: translate3d(0,-34.6px,0);
+  z-index: -1;
+}
+
+.nav-logo-bottom {
+  position: relative;
+  transition: .4s;
+  transform-origin: left top;
+  transform: translate3d(0,0,0);
+  transition-timing-function: ease-in-out;
+}
+
 .main-navbar {
   height: 60px;
 

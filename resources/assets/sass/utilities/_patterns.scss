@@ -9,3 +9,15 @@
   background-repeat: repeat;
   background-size: 7px;
 }
+
+.text-watermark-bg {
+  background-image: url(./images/buffalo_watermark.png);
+  background-position: 95% 50%;
+  background-repeat: no-repeat;
+}
+
+.location-watermark-bg {
+  background-image: url(./images/location_icon_big.png);
+  background-position: 5% 50%;
+  background-repeat: no-repeat;
+}

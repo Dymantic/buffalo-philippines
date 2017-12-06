@@ -13,6 +13,7 @@ import swal from "sweetalert";
 window.swal = swal;
 
 import jump from "jump.js";
+import {throttle} from "lodash";
 
 
 Vue.component('modal', require('./components/Modal.vue'));
@@ -88,3 +89,10 @@ window.SuperHero = SuperHero;
 if(document.querySelector('.top-button')) {
     document.querySelector('.top-button').addEventListener('click', () => jump(document.body));
 }
+
+window.addEventListener('scroll', throttle(() => {
+    if(window.scrollY > 100) {
+        return document.body.classList.add('scrolled');
+    }
+    document.body.classList.remove('scrolled');
+}, 300));

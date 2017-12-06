@@ -18,8 +18,8 @@
                 </div>
                 <div class="pa2 pl4 flex-auto">
                     <p class="ff-title b mv0"><a class="link col-d" href="/news/{{ $article->slug }}">{{ $article->title }}</a></p>
-                    <p class="col-p ff-fine-body">{{ $article->published_on->toFormattedDateString() }}</p>
-                    <p class="measure-wide lh-title ff-body">{{ $article->intro }}</p>
+                    <p class="col-p ff-fine-body mv1">{{ $article->published_on->toFormattedDateString() }}</p>
+                    <p class="measure-wide lh-title ff-fine-body">{{ $article->intro }}</p>
                 </div>
             </div>
         @endforeach
