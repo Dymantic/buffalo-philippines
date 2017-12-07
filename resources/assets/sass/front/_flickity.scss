@@ -5,8 +5,9 @@
 }
 .flickity-prev-next-button:hover {
   background: transparent;
+  opacity: .7;
   .arrow {
-    fill: $site_primary_dark;
+    fill: $site_dark;
   }
 }
 /* arrow color */
