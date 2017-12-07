@@ -14,14 +14,14 @@
     </section>
     <section class="tc mv5">
         <p class="tc ff-title col-mg">Share this article</p>
-        <a href="#" class="link mh2">
-            @include('svgicons.facebook', ['classes' => 'icon icon-d ih5 hv-col-p'])
+        <a href="#" class="link col-d hv-col-p mh2">
+            @include('svgicons.facebook', ['classes' => 'icon ih5 hv-col-p'])
         </a>
-        <a href="#" class="link mh2">
-            @include('svgicons.twitter', ['classes' => 'icon icon-d ih5'])
+        <a href="#" class="link col-d hv-col-p mh2">
+            @include('svgicons.twitter', ['classes' => 'icon ih5'])
         </a>
-        <a href="#" class="link mh2">
-            @include('svgicons.email', ['classes' => 'icon icon-d ih5'])
+        <a href="#" class="link col-d hv-col-p mh2">
+            @include('svgicons.email', ['classes' => 'icon ih5'])
         </a>
     </section>
     @include('front.partials.back-button', [

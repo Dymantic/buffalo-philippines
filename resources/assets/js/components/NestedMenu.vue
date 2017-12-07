@@ -9,16 +9,16 @@
                  class="flex justify-between items-center pv2 hv-bg-grey"
             >
                 <a :href="subcategory.link"
-                   class="link col-d">{{ subcategory.title }}</a>
+                   class="link col-d hv-col-p">{{ subcategory.title }}</a>
                 <span v-if="subcategory.children.length" class="strong-type b f4">&raquo;</span>
             </div>
         </div>
         <div class="absolute submenu pa4 w6 col-w-bg"
              :class="{'exposed': level === 2}">
-            <p class="strong-type ttu">
+            <p class="ff-sub-headline">
                 <span @click="returnToBase"
-                      class="mr4 col-p">&larr;</span>
-                <span @click="resetToSubcategory">{{ selected_subcategory.title }}</span>
+                      class="mr4 col-p hv-col-pd cursor-point">&larr;</span>
+                <span @click="resetToSubcategory" class="hv-col-p cursor-point">{{ selected_subcategory.title }}</span>
             </p>
             <div v-for="toolgroup in selected_subcategory.children"
                  :key="toolgroup.id"
@@ -26,7 +26,7 @@
                  @click.stop.prevent="showToolGroup(toolgroup)"
             >
                 <a :href="toolgroup.link"
-                   class="link col-d">{{ toolgroup.title }}</a>
+                   class="link col-d hv-col-p">{{ toolgroup.title }}</a>
             </div>
         </div>
     </div>

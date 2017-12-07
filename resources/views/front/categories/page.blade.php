@@ -10,7 +10,7 @@
                 <a href="/categories/{{ $category->slug }}" class="link col-d">
                     <img src="{{ $category->imageUrl('thumb') }}"
                          alt="Image for {{ $category->title }} category">
-                    <p class="f3 f4-ns b">{{ $category->title }}</p>
+                    <p class="ff-title col-d hv-col-p">{{ $category->title }}</p>
                 </a>
             </div>
         @endforeach

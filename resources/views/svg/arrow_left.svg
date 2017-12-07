@@ -1,1 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><defs><style>.cls-1{fill:#414042;}</style></defs><title>arrow_left</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path class="cls-1" d="M25,0A25,25,0,1,0,50,25,25,25,0,0,0,25,0Zm6.17,36.76H22.84a.76.76,0,0,1-.62-.32L14.3,26.38a2.24,2.24,0,0,1,0-2.77l7.93-10.05a.76.76,0,0,1,.62-.32h8.33a.76.76,0,0,1,.62,1.2L24.52,24.53a.76.76,0,0,0,0,.89l7.26,10.14A.76.76,0,0,1,31.17,36.76Z"/></g></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 50 50">
+    <defs>
+        <style>.cls-1 {
+            fill: #414042;
+        }</style>
+    </defs>
+    <title>arrow_left</title>
+    <g id="Layer_2"
+       data-name="Layer 2">
+        <g id="Layer_1-2"
+           data-name="Layer 1">
+            <path class="cls-1"
+                  d="M25,0A25,25,0,1,0,50,25,25,25,0,0,0,25,0Zm6.17,36.76H22.84a.76.76,0,0,1-.62-.32L14.3,26.38a2.24,2.24,0,0,1,0-2.77l7.93-10.05a.76.76,0,0,1,.62-.32h8.33a.76.76,0,0,1,.62,1.2L24.52,24.53a.76.76,0,0,0,0,.89l7.26,10.14A.76.76,0,0,1,31.17,36.76Z"/>
+        </g>
+    </g>
+</svg>

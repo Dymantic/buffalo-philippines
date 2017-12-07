@@ -7,15 +7,15 @@
             </div>
             <div class="absolute pa3 col-w-bg location-card"
                  :class="{'highlighted': picked_location.id}">
-                <p>{{ picked_location.name }}</p>
-                <p>{{ picked_location.address }}</p>
+                <p class="ff-title">{{ picked_location.name }}</p>
+                <p class="ff-fine-body">{{ picked_location.address }}</p>
                 <div @click="resetMap"
-                     class="f1 ma0 absolute top-0 right-1 cursor-def">&times;
+                     class="ff-headline hv-col-p ma0 absolute top-0 right-1 cursor-def">&times;
                 </div>
             </div>
         </div>
         <div class="tc pv5">
-            <button class="ff-sub-headline pv2 ph3 col-w col-d-bg br2 bn"
+            <button class="ff-sub-headline pv2 ph3 col-w hv-col-p col-d-bg br2 bn"
                   @click="findNearestLocation"
                   :disabled="!can_get_location"
             >
@@ -29,7 +29,7 @@
                  :key="place.id"
                  class="mv1 pa3 col-w-bg relative">
                 <p class="ff-title">{{ place.name }}</p>
-                <p class="flex items-center w-80">
+                <p class="flex ff-fine-body items-center w-80">
                     <span class="col-p mr2">
                         <svg xmlns="http://www.w3.org/2000/svg"
                              height="16px"
@@ -40,7 +40,7 @@
                     </span>
                     {{ place.address }}
                 </p>
-                <span class="absolute col-p ba cursor-def ff-fine-body pa2 bottom-1 right-1" @click="highLightLocation(place)">See on map</span>
+                <span class="absolute col-p hv-col-pd ba cursor-def ff-fine-body pa2 bottom-1 right-1" @click="highLightLocation(place)">See on map</span>
             </div>
         </section>
 
@@ -287,10 +287,6 @@
 
     .highlighted {
         transform: scale(1);
-
-        p {
-            font-weight: 700;
-        }
     }
 
     button[disabled] {

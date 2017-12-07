@@ -1,8 +1,8 @@
 <template>
     <div>
         <div class="ml4 mv4">
-            <span class="ff-sub-headline cursor-point" @click="requestReset">{{ categoryTitle }}</span>
-            <span class="ff-sub-headline cursor-point" v-if="subcategory.id" @click="clearToolGroup"><span class="mh3 col-p"> >> </span>{{ subcategory.title }}</span>
+            <span class="ff-sub-headline cursor-point hv-col-p" @click="requestReset">{{ categoryTitle }}</span>
+            <span class="ff-sub-headline cursor-point hv-col-p" v-if="subcategory.id" @click="clearToolGroup"><span class="mh3 col-p"> >> </span>{{ subcategory.title }}</span>
             <span class="ff-sub-headline cursor-def" v-if="tool_group.title"><span class="mh3 col-p"> >> </span>{{ tool_group.title }}</span>
         </div>
         <div class="flex">

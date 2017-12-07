@@ -4,14 +4,18 @@
         <div class="flex justify-around flex-wrap mb5">
             <div v-for="product in related_products"
                  :key="product.id"
-                 class="w-20 col-lg-bg pa3"
+                 class="w-20  pa3"
             >
                 <a :href="`/products/${product.slug}`" class="link">
                     <img :src="product.main_image.thumb"
                          :alt="`Image of ${product.title}`">
                 </a>
-                <p class="ff-title mb0">{{ product.title }}</p>
-                <p class="col-p mt1 ff-fine-body">{{ product.code }}</p>
+                <a :href="`/products/${product.slug}`" class="link">
+                    <p class="ff-title col-d hv-col-p mb0">{{ product.title }}</p>
+                    <p class="col-mg hv-col-d mt1 ff-fine-body">{{ product.code }}</p>
+                </a>
+
+
             </div>
         </div>
 

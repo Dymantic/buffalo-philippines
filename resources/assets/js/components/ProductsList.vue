@@ -7,8 +7,10 @@
                 <img :src="product.main_image.thumb"
                      :alt="product.title">
             </a>
-            <p class="b mb0">{{ product.title }}</p>
-            <p class="col-p mb0 mt2">{{ product.code }}</p>
+            <a :href="`/products/${product.slug}`" class="link">
+                <p class="ff-title hv-col-p col-d mb0">{{ product.title }}</p>
+                <p class="ff-fine-body col-mg hv-col-d mb0 mt2">{{ product.code }}</p>
+            </a>
         </div>
     </div>
 </template>

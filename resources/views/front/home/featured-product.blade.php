@@ -9,8 +9,8 @@
     </div>
     <div class="pl2">
         <a href="/products/{{ $featured_product->slug }}" class="link">
-            <p class="ff-title col-d mb2">{{ $featured_product->title }}</p>
-            <p class="ttu col-mg ff-fine-body mt0">{{ $featured_product->code }}</p>
+            <p class="ff-title col-d hv-col-p mb2">{{ $featured_product->title }}</p>
+            <p class="ttu col-mg hv-col-d ff-fine-body mt0">{{ $featured_product->code }}</p>
         </a>
     </div>
 </div>

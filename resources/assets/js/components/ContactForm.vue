@@ -38,7 +38,7 @@
             <div class="form-group mv3">
                 <button type="submit"
                         :disabled="waiting"
-                        class="ff-sub-headline mt4 link center db flex items-center justify-center ttu col-w-bg pv2 col-p bn"
+                        class="ff-sub-headline mt4 link center db flex items-center justify-center hv-col-pd col-w-bg pv2 col-p bn"
                 >
                     <span>{{ button_msg }}</span>
                     <span>

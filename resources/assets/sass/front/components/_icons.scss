@@ -1,20 +1,10 @@
 .icon {
   .colour-fill {
-    fill: $site_primary;
+    fill: currentColor;
   }
 
   .stroke-fill {
-    stroke: $site_primary;
-  }
-}
-
-.icon.icon-d {
-  .colour-fill {
-    fill: $site_dark;
-  }
-
-  .stroke-fill {
-    stroke: $site_dark;
+    stroke: currentColor;
   }
 }
 
