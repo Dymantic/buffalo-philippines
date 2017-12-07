@@ -43,6 +43,6 @@
     <p>
         {{--credits and copyright--}}
         &copy; All rights reserved. Beautifully built by <a href="https://dymanticdesign.com"
-                                                            target="_blank" class="link col-w">Dymantic Design</a>
+                                                            target="_blank" class="link col-w hv-dym">Dymantic Design</a>
     </p>
 </footer>

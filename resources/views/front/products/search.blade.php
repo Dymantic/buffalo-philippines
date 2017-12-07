@@ -13,8 +13,11 @@
                         <img src="{{ $product->imageUrl('thumb') }}"
                              alt="Image of {{ $product->title }}">
                     </a>
-                    <p class="ff-title mb0">{{ $product->title }}</p>
-                    <p class="col-p ff-fine-body mb0 mt2">{{ $product->code }}</p>
+                    <a class="link" href="/products/{{ $product->slug }}">
+                        <p class="ff-title mb0 col-d hv-col-p">{{ $product->title }}</p>
+                        <p class="col-p ff-fine-body col-mg hv-col-d mb0 mt2">{{ $product->code }}</p>
+                    </a>
+
                 </div>
 
             @endforeach
