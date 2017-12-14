@@ -3,7 +3,7 @@
         <p class="ttu col-p f6">Tool Groups</p>
         <p v-if="!tool_groups.length">There are no tool groups in this subcategory yet.</p>
         <div v-for="group in tool_groups" :key="group.id">
-            <a :href="`/admin/tool-groups/${group.id}`">{{ group.title }}</a>
+            <a class="link b col-d" :href="`/admin/tool-groups/${group.id}`">{{ group.title }}</a>
         </div>
     </div>
 </template>

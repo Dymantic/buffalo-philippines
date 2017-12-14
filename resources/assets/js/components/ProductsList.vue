@@ -1,21 +1,40 @@
 <template>
-    <div class="flex flex-wrap justify-around">
-        <div v-for="product in matching_products"
-             :key="product.id"
-             class="w-20 mh2 mb3 col-w-bg pa3">
-            <a :href="`/products/${product.slug}`">
-                <img :src="product.main_image.thumb"
-                     :alt="product.title">
-            </a>
-            <a :href="`/products/${product.slug}`" class="link">
-                <p class="ff-title hv-col-p col-d mb0">{{ product.title }}</p>
-                <p class="ff-fine-body col-mg hv-col-d mb0 mt2">{{ product.code }}</p>
-            </a>
+    <div>
+        <div class="flex flex-wrap justify-around">
+            <div v-for="product in page_of_products"
+                 :key="product.id"
+                 class="w-20 mh2 mb3 col-w-bg pa3">
+                <a :href="`/products/${product.slug}`">
+                    <img :src="product.main_image.thumb"
+                         :alt="product.title">
+                </a>
+                <a :href="`/products/${product.slug}`"
+                   class="link">
+                    <p class="ff-title hv-col-p col-d mb0">{{ product.title }}</p>
+                    <p class="ff-fine-body col-mg hv-col-d mb0 mt2">{{ product.code }}</p>
+                </a>
+            </div>
         </div>
+        <div v-show="number_of_pages > 1" class="pa3 col-lg-bg ma4">
+            <p class="ff-title">Pages</p>
+            <div class="flex">
+                <div v-for="page_number in number_of_pages"
+                     @click="page = (page_number - 1)"
+                     class="mh2 b cursor-point hv-col-p"
+                >
+                    {{ page_number }}
+                </div>
+            </div>
+        </div>
+
     </div>
+
 </template>
 
 <script type="text/babel">
+
+    import {chunk} from "lodash";
+
     export default {
 
         props: ['fetch-url', 'parent-type', 'subcategory-id', 'tool-groups'],
@@ -26,7 +45,9 @@
                 subcategory_type: '',
                 subcategory_id: null,
                 show_subcategory: null,
-                show_tool_groups: []
+                show_tool_groups: [],
+                page: 0,
+                page_size: 15
             };
         },
 
@@ -38,6 +59,21 @@
 
                 return this.products
                            .filter(product => this.belongsToSelectedParent(product));
+            },
+
+            page_of_products() {
+                const pages = chunk(this.matching_products, this.page_size);
+
+                if (!this.page || this.page > pages.length - 1) {
+                    this.pages = 0;
+                    return pages[0];
+                }
+
+                return pages[this.page];
+            },
+
+            number_of_pages() {
+                return Math.ceil(this.matching_products.length / this.page_size);
             }
         },
 

@@ -35,7 +35,5 @@
             'buttonText' => 'Back To Articles'
         ])
     </div>
-
-
-
 @endsection
+

@@ -1,8 +1,8 @@
 <template>
     <div class="relative menu-container w-100">
         <div class="mainmenu w6 pa4 col-w-bg" :class="{'covered': level == 2}">
-            <p class="strong-type ttu"
-               @click="returnToBase">{{ menuStructure.title }}</p>
+            <!--<p class="strong-type ttu"-->
+               <!--@click="returnToBase">{{ menuStructure.title }}</p>-->
             <div v-for="subcategory in menuStructure.children"
                  :key="subcategory.id"
                  @click.stop.prevent="showSub(subcategory)"
@@ -122,11 +122,11 @@
         overflow-y: auto;
         width: 100%;
         left: 0;
-        transition: .5s;
-        transform: translate3d(110%, -5px, 0);
+        transition: .5s ease-in-out;
+        transform: translate3d(110%, 0, 0);
 
         &.exposed {
-            transform: translate3d(5%, -5px, 0);
+            transform: translate3d(0, 0, 0);
         }
     }
 </style>

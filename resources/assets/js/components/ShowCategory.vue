@@ -57,7 +57,6 @@
             },
 
             setToolGroup(toolgroup) {
-                console.log(toolgroup);
                 this.filter_type = 'Tool Group';
                 this.tool_group = toolgroup;
             },
