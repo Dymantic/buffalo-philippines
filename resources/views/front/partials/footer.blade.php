@@ -4,11 +4,11 @@
          height="90px"
          class="absolute top-0 left-2"
     >
-    <div class="flex justify-between mw8 center-ns mh3 w-90">
+    <div class="flex flex-column flex-row-ns items-center justify-between mw8 center-ns mh3 w-90">
         <div class="w-50 tc">
             {{--connect--}}
             <p class="ttu b">Connect</p>
-            <div class="flex items-center justify-center">
+            <div class="flex items-center justify-center mb4">
                 <a href="#" class="mr3 col-w hv-col-p link">
                     @include('svgicons.twitter', ['height' => '20px'])
                 </a>
@@ -40,7 +40,7 @@
         {{--top button--}}
         @include('svgicons.top-button', ['classes' => 'top-button'])
     </div>
-    <p>
+    <p class="tc">
         {{--credits and copyright--}}
         &copy; All rights reserved. Beautifully built by <a href="https://dymanticdesign.com"
                                                             target="_blank" class="link col-w hv-dym">Dymantic Design</a>

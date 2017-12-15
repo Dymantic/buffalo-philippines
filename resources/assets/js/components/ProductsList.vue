@@ -4,11 +4,11 @@
             <div v-for="product in page_of_products"
                  :key="product.id"
                  class="w-20 mh2 mb3 col-w-bg pa3">
-                <a :href="`/products/${product.slug}`">
+                <a :href="productLink(product)">
                     <img :src="product.main_image.thumb"
                          :alt="product.title">
                 </a>
-                <a :href="`/products/${product.slug}`"
+                <a :href="productLink(product)"
                    class="link">
                     <p class="ff-title hv-col-p col-d mb0">{{ product.title }}</p>
                     <p class="ff-fine-body col-mg hv-col-d mb0 mt2">{{ product.code }}</p>
@@ -21,6 +21,8 @@
                 <div v-for="page_number in number_of_pages"
                      @click="page = (page_number - 1)"
                      class="mh2 b cursor-point hv-col-p"
+                     :class="{'col-p': page_number === (page + 1)}"
+                     :disabled="page_number === (page + 1)"
                 >
                     {{ page_number }}
                 </div>
@@ -37,7 +39,7 @@
 
     export default {
 
-        props: ['fetch-url', 'parent-type', 'subcategory-id', 'tool-groups'],
+        props: ['fetch-url', 'parent-type', 'subcategory-id', 'tool-groups', 'link-to-admin'],
 
         data() {
             return {
@@ -52,6 +54,9 @@
         },
 
         computed: {
+
+
+
             matching_products() {
                 if (this.parentType === 'Category') {
                     return this.products;
@@ -120,6 +125,14 @@
 
             belongsToToolGroup(product) {
                 return product.parents.some(parent => (parent.type === 'Tool Group') && (this.toolGroups.indexOf(parent.id) !== -1))
+            },
+
+            productLink(product) {
+                if(this.linkToAdmin) {
+                    return `/admin/products/${product.id}`;
+                }
+
+                return `/products/${product.slug}`;
             }
         }
     }

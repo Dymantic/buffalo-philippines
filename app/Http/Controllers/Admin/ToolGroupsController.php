@@ -12,7 +12,15 @@ class ToolGroupsController extends Controller
 
     public function show(ToolGroup $toolGroup)
     {
-        return view('admin.tool-groups.show', ['tool_group' => $toolGroup->toJsonableArray()]);
+        $toolGroup->load('subcategory.category');
+        $subcategory = $toolGroup->subcategory;
+        $category = $subcategory->category;
+
+        return view('admin.tool-groups.show', [
+            'tool_group' => $toolGroup->toJsonableArray(),
+            'category' => ['id' => $category->id, 'title' => $category->title],
+            'subcategory' => ['id' => $subcategory->id, 'title' => $subcategory->title]
+        ]);
     }
 
     public function store(Subcategory $subcategory)

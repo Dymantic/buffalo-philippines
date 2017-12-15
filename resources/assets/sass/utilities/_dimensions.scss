@@ -7,6 +7,10 @@
   @include respond-to(medium) {height: 60vw;}
 }
 
+.mw-20-lg {
+  @include respond-to(large) {max-width: 20%;}
+}
+
 .mw-20 {
   max-width: 20%;
 }

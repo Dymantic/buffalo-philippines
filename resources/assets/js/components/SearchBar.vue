@@ -1,5 +1,5 @@
 <template>
-    <div class="dib">
+    <div class="dib tc w-100 w-auto-ns">
         <span @click="toggleSearch" class="col-w hv-col-p cursor-point">
             <svg xmlns="http://www.w3.org/2000/svg"
                  viewBox="0 0 24 24" height="34px">
@@ -10,14 +10,15 @@
              :class="{'open': open}">
             <form method="GET"
                   action=""
-                  class="h5 flex justify-center items-center"
+                  class="h5 flex flex-column justify-center items-center"
                   @submit.stop.prevent="submit">
                 <input v-model="search_term"
                        type="text"
-                       class="pl3 f-headline strong-type col-w col-d-bg"
+                       class="pl3 f2 f-headline-lg strong-type col-w col-d-bg"
                        ref="searchinput"
                        placeholder="Search our products"
                 >
+                <button class="bg-trans col-mg center db dn-ns mt3" @click="hide" type="button">Cancel</button>
             </form>
         </div>
     </div>

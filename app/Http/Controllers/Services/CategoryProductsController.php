@@ -13,6 +13,8 @@ class CategoryProductsController extends Controller
     {
         $category = Category::where('slug', $slug)->firstOrFail();
 
-        return $productsRepository->productsUnder($category)->map->toJsonableArray();
+        return $productsRepository->productsUnder($category)->filter(function($product) {
+            return $product->published;
+        })->map->toJsonableArray();
     }
 }

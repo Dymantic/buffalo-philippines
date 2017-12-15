@@ -34,13 +34,24 @@
             <p>{{ description }}</p>
         </div>
         <div class="card mv3">
+            <p class="ttu col-p f6">Category</p>
+            <p><a :href="`/admin/categories/${category.id}`" class="link col-d b">{{ category.title }}</a></p>
+        </div>
+        <div class="card mv3">
+            <p class="ttu col-p f6">Subcategory</p>
+            <p><a :href="`/admin/subcategories/${subcategory.id}`" class="link col-d b">{{ subcategory.title }}</a></p>
+        </div>
+        <div class="card mv3">
             <div class="flex justify-between items-center">
                 <p class="ttu col-p f6">Products</p>
-                <product-form :url="`/admin/tool-groups/${itemAttributes.id}/products`"
-                              button-text="add product"
-                ></product-form>
+                <div>
+                    <a class="btn" :href="`/admin/categories/${category.id}/products?tool-group=${itemAttributes.id}`">Browse Products</a>
+                    <product-form :url="`/admin/tool-groups/${itemAttributes.id}/products`"
+                                  button-text="add product"
+                    ></product-form>
+                </div>
+
             </div>
-            <product-list :url="`/admin/services/tool-groups/${itemAttributes.id}/products`" parent-type="tool group"></product-list>
         </div>
     </div>
 </template>
@@ -48,7 +59,7 @@
 <script type="text/babel">
     export default {
 
-        props: ['item-attributes'],
+        props: ['item-attributes', 'category', 'subcategory'],
 
         data() {
             return {

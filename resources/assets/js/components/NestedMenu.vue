@@ -36,7 +36,7 @@
 <script type="text/babel">
     export default {
 
-        props: ['menu-structure'],
+        props: ['menu-structure', 'starting-subcategory'],
 
         data() {
             return {
@@ -57,6 +57,16 @@
 
         mounted() {
             eventHub.$on('reset-category-menu', this.returnToBase);
+
+            if(this.startingSubcategory) {
+                const subcategory = this.menuStructure.children.find(s => s.id === this.startingSubcategory);
+
+                this.selected_subcategory = subcategory;
+
+                if (subcategory.children.length) {
+                    this.exposeSubmenu(subcategory);
+                }
+            }
         },
 
         methods: {

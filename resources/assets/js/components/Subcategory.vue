@@ -37,15 +37,22 @@
             <p class="ttu f6 col-p">Description</p>
             <p>{{ description }}</p>
         </div>
+        <div class="card mv3">
+            <p class="ttu col-p f6">Category</p>
+            <p><a :href="`/admin/categories/${category.id}`" class="link col-d b">{{ category.title }}</a></p>
+        </div>
         <toolgroup-list :fetch-url="`/admin/services/subcategories/${itemAttributes.id}/tool-groups`"></toolgroup-list>
         <div class="card mv3">
             <div class="flex justify-between items-center">
                 <p class="ttu col-p f6">Products</p>
-                <product-form :url="`/admin/subcategories/${itemAttributes.id}/products`"
-                              button-text="add product"
-                ></product-form>
+                <div>
+                    <a class="btn" :href="`/admin/categories/${category.id}/products?subcategory=${itemAttributes.id}`">Browse Products</a>
+                    <product-form :url="`/admin/subcategories/${itemAttributes.id}/products`"
+                                  button-text="add product"
+                    ></product-form>
+                </div>
+
             </div>
-            <product-list :url="`/admin/services/subcategories/${itemAttributes.id}/products`" parent-type="sub-category"></product-list>
         </div>
     </div>
 </template>
@@ -53,7 +60,7 @@
 <script type="text/babel">
     export default {
 
-        props: ['item-attributes'],
+        props: ['item-attributes', 'category'],
 
         data() {
             return {

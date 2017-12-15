@@ -103,7 +103,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::delete('published-tool-groups/{toolGroup}', 'PublishedToolGroupsController@delete');
 
         Route::get('products/{product}', 'ProductsController@show');
-        Route::post('categories/{category}/products', 'CategoryProductController@store');
+        Route::get('categories/{category}/products', 'CategoryProductsController@index');
+        Route::post('categories/{category}/products', 'CategoryProductsController@store');
         Route::post('subcategories/{subcategory}/products', 'SubcategoryProductController@store');
         Route::post('tool-groups/{toolGroup}/products', 'ToolGroupProductController@store');
 

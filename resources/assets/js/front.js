@@ -18,7 +18,7 @@ import {throttle} from "lodash";
 
 Vue.component('modal', require('./components/Modal.vue'));
 Vue.component('nested-menu', require('./components/NestedMenu.vue'));
-Vue.component('product-list', require('./components/ProductsList.vue'));
+Vue.component('products-list', require('./components/ProductsList.vue'));
 Vue.component('show-category', require('./components/ShowCategory'));
 Vue.component('store-locator', require('./components/Locator.vue'));
 Vue.component('contact-form', require('./components/ContactForm.vue'));

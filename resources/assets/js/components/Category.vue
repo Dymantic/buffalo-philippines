@@ -36,7 +36,9 @@
             <p>{{ category_description }}</p>
         </div>
         <div class="flex justify-between mv3 items-stretch">
-                <subcategories-list class="w-50 mr3" :fetch-url="`/admin/services/categories/${id}/subcategories`"></subcategories-list>
+            <subcategories-list class="w-50 mr3"
+                                :category="menuStructure"
+            ></subcategories-list>
             <div class="w-50 card">
                 <p class="col-p ttu f6">Image</p>
                 <image-upload :default="image"
@@ -52,11 +54,14 @@
         <div class="card mv3">
             <div class="flex justify-between items-center">
                 <p class="ttu col-p f6">Products</p>
-                <product-form :url="`/admin/categories/${id}/products`"
-                              button-text="add product"
-                ></product-form>
+                <div>
+                    <a class="btn" :href="`/admin/categories/${id}/products`">Browse Products</a>
+                    <product-form :url="`/admin/categories/${id}/products`"
+                                  button-text="add product"
+                    ></product-form>
+                </div>
             </div>
-            <product-list :url="`/admin/services/categories/${id}/products`" parent-type="category"></product-list>
+            <!--<product-list :url="`/admin/services/categories/${id}/products`" parent-type="category"></product-list>-->
         </div>
     </div>
 </template>
@@ -64,7 +69,7 @@
 <script type="text/babel">
     export default {
 
-        props: ['id', 'title', 'description', 'published', 'image'],
+        props: ['id', 'title', 'description', 'published', 'image', 'menu-structure'],
 
         data() {
             return {

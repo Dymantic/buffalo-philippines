@@ -12,7 +12,11 @@ class SubcategoriesController extends Controller
 
     public function show(Subcategory $subcategory)
     {
-        return view('admin.subcategories.show', ['subcategory' => $subcategory->toJsonableArray()]);
+        $category = $subcategory->category;
+        return view('admin.subcategories.show', [
+            'subcategory' => $subcategory->toJsonableArray(),
+            'category' => ['id' => $category->id, 'title' => $category->title]
+        ]);
     }
 
     public function store(Category $category)

@@ -6,7 +6,7 @@
             >{{ title }}</a>
         </p>
         <p class="f4 mv1">{{ description }}</p>
-        <a :href="`/admin/cateories/${itemAttributes.id}/products`" class="btn absolute f6 bottom-1 right-1">Browse Products</a>
+        <a :href="`/admin/categories/${itemAttributes.id}/products`" class="btn absolute f6 bottom-1 right-1">Browse Products</a>
     </div>
 </template>
 

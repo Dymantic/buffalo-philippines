@@ -32,7 +32,7 @@
         <div class="card mv3">
             <p class="ttu col-p f6">Belongs to</p>
             <p v-for="parent in parents"><a :href="parentLink(parent)"
-                                            class="link">({{ parent.type }}) {{ parent.title }}</a></p>
+                                            class="link b col-d">({{ parent.type }}) {{ parent.title }}</a></p>
         </div>
         <div class="card mv3">
             <p class="ttu f6 col-p">Published</p>

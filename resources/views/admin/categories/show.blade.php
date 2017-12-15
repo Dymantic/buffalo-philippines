@@ -6,5 +6,6 @@
                    description="{{ $category->description }}"
                    :published="{{ $category->published ? 'true' : 'false' }}"
                    image="{{ $category->imageUrl('thumb') }}"
+                   :menu-structure="{{ json_encode($category->menu()) }}"
     ></category-page>
 @endsection

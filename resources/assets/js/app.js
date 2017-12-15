@@ -57,6 +57,9 @@ Vue.component('image-gallery', require('./components/ImageGallery.vue'));
 Vue.component('uploading-image', require('./components/UploadingImage.vue'));
 Vue.component('gallery-image', require('./components/GalleryImage.vue'));
 Vue.component('product-search', require('./components/ProductSearch.vue'));
+Vue.component('show-category', require('./components/ShowCategory'));
+Vue.component('nested-menu', require('./components/NestedMenu'));
+Vue.component('products-list', require('./components/ProductsList'));
 
 
 window.eventHub = new Vue();
