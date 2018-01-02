@@ -289,16 +289,16 @@
         },
         {
             "name": "dymantic/articles",
-            "version": "v0.2.3",
+            "version": "v0.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Dymantic/articles.git",
-                "reference": "09674c1833b9d131bf40b4729e3c2759a1120ab7"
+                "reference": "37075eea2a050df3a0a585733d9938c12c26bf07"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Dymantic/articles/zipball/09674c1833b9d131bf40b4729e3c2759a1120ab7",
-                "reference": "09674c1833b9d131bf40b4729e3c2759a1120ab7",
+                "url": "https://api.github.com/repos/Dymantic/articles/zipball/37075eea2a050df3a0a585733d9938c12c26bf07",
+                "reference": "37075eea2a050df3a0a585733d9938c12c26bf07",
                 "shasum": ""
             },
             "require": {
@@ -337,7 +337,7 @@
                 }
             ],
             "description": "Laravel article model and associated stuff for reuse in our projects",
-            "time": "2017-09-20 12:24:43"
+            "time": "2017-12-29 03:19:18"
         },
         {
             "name": "dymantic/slideshow",

@@ -1,12 +1,12 @@
 <template>
     <span>
         <button class="btn" @click="modalOpen = true">{{ buttonText }}</button>
-        <modal :show="modalOpen">
+        <modal :show="modalOpen" :wider="true">
             <div slot="header">
                 <p>{{ formType === 'create' ? `Add a new product` : `Edit this product` }}</p>
             </div>
             <div slot="body">
-                <form action="" @submit.stop.prevent="submit">
+                <form action="" @submit.stop.prevent="submit" class="ph2">
                     <p class="lead text-danger" v-show="mainError">{{ mainError }}</p>
                     <div class="form-group mv3" :class="{'has-error': form.errors.title}">
                         <label class="f6 ttu col-p" for="title">Title</label>
@@ -33,9 +33,7 @@
                     <div class="form-group mv3" :class="{'has-error': form.errors.writeup}">
                         <label class="f6 ttu col-p" for="writeup">Writeup</label>
                         <span class="f6 col-r" v-show="form.errors.writeup">{{ form.errors.writeup }}</span>
-                        <textarea name="writeup"
-                                  v-model="form.data.writeup"
-                                  class="h4 w-100 pa2"></textarea>
+                        <wysiwyg-editor name="writeup" v-model="form.data.writeup"></wysiwyg-editor>
                     </div>
                     <div class="flex justify-end">
                         <button class="btn btn-grey" type="button" @click="modalOpen = false">Cancel</button>

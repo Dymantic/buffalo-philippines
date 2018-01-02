@@ -80,7 +80,7 @@
         color: #333;
 
     &.wide {
-         max-width: 900px;
+         max-width: 90vw;
      }
     }
 

@@ -2,6 +2,10 @@
   width: 100px;
   height: 100px;
   background: transparent;
+
+  @include respond-to(small) {
+    display: none;
+  }
 }
 .flickity-prev-next-button:hover {
   background: transparent;

@@ -12,7 +12,13 @@
                class="btn">Back to Article</a>
         </div>
     </div>
-    <editor post-id="{{ $article->id }}"
-            :post-content="{{ json_encode($article->body) }}"
-    ></editor>
+    <wysiwyg-editor name="body"
+                    :init-content="{!! htmlentities(json_encode($article->body, JSON_HEX_QUOT), ENT_QUOTES) !!}"
+                    save-url="/admin/articles/{{ $article->id }}/body"
+                    :save-timer="10"
+                    image-upload-url="/admin/articles/{{ $article->id }}/images"
+    ></wysiwyg-editor>
+    {{--<editor post-id="{{ $article->id }}"--}}
+            {{--:post-content="{{ json_encode($article->body) }}"--}}
+    {{--></editor>--}}
 @endsection

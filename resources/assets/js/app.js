@@ -18,6 +18,7 @@ window.swal = swal;
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 import DatePicker from "vuejs-datepicker";
+import { Wysiwyg } from "trix-vue-wysiwyg";
 
 Vue.component('dropdown', require('./components/Dropdown.vue'));
 Vue.component('modal', require('./components/Modal.vue'));
@@ -60,6 +61,7 @@ Vue.component('product-search', require('./components/ProductSearch.vue'));
 Vue.component('show-category', require('./components/ShowCategory'));
 Vue.component('nested-menu', require('./components/NestedMenu'));
 Vue.component('products-list', require('./components/ProductsList'));
+Vue.component('wysiwyg-editor', Wysiwyg);
 
 
 window.eventHub = new Vue();
@@ -93,7 +95,7 @@ const app = new Vue({
 });
 
 document.body.addEventListener('keyup', (ev) => {
-    const ignores = ['INPUT', 'TEXTAREA'];
+    const ignores = ['INPUT', 'TEXTAREA', 'TRIX-EDITOR'];
     if(ev.keyCode === 191 && ignores.indexOf(ev.target.tagName) === -1) {
         document.querySelector('#nav-search').focus();
     }
