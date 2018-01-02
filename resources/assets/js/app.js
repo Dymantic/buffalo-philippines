@@ -18,7 +18,7 @@ window.swal = swal;
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 import DatePicker from "vuejs-datepicker";
-// import { Wysiwyg } from "trix-vue-wysiwyg";
+import { Wysiwyg } from "@dymantic/trix-vue-wysiwyg";
 
 Vue.component('dropdown', require('./components/Dropdown.vue'));
 Vue.component('modal', require('./components/Modal.vue'));
@@ -61,7 +61,7 @@ Vue.component('product-search', require('./components/ProductSearch.vue'));
 Vue.component('show-category', require('./components/ShowCategory'));
 Vue.component('nested-menu', require('./components/NestedMenu'));
 Vue.component('products-list', require('./components/ProductsList'));
-// Vue.component('wysiwyg-editor', Wysiwyg);
+Vue.component('wysiwyg-editor', Wysiwyg);
 
 
 window.eventHub = new Vue();
