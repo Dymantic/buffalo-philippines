@@ -30,20 +30,6 @@ Route::get('news/{slug}', 'NewsController@show');
 Route::get('contact', 'ContactMessageController@create');
 Route::post('contact', 'ContactMessageController@store');
 
-Route::post('save', function() {
-});
-
-Route::post('image-test', function() {
-    $image = request()->file->store('images', 'public_images');
-//    return $image;
-    return [
-        'url' => "/{$image}",
-        'href' => "/{$image}"
-    ];
-});
-
-
-
 $this->get('admin/login', 'Auth\LoginController@showLoginForm')->name('login');
 $this->post('admin/login', 'Auth\LoginController@login');
 $this->post('admin/logout', 'Auth\LoginController@logout')->name('logout');
