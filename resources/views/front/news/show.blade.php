@@ -1,14 +1,14 @@
 @extends('front.base', ['pageName' => 'tool-bg'])
 
 @section('content')
-    <div class="col-w-bg mw8 pv5 center-ns">
+    <div class="col-w-bg mw8 pv5 center-ns w-100">
         <header class="banner-heading mt0 flex flex-column items-center justify-center tc">
             <h1 class="ff-headline-small mb0">{{ $article->title }}</h1>
             <p class="col-p ff-body">{{ $article->published_on->format('d F Y') }}</p>
         </header>
         <img src="{{ $article->titleImage() }}"
              alt="Title image of {{ $article->title }}"
-             class="db mw7 mv5 center"
+             class="db mv5 center mw-100"
         >
         <section class="mw7 ff-body center-ns lh-copy mh3 article-body">
             {!! $article->body !!}
