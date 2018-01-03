@@ -18,7 +18,7 @@
                        ref="searchinput"
                        placeholder="Search our products"
                 >
-                <button class="bg-trans col-mg center db dn-ns mt3" @click="hide" type="button">Cancel</button>
+                <div class="bg-trans col-mg center db dn-ns ttu mt3" @click="hide" type="button">Cancel</div>
             </form>
         </div>
     </div>

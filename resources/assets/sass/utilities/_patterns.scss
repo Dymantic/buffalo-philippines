@@ -14,12 +14,22 @@
   background-image: url(./images/buffalo_watermark.png);
   background-position: 95% 50%;
   background-repeat: no-repeat;
+
+  @include respond-to(small) {
+    background-position: 95% 90%;
+    background-size: 20%;
+  }
 }
 
 .location-watermark-bg {
   background-image: url(./images/location_icon_big.png);
   background-position: 5% 50%;
   background-repeat: no-repeat;
+
+  @include respond-to(small) {
+    background-position: 5% 90%;
+    background-size: 40%;
+  }
 }
 
 .tool-bg {

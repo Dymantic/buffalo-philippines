@@ -11,7 +11,7 @@
             @endif
         @endforeach
     </section>
-    <section class="col-d-bg pv6 text-watermark-bg">
+    <section class="col-d-bg pv6 ph3 text-watermark-bg">
         <h3 class="tc ff-headline col-w ma0">The Right Tools For You</h3>
         <p class="col-w tc measure-wide lh-copy ff-large-body center">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium asperiores debitis deserunt ducimus
@@ -27,7 +27,7 @@
 
     </section>
     @include('front.home.featured-products')
-    <section class="col-d-bg pv6 location-watermark-bg">
+    <section class="col-d-bg pv6 ph3 location-watermark-bg">
         <h3 class="tc ff-headline col-w ma0">Locations</h3>
         <p class="ff-large-body col-w tc measure-wide lh-copy center">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium asperiores debitis deserunt ducimus
