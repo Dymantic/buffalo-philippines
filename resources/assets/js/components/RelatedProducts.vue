@@ -4,9 +4,9 @@
         <div class="flex justify-around flex-wrap mb5">
             <div v-for="product in related_products"
                  :key="product.id"
-                 class="w-20  pa3"
+                 class="w-100 w-20-ns pa3 flex flex-row flex-column-ns"
             >
-                <a :href="`/products/${product.slug}`" class="link">
+                <a :href="`/products/${product.slug}`" class="link w4 w-100-ns">
                     <img :src="product.main_image.thumb"
                          :alt="`Image of ${product.title}`">
                 </a>

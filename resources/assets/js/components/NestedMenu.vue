@@ -28,7 +28,6 @@
             </div>
         </div>
     </div>
-
 </template>
 
 <script type="text/babel">

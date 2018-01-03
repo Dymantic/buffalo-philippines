@@ -48,4 +48,10 @@
         height: 400px;
     }
 
+    @media only screen and (max-width: 30em) {
+        .main-gallery-image-box {
+            height: 300px;
+        }
+    }
+
 </style>

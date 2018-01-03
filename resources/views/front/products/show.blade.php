@@ -1,26 +1,18 @@
 @extends('front.base')
 
 @section('content')
-    {{--<header class="banner-heading mesh-bg bb bw2 mb4 h4 flex items-center justify-center tc">--}}
-        {{--<h1 class="strong-type f1">{{ $product['title'] }}</h1>--}}
-    {{--</header>--}}
-    <section class="mt5 mw8 center-ns mh3 flex justify-between">
-        <div class="w-50 pa4">
-            <image-gallery :images="{{ json_encode(array_merge([$product['main_image']], $product['gallery_images'])) }}" product-title="{{ $product['title'] }}"></image-gallery>
-            {{--<img src="{{ $product['main_image']['web'] }}"--}}
-                 {{--alt="Product image of {{ $product['title'] }}">--}}
-            {{--<div>--}}
-                {{--@foreach($product['gallery_images'] as $gallery_image)--}}
-                    {{--<img src="{{ $gallery_image['thumb'] }}"--}}
-                         {{--alt="Thumbnail of alternative image of {{ $product['title'] }}"--}}
-                         {{--class="dib w-20 ma3"--}}
-                    {{-->--}}
-                {{--@endforeach--}}
-            {{--</div>--}}
-        </div>
-        <div class="w-50 pa4">
+
+    <section class="mt5 mw8 center-ns mh3 flex flex-column flex-row-ns justify-between">
+        <div class="db dn-ns">
             <p class="ff-title mb2 mt0">{{ ucwords(strtolower($product['title'])) }}</p>
             <p class="ff-fine-body col-p mt0 mb4">{{ $product['code'] }}</p>
+        </div>
+        <div class="w-100 w-50-ns pa4">
+            <image-gallery :images="{{ json_encode(array_merge([$product['main_image']], $product['gallery_images'])) }}" product-title="{{ $product['title'] }}"></image-gallery>
+        </div>
+        <div class="w-100 w-50-ns pa4">
+            <p class="dn db-ns ff-title mb2 mt0">{{ ucwords(strtolower($product['title'])) }}</p>
+            <p class="dn db-ns ff-fine-body col-p mt0 mb4">{{ $product['code'] }}</p>
             <p class="ff-fine-body">{!! $product['writeup'] !!}</p>
             @include('front.partials.button-link', ['link' => '/stores', 'block' => true, 'buttonText' => 'Find Location'])
         </div>
