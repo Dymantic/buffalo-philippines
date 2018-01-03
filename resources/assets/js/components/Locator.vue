@@ -27,9 +27,10 @@
             <p class="ff-title">You can find our products at these locations</p>
             <div v-for="place in store_locations"
                  :key="place.id"
-                 class="mv1 pa3 col-w-bg relative">
-                <p class="ff-title">{{ place.name }}</p>
-                <p class="flex ff-fine-body items-center w-80">
+                 class="mv1 pa3 col-w-bg flex flex-column flex-row-ns">
+                <div class="flex-auto">
+                    <p class="ff-title">{{ place.name }}</p>
+                    <p class="flex ff-fine-body items-center w-80">
                     <span class="col-p mr2">
                         <svg xmlns="http://www.w3.org/2000/svg"
                              height="16px"
@@ -38,9 +39,13 @@
                                   d="M24.84,0H7.3A7.3,7.3,0,0,0,0,7.3V29.58a7.3,7.3,0,0,0,1.59,4.55l11.95,15a3.23,3.23,0,0,0,5.05,0l11.95-15a7.3,7.3,0,0,0,1.59-4.55V7.3A7.3,7.3,0,0,0,24.84,0ZM23.6,20A4.07,4.07,0,0,1,19.53,24H12.6A4.07,4.07,0,0,1,8.53,20V13A4.07,4.07,0,0,1,12.6,9h6.93A4.07,4.07,0,0,1,23.6,13Z"></path>
                         </svg>
                     </span>
-                    {{ place.address }}
-                </p>
-                <span class="absolute col-p hv-col-pd ba cursor-def ff-fine-body pa2 bottom-1 right-1" @click="highLightLocation(place)">See on map</span>
+                        {{ place.address }}
+                    </p>
+                </div>
+                <div class="flex items-end pt4">
+                    <span class="col-p hv-col-pd ba cursor-def ff-fine-body pa2" @click="highLightLocation(place)">See on map</span>
+                </div>
+
             </div>
         </section>
 
@@ -283,6 +288,11 @@
         right: 20px;
         transform-origin: right top;
         transform: scale(0);
+
+        @media only screen and (max-width: 30em) {
+            top: 0;
+            right: 0;
+        }
     }
 
     .highlighted {
