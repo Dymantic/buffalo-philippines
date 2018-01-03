@@ -1,8 +1,6 @@
 <template>
     <div class="relative menu-container w-100">
         <div class="mainmenu w6 pa4 col-w-bg" :class="{'covered': level == 2}">
-            <!--<p class="strong-type ttu"-->
-               <!--@click="returnToBase">{{ menuStructure.title }}</p>-->
             <div v-for="subcategory in menuStructure.children"
                  :key="subcategory.id"
                  @click.stop.prevent="showSub(subcategory)"
@@ -15,11 +13,11 @@
         </div>
         <div class="absolute submenu pa4 w6 col-w-bg"
              :class="{'exposed': level === 2}">
-            <p class="ff-sub-headline">
+            <div class="ff-sub-headline flex items-center mb3">
                 <span @click="returnToBase"
-                      class="mr4 col-p hv-col-pd cursor-point">&larr;</span>
+                      class="mr4 col-p hv-col-pd b cursor-point">&larr;</span>
                 <span @click="resetToSubcategory" class="hv-col-p cursor-point">{{ selected_subcategory.title }}</span>
-            </p>
+            </div>
             <div v-for="toolgroup in selected_subcategory.children"
                  :key="toolgroup.id"
                  class="flex justify-between items-center pv2 hv-bg-grey"
@@ -95,6 +93,7 @@
             },
 
             resetToSubcategory() {
+                this.$emit('hide-menu');
                 this.$emit('subcategory-selected', this.formatted_subcat);
             },
 

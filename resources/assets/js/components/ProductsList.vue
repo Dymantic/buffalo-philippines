@@ -3,7 +3,7 @@
         <div class="flex flex-wrap justify-around">
             <div v-for="product in page_of_products"
                  :key="product.id"
-                 class="w-20 mh2 mb3 col-w-bg pa3">
+                 class="w-40 w-20-ns mh2 mb3 col-w-bg pa3">
                 <a :href="productLink(product)">
                     <img :src="product.main_image.thumb"
                          :alt="product.title">
@@ -17,10 +17,10 @@
         </div>
         <div v-show="number_of_pages > 1" class="pa3 col-lg-bg ma4">
             <p class="ff-title">Pages</p>
-            <div class="flex">
+            <div class="flex flex-wrap">
                 <div v-for="page_number in number_of_pages"
                      @click="page = (page_number - 1)"
-                     class="mh2 b cursor-point hv-col-p"
+                     class="mh2 mb3 b cursor-point hv-col-p"
                      :class="{'col-p': page_number === (page + 1)}"
                      :disabled="page_number === (page + 1)"
                 >

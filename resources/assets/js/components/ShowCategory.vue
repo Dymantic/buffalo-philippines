@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div class="ml4 mv4">
+    <div class="category-page">
+        <div class="ml4 mv4 dn db-ns">
             <span class="ff-sub-headline cursor-point hv-col-p"
                   @click="requestReset">{{ categoryTitle }}</span>
             <span class="ff-sub-headline cursor-point hv-col-p"
@@ -9,17 +9,21 @@
             <span class="ff-sub-headline cursor-def"
                   v-if="tool_group.title"><span class="mh3 col-p"> >> </span>{{ tool_group.title }}</span>
         </div>
-        <div class="flex">
-            <div class="w-25">
+        <div class="db dn-ns ph4 mv3">
+            <p @click="show_menu = !show_menu" class="ff-sub-headline col-mg">{{ show_menu_text }}</p>
+        </div>
+        <div class="flex relative">
+            <div class="menu-bar absolute relative-ns w-90 w-25-ns" :class="{'expose': show_menu}">
                 <nested-menu class="min-h-100 col-w-bg"
                              :menu-structure="menuStructure"
                              @subcategory-selected="setSubcategory"
                              @toolgroup-selected="setToolGroup"
                              @reset-category-list="resetToCategory"
                              :starting-subcategory="menuSubcategory"
+                             @hide-menu="show_menu = false"
                 ></nested-menu>
             </div>
-            <div class="w-75">
+            <div class="w-100 w-75-ns">
                 <products-list :fetch-url="productsFetchUrl"
                                :parent-type="filter_type"
                                :subcategory-id="subcategory.id"
@@ -41,7 +45,8 @@
             return {
                 filter_type: this.showingType || 'Category',
                 subcategory: this.showSubcategory || {id: null, title: null, tool_groups: []},
-                tool_group: this.showToolGroup || {id: null, title: null}
+                tool_group: this.showToolGroup || {id: null, title: null},
+                show_menu: false
             };
         },
 
@@ -52,6 +57,10 @@
                 }
 
                 return [this.tool_group.id];
+            },
+
+            show_menu_text() {
+                return this.show_menu ? 'Hide menu' : 'Filter products';
             }
         },
 
@@ -60,9 +69,14 @@
                 this.filter_type = 'Subcategory';
                 this.subcategory = subcategory;
                 this.tool_group = {id: null, title: null}
+
+                if(!subcategory.tool_groups.length) {
+                    this.show_menu = false;
+                }
             },
 
             setToolGroup(toolgroup) {
+                this.show_menu = false;
                 this.filter_type = 'Tool Group';
                 this.tool_group = toolgroup;
             },
@@ -88,5 +102,25 @@
 <style scoped
        lang="scss"
        type="text/scss">
+
+    .category-page {
+        min-height: 100vh;
+    }
+
+
+
+    @media only screen and (max-width: 30em) {
+        .menu-bar {
+            top: 0;
+            bottom: 0;
+            left: 0;
+            transition: .3s;
+            transform: translate3d(-100%,0,0);
+
+            &.expose {
+                transform: translate3d(0,0,0);
+            }
+        }
+    }
 
 </style>

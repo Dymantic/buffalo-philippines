@@ -6,7 +6,7 @@
     </header>
     <section class="flex flex-wrap justify-around contained center mv5">
         @foreach($categories as $category)
-            <div class="ma3 mw-20 pa3 col-w-bg">
+            <div class="ma3 w-40 mw-20-ns pa3 col-w-bg">
                 <a href="/categories/{{ $category->slug }}" class="link col-d">
                     <img src="{{ $category->imageUrl('thumb') }}"
                          alt="Image for {{ $category->title }} category">
