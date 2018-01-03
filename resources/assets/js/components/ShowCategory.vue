@@ -1,16 +1,16 @@
 <template>
     <div class="category-page">
-        <div class="ml4 mv4 dn db-ns">
-            <span class="ff-sub-headline cursor-point hv-col-p"
+        <div class="db dn-ns ph4 mv3">
+            <p @click="show_menu = !show_menu" class="ff-subsub-headline col-mg">{{ show_menu_text }}</p>
+        </div>
+        <div class="ml4 mv4">
+            <span class="ff-subsub-headline cursor-point hv-col-p"
                   @click="requestReset">{{ categoryTitle }}</span>
-            <span class="ff-sub-headline cursor-point hv-col-p"
+            <span class="ff-subsub-headline cursor-point hv-col-p"
                   v-if="subcategory.id"
                   @click="clearToolGroup"><span class="mh3 col-p"> >> </span>{{ subcategory.title }}</span>
-            <span class="ff-sub-headline cursor-def"
+            <span class="ff-subsub-headline cursor-def"
                   v-if="tool_group.title"><span class="mh3 col-p"> >> </span>{{ tool_group.title }}</span>
-        </div>
-        <div class="db dn-ns ph4 mv3">
-            <p @click="show_menu = !show_menu" class="ff-sub-headline col-mg">{{ show_menu_text }}</p>
         </div>
         <div class="flex relative">
             <div class="menu-bar absolute relative-ns w-90 w-25-ns" :class="{'expose': show_menu}">

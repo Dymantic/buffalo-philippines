@@ -13,7 +13,7 @@
         </div>
         <div class="absolute submenu pa4 w6 col-w-bg"
              :class="{'exposed': level === 2}">
-            <div class="ff-sub-headline flex items-center mb3">
+            <div class="ff-subsub-headline flex items-center mb3">
                 <span @click="returnToBase"
                       class="mr4 col-p hv-col-pd b cursor-point">&larr;</span>
                 <span @click="resetToSubcategory" class="hv-col-p cursor-point">{{ selected_subcategory.title }}</span>
