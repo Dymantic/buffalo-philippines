@@ -14,12 +14,12 @@
         "bootstrap-sass": "^3.3.7",
         "cross-env": "^5.0.1",
         "jquery": "^3.1.1",
-        "laravel-mix": "^1.0",
+        "laravel-mix": "^1.7.2",
         "lodash": "^4.17.4",
-        "vue": "^2.1.10"
+        "vue": "^2.5.13"
     },
     "dependencies": {
-        "@dymantic/trix-vue-wysiwyg": "0.0.1",
+        "@dymantic/trix-vue-wysiwyg": "0.0.2",
         "flickity": "^2.0.10",
         "flickity-imagesloaded": "^2.0.0",
         "geolib": "^2.0.24",
