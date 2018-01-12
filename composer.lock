@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4d6052428494d7ea9bbf0de251abd365",
-    "content-hash": "f4fdca5b5ec0a45eb78d23384e8a8231",
+    "hash": "82d5e83f5be4a7442a37f9a11cd20d94",
+    "content-hash": "d7d0d55a8c776a436128ff48d555b7d4",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -338,6 +338,53 @@
             ],
             "description": "Laravel article model and associated stuff for reuse in our projects",
             "time": "2017-12-29 03:19:18"
+        },
+        {
+            "name": "dymantic/secretary",
+            "version": "v0.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Dymantic/secretary.git",
+                "reference": "b8bc7efae75af05878d362bc6b23ab4a980d9bdc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Dymantic/secretary/zipball/b8bc7efae75af05878d362bc6b23ab4a980d9bdc",
+                "reference": "b8bc7efae75af05878d362bc6b23ab4a980d9bdc",
+                "shasum": ""
+            },
+            "require-dev": {
+                "orchestra/testbench": "^3.5",
+                "phpunit/phpunit": "^6.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Dymantic\\Secretary\\SecretaryServiceProvider"
+                    ],
+                    "aliases": {
+                        "Secretary": "Dymantic\\Secretary\\Facades\\Secretary"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Dymantic\\Secretary\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Joyner",
+                    "email": "joyner.michael@gmail.com"
+                }
+            ],
+            "description": "Message and notification system for basic admin sections. It handles contact forms.",
+            "time": "2018-01-12 02:52:28"
         },
         {
             "name": "dymantic/slideshow",

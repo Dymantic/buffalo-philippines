@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Notifications\ContactMessageReceived;
-use App\Secretary;
+use Dymantic\Secretary\ContactForm;
+use Dymantic\Secretary\Secretary;
 use Illuminate\Http\Request;
 
 class ContactMessageController extends Controller
@@ -14,14 +15,8 @@ class ContactMessageController extends Controller
         return view('front.contact.page');
     }
 
-    public function store(Secretary $secretary)
+    public function store(Secretary $secretary, ContactForm $form)
     {
-        request()->validate([
-           'name' => 'required',
-            'email' => 'required|email',
-            'enquiry' => 'required'
-        ]);
-
-        $secretary->notify(new ContactMessageReceived(request()->all(['name', 'email', 'enquiry'])));
+        $secretary->receive($form->contactMessage());
     }
 }

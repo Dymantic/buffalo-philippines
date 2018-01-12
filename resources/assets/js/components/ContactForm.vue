@@ -26,13 +26,13 @@
                        class="w-100 ba b--black-30 h2 pl2">
             </div>
             <div class="form-group mv3"
-                 :class="{'has-error': form.errors.enquiry}">
+                 :class="{'has-error': form.errors.message_body}">
                 <label class="f6 ttu col-d strong-type"
                        for="enquiry">Your Enquiry</label>
                 <span class="f6 col-r"
-                      v-show="form.errors.enquiry">{{ form.errors.enquiry }}</span>
+                      v-show="form.errors.enquiry">{{ form.errors.message_body }}</span>
                 <textarea name="enquiry"
-                          v-model="form.data.enquiry"
+                          v-model="form.data.message_body"
                           class="ba b--black-30 h4 w-100 pa2"></textarea>
             </div>
             <div class="form-group mv3">
@@ -70,7 +70,7 @@
                 form: new Form({
                     name: '',
                     email: '',
-                    enquiry: ''
+                    message_body: ''
                 })
             };
         },
