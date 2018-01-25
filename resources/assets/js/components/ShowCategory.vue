@@ -60,7 +60,7 @@
             },
 
             show_menu_text() {
-                return this.show_menu ? 'Hide menu' : 'Filter products';
+                return this.show_menu ? 'Hide menu' : 'Browse categories';
             }
         },
 
