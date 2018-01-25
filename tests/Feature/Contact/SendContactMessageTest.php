@@ -3,7 +3,9 @@
 namespace Tests\Feature\Contact;
 
 use App\Notifications\ContactMessageReceived;
-use App\Secretary;
+use Dymantic\Secretary\ContactMessage;
+use Dymantic\Secretary\MessageReceived;
+use Dymantic\Secretary\Secretary;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
@@ -33,19 +35,15 @@ class SendContactMessageTest extends TestCase
         $response = $this->json("POST", '/contact', [
             'name'    => 'TEST NAME',
             'email'   => 'test@email.con',
-            'enquiry' => 'TEST ENQUIRY'
+            'message_body' => 'TEST ENQUIRY'
         ]);
         $response->assertStatus(200);
 
         Notification::assertSentTo(
             $this->secretary,
-            ContactMessageReceived::class,
+            MessageReceived::class,
             function ($notification, $channels) {
-                return $notification->message === [
-                        'name'    => 'TEST NAME',
-                        'email'   => 'test@email.con',
-                        'enquiry' => 'TEST ENQUIRY'
-                    ];
+                return !!$channels;
             });
     }
 
@@ -57,7 +55,7 @@ class SendContactMessageTest extends TestCase
         $response = $this->json("POST", '/contact', [
             'name'    => '',
             'email'   => 'test@email.con',
-            'enquiry' => 'TEST ENQUIRY'
+            'message_body' => 'TEST ENQUIRY'
         ]);
         $response->assertStatus(422);
 
@@ -72,7 +70,7 @@ class SendContactMessageTest extends TestCase
         $response = $this->json("POST", '/contact', [
             'name'    => 'TEST NAME',
             'email'   => '',
-            'enquiry' => 'TEST ENQUIRY'
+            'message_body' => 'TEST ENQUIRY'
         ]);
         $response->assertStatus(422);
 
@@ -87,7 +85,7 @@ class SendContactMessageTest extends TestCase
         $response = $this->json("POST", '/contact', [
             'name'    => 'TEST NAME',
             'email'   => 'not-a-valid-email',
-            'enquiry' => 'TEST ENQUIRY'
+            'message_body' => 'TEST ENQUIRY'
         ]);
         $response->assertStatus(422);
 
@@ -97,15 +95,15 @@ class SendContactMessageTest extends TestCase
     /**
      *@test
      */
-    public function the_message_enquiry_is_required()
+    public function the_message_body_is_required()
     {
         $response = $this->json("POST", '/contact', [
             'name'    => 'TEST NAME',
             'email'   => 'test@email.con',
-            'enquiry' => ''
+            'message_body' => ''
         ]);
         $response->assertStatus(422);
 
-        $this->assertArrayHasKey('enquiry', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('message_body', $response->decodeResponseJson()['errors']);
     }
 }

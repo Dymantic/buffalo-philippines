@@ -9,7 +9,7 @@ class ProductsSearchController extends Controller
 {
     public function index(ProductsRepository $repository)
     {
-        $products = $repository->searchByName(request('q'))->filter(function($product) {
+        $products = $repository->fullSearch(request('q'))->filter(function($product) {
             return $product->published;
         });
 
