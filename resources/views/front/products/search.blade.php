@@ -8,7 +8,7 @@
         <p class="f4 f3-ns tc strong-type mv5">We found <span class="col-p">{{ $products->count() }}</span> products matching <span class="col-p">"{{ $search_term }}"</span>.</p>
         <div class="flex flex-wrap justify-around">
             @foreach($products as $product)
-                <div class="w-20 mh2 mb3 col-w-bg pa3">
+                <div class="w-100 w-20-ns mh2 mb3 col-w-bg pa3">
                     <a class="link" href="/products/{{ $product->slug }}">
                         <img src="{{ $product->imageUrl('thumb') }}"
                              alt="Image of {{ $product->title }}">
