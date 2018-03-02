@@ -18,6 +18,7 @@ class ForgotPasswordTest extends TestCase
      */
     public function a_password_reset_email_is_sent_to_a_valid_user()
     {
+        $this->disableExceptionHandling();
         Notification::fake();
 
         $user = $this->createUser(['email' => 'test@example.com']);
