@@ -9,5 +9,7 @@
         </div>
     </div>
 
-    <articles-list :initial-list="{{ htmlentities(json_encode($articles, JSON_HEX_QUOT), ENT_QUOTES) }}"></articles-list>
+    <articles-list :initial-list="{{ json_encode($articles) }}"></articles-list>
+
+    {{--<articles-list :initial-list="{{ htmlentities(json_encode($articles, JSON_HEX_QUOT), ENT_QUOTES) }}"></articles-list>--}}
 @endsection
