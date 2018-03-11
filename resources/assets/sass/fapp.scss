@@ -16,6 +16,7 @@
 @import "utilities/dimensions";
 @import "utilities/patterns";
 @import "utilities/cursors";
+@import "utilities/widths";
 
 @import "front/components/navbar";
 @import "front/components/icons";
@@ -23,4 +24,5 @@
 @import "front/components/banner-heading";
 
 @import "front/pages/home";
+@import "front/pages/about";
 @import "front/pages/article";

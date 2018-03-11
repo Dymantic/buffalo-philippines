@@ -18,5 +18,5 @@
                     :save-timer="10"
                     image-upload-url="/admin/articles/{{ $article->id }}/images"
     ></wysiwyg-editor>
-    
+
 @endsection
