@@ -25,6 +25,17 @@
                                v-model="form.data.name"
                                class="w-100 input h2 pl2">
                     </div>
+                    <div class="form-group mv3"
+                         :class="{'has-error': form.errors.address}">
+                        <label class="f6 ttu col-p"
+                               for="address">Address</label>
+                        <span class="f6 col-r"
+                              v-show="form.errors.address">{{ form.errors.address }}</span>
+                        <input type="text"
+                               name="address"
+                               v-model="form.data.address"
+                               class="w-100 input h2 pl2">
+                    </div>
                     <div class="modal-form-button-bar w-100 flex justify-end">
                         <button class="btn btn-grey"
                                 type="button"
@@ -59,7 +70,8 @@
         data() {
             return {
                 form: new Form({
-                    name: this.formAttributes.name || ''
+                    name: this.formAttributes.name || '',
+                    address: this.formAttributes.address || ''
                 })
             };
         },
@@ -70,9 +82,10 @@
                 return this.form.data.name !== '';
             },
 
-            getUpdatedDataFromResponseData(updated_data) {
+            getUpdatedDataFromResponseData({name, address}) {
                 return {
-                    name: updated_data.name
+                    name,
+                    address
                 };
             },
 

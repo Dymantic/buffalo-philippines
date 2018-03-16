@@ -34,9 +34,12 @@ class LocationsController extends Controller
 
     public function update(Location $location)
     {
-        $name = request()->validate(['name' => 'required|max:255']);
+        request()->validate([
+            'name' => 'required|max:255',
+            'address' => 'required'
+        ]);
 
-        $location->update($name);
+        $location->update(request(['name', 'address']));
 
         return $location->fresh()->toJsonableArray();
     }

@@ -21,13 +21,15 @@ class UpdateLocationsTest extends TestCase
         $location = factory(Location::class)->create();
 
         $response = $this->asLoggedInUser()->json('POST', "/admin/locations/{$location->id}", [
-            'name' => 'UPDATED NAME'
+            'name' => 'UPDATED NAME',
+            'address' => 'UPDATED ADDRESS'
         ]);
         $response->assertStatus(200);
 
         $this->assertDatabaseHas('locations', [
             'id' => $location->id,
-            'name' => 'UPDATED NAME'
+            'name' => 'UPDATED NAME',
+            'address' => 'UPDATED ADDRESS'
         ]);
     }
 
@@ -48,6 +50,20 @@ class UpdateLocationsTest extends TestCase
     /**
      *@test
      */
+    public function the_address_field_is_required()
+    {
+        $location = factory(Location::class)->create();
+
+        $response = $this->asLoggedInUser()->json('POST', "/admin/locations/{$location->id}", [
+            'address' => ''
+        ]);
+        $response->assertStatus(422);
+        $this->assertArrayHasKey('address', $response->decodeResponseJson()['errors']);
+    }
+
+    /**
+     *@test
+     */
     public function the_name_must_be_under_255_characters()
     {
         $location = factory(Location::class)->create();
@@ -62,7 +78,7 @@ class UpdateLocationsTest extends TestCase
     /**
      *@test
      */
-    public function only_the_name_will_be_updated()
+    public function only_the_name_and_address_will_be_updated()
     {
         $this->disableExceptionHandling();
         $location = factory(Location::class)->create([
@@ -83,7 +99,7 @@ class UpdateLocationsTest extends TestCase
         $this->assertDatabaseHas('locations', [
             'id' => $location->id,
             'name' => 'NEW NAME',
-            'address' => 'OLD ADDRESS',
+            'address' => 'NEW ADDRESS',
             'lat' => 33.33,
             'lng' => 66.66
         ]);
@@ -103,14 +119,15 @@ class UpdateLocationsTest extends TestCase
         ]);
 
         $response = $this->asLoggedInUser()->json('POST', "/admin/locations/{$location->id}", [
-            'name' => 'NEW NAME'
+            'name' => 'NEW NAME',
+            'address' => 'NEW ADDRESS'
         ]);
         $response->assertStatus(200);
 
         $expected = [
             'id' => $location->id,
             'name' => 'NEW NAME',
-            'address' => 'OLD ADDRESS',
+            'address' => 'NEW ADDRESS',
             'lat' => 33.33,
             'lng' => 66.66
         ];
