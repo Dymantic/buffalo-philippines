@@ -47,6 +47,8 @@ Route::group(['prefix' => 'services', 'namespace' => 'Services'], function() {
     
 });
 
+Route::get('foo/{slug}/boo', 'Services\CategoryProductsController@index');
+
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
