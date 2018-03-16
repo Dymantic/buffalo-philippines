@@ -58,7 +58,7 @@
 
 @section('bodyscripts')
     <script>
-        var hero = new SuperHero('#hero-banner', 8000);
+        var hero = new SuperHero('#hero-banner', 10000);
         hero.fly();
     </script>
 @endsection
