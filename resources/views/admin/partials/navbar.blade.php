@@ -21,7 +21,7 @@
         <a href="/admin/slideshow/slides"
            class="mh3 col-w link">Banner</a>
         <a href="/admin/articles"
-           class="mh3 col-w link">Insights</a>
+           class="mh3 col-w link">News</a>
     </div>
     <div>
         <form action="/admin/search/products"
