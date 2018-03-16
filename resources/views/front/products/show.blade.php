@@ -13,7 +13,9 @@
         <div class="w-100 w-50-ns pa4">
             <p class="dn db-ns ff-title mb2 mt0">{{ ucwords(strtolower($product['title'])) }}</p>
             <p class="dn db-ns ff-fine-body col-p mt0 mb4">{{ $product['code'] }}</p>
-            <p class="ff-fine-body">{!! $product['writeup'] !!}</p>
+            <div class="ff-fine-body">{!! $product['writeup'] !!}</div>
+            <p class="f4 col-d b">{{ $product['price'] }}</p>
+
             @include('front.partials.button-link', ['link' => '/stores', 'block' => true, 'buttonText' => 'Find Location'])
         </div>
     </section>
