@@ -3,7 +3,7 @@
         <div class="flex flex-wrap justify-around">
             <div v-for="product in page_of_products"
                  :key="product.id"
-                 class="w-40 w-20-ns mh2 mb3 col-w-bg pa3">
+                 class="w-40 w-20-ns mh2 mb3 col-w-bg pa3 relative">
                 <a :href="productLink(product)">
                     <img :src="product.main_image.thumb"
                          :alt="product.title">
@@ -13,6 +13,7 @@
                     <p class="ff-title hv-col-p col-d mb0">{{ product.title }}</p>
                     <p class="ff-fine-body col-mg hv-col-d mb0 mt2">{{ product.code }}</p>
                 </a>
+                <p v-if="product.is_new" class="absolute col-p-bg col-w ttu ph2 py1 top-0 left-0">New</p>
             </div>
         </div>
         <div v-show="number_of_pages > 1" class="pa3 col-lg-bg ma4">
