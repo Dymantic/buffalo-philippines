@@ -24,8 +24,16 @@
             <p class="ff-fine-body tc">{{ location_info }}</p>
         </div>
         <section class="mv5 mw8 center-ns mh3">
-            <p class="ff-title">You can find our products at these locations</p>
-            <div v-for="place in store_locations"
+            <div class="flex flex-column flex-row-ns justify-between items-center mb4">
+                <p class="ff-title tc tl-ns">You can find our products at these locations</p>
+                <div class="flex items-center mw-90p justify-center justify-end-ns">
+                    <input type="text" v-model="search_term" placeholder="Search by name or address" class="w-350 mw-70p ba h2 pl2">
+                    <div class="bt br bb h2 flex items-center col-w-bg ph2 col-p-bg">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" height="20px"><path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/></svg>
+                    </div>
+                </div>
+            </div>
+            <div v-for="place in matching_store_locations"
                  :key="place.id"
                  class="mv1 pa3 col-w-bg flex flex-column flex-row-ns">
                 <div class="flex-auto">
@@ -75,7 +83,8 @@
                 location_permission: 'unknown',
                 location_unavailable: false,
                 waiting_on_location: false,
-                nearest_store: null
+                nearest_store: null,
+                search_term: ''
             };
         },
 
@@ -122,6 +131,14 @@
                 }
 
                 return 'Allow us to see your location and we can help you find your nearest Buffalo dealer.';
+            },
+
+            matching_store_locations() {
+                if(! this.search_term) {
+                    return this.store_locations;
+                }
+
+                return this.store_locations.filter(location => this.matchesSearch(location));
             }
         },
 
@@ -268,6 +285,10 @@
             showNearestStore() {
                 console.log('clicking');
                 this.highLightLocation(this.nearest_store);
+            },
+
+            matchesSearch(location) {
+                return (location.name.toLowerCase().indexOf(this.search_term.toLocaleLowerCase()) !== -1) || (location.address.toLowerCase().indexOf(this.search_term.toLowerCase()) !== -1);
             }
         }
     }
