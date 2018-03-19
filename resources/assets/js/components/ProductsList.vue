@@ -59,12 +59,17 @@
 
 
             matching_products() {
-                if (this.parentType === 'Category') {
-                    return this.products;
-                }
-
                 return this.products
-                           .filter(product => this.belongsToSelectedParent(product));
+                           .filter(product => this.belongsToSelectedParent(product))
+                    .sort((a, b) => {
+                        if(a.is_new) {
+                            return -1;
+                        }
+                        if(b.is_new) {
+                            return 1;
+                        }
+                        return 0;
+                    })
             },
 
             page_of_products() {
@@ -111,6 +116,9 @@
             },
 
             belongsToSelectedParent(product) {
+                if(this.parentType === 'Category') {
+                    return true;
+                }
                 if (this.parentType === 'Subcategory') {
                     return this.belongsToSubcategory(product) || this.belongsToToolGroup(product);
                 }
