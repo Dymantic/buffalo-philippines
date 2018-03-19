@@ -9,16 +9,16 @@
             {{--connect--}}
             <p class="ttu b">Connect</p>
             <div class="flex items-center justify-center mb4">
-                <a href="#" class="mr3 col-w hv-col-p link">
+                <a href="https://twitter.com/HuangBuffalo" target="_blank" class="mr3 col-w hv-col-p link">
                     @include('svgicons.twitter', ['height' => '20px'])
                 </a>
-                <a href="#" class="mr3 col-w hv-col-p link">
+                <a href="https://www.linkedin.com/company/huang-buffalo-co.-ltd" target="_blank" class="mr3 col-w hv-col-p link">
                     @include('svgicons.linkedin', ['height' => '20px'])
                 </a>
-                <a href="#" class="mr3 col-w hv-col-p link">
+                <a href="https://www.facebook.com/buffalotoolsph" target="_blank" class="mr3 col-w hv-col-p link">
                     @include('svgicons.facebook', ['height' => '20px'])
                 </a>
-                <a href="#" class="mr3 col-w hv-col-p link">
+                <a href="https://www.linkedin.com/company/huang-buffalo-co.-ltd" target="_blank" class="mr3 col-w hv-col-p link">
                     @include('svgicons.instagram', ['height' => '20px'])
                 </a>
             </div>
