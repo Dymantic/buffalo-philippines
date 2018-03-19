@@ -12,14 +12,12 @@
         @endforeach
     </section>
     <section class="col-d-bg pv6 ph3 text-watermark-bg">
-        <h3 class="tc ff-headline col-w ma0">The Right Tools For You</h3>
+        <h3 class="tc ff-headline col-w ma0">Right Tools, Highest Performance</h3>
         <p class="col-w tc measure-wide lh-copy ff-large-body center">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium asperiores debitis deserunt ducimus
-            excepturi itaque iure minus officia optio, quod quos ratione sitsuscipit tempora unde? Dolore laborum
-            molestias nam!
+            With over 200 quality products on offer, Buffalo Tools always has the right tool for the job. We believe that good tools can heighten a worker's professional performance and improve the quality of their daily work.
         </p>
         @include('front.partials.button-link', [
-            'link' => '/stores',
+            'link' => '/about',
             'block' => true,
             'buttonText' => 'More About Us',
             'classes' => 'col-p'
