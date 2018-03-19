@@ -35,6 +35,22 @@
             <p class="col-p ttu f6">Description</p>
             <p>{{ category_description }}</p>
         </div>
+        <div class="card mv3">
+            <div class="flex justify-between items-center">
+                <div class="w-50">
+                    <p class="ttu col-p f6">Products</p>
+                    <p><strong class="ff-headline col-p">{{ productCount }} products.</strong></p>
+                </div>
+
+                <div>
+                    <a class="btn" :href="`/admin/categories/${id}/products`">Browse Products</a>
+                    <product-form :url="`/admin/categories/${id}/products`"
+                                  button-text="add product"
+                    ></product-form>
+                </div>
+            </div>
+            <!--<product-list :url="`/admin/services/categories/${id}/products`" parent-type="category"></product-list>-->
+        </div>
         <div class="flex justify-between mv3 items-stretch">
             <subcategories-list class="w-50 mr3"
                                 :category="menuStructure"
@@ -51,31 +67,20 @@
                 ></image-upload>
             </div>
         </div>
-        <div class="card mv3">
-            <div class="flex justify-between items-center">
-                <p class="ttu col-p f6">Products</p>
-                <div>
-                    <a class="btn" :href="`/admin/categories/${id}/products`">Browse Products</a>
-                    <product-form :url="`/admin/categories/${id}/products`"
-                                  button-text="add product"
-                    ></product-form>
-                </div>
-            </div>
-            <!--<product-list :url="`/admin/services/categories/${id}/products`" parent-type="category"></product-list>-->
-        </div>
+
     </div>
 </template>
 
 <script type="text/babel">
     export default {
 
-        props: ['id', 'title', 'description', 'published', 'image', 'menu-structure'],
+        props: ['id', 'title', 'description', 'published', 'image', 'menu-structure', 'product-count'],
 
         data() {
             return {
                 is_published: this.published,
                 category_title: this.title,
-                category_description: this.category
+                category_description: this.description
             };
         },
 

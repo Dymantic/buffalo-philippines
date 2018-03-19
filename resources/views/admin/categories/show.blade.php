@@ -7,5 +7,6 @@
                    :published="{{ $category->published ? 'true' : 'false' }}"
                    image="{{ $category->imageUrl('thumb') }}"
                    :menu-structure="{{ json_encode($category->menu()) }}"
+                   :product-count="{{ $category->descendants()->count() }}"
     ></category-page>
 @endsection
