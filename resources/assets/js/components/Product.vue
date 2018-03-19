@@ -103,6 +103,7 @@
             </div>
             <div class="card mv3 ml3 w-50">
                 <p class="ttu col-p f6">Main Image</p>
+                <p class="mv4">Product images should be at least 300px wide and 300px tall. A square shape is best, on a white background.</p>
                 <image-upload :default="itemAttributes.main_image.web"
                               :url="`/admin/products/${itemAttributes.id}/main-image`"
                               size="preview"
