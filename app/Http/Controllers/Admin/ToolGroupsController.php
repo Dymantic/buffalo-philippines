@@ -15,11 +15,13 @@ class ToolGroupsController extends Controller
         $toolGroup->load('subcategory.category');
         $subcategory = $toolGroup->subcategory;
         $category = $subcategory->category;
+        $product_count = $toolGroup->descendants()->count();
 
         return view('admin.tool-groups.show', [
             'tool_group' => $toolGroup->toJsonableArray(),
             'category' => ['id' => $category->id, 'title' => $category->title],
-            'subcategory' => ['id' => $subcategory->id, 'title' => $subcategory->title]
+            'subcategory' => ['id' => $subcategory->id, 'title' => $subcategory->title],
+            'product_count' => $product_count
         ]);
     }
 

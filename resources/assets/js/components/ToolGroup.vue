@@ -34,16 +34,11 @@
             <p>{{ description }}</p>
         </div>
         <div class="card mv3">
-            <p class="ttu col-p f6">Category</p>
-            <p><a :href="`/admin/categories/${category.id}`" class="link col-d b">{{ category.title }}</a></p>
-        </div>
-        <div class="card mv3">
-            <p class="ttu col-p f6">Subcategory</p>
-            <p><a :href="`/admin/subcategories/${subcategory.id}`" class="link col-d b">{{ subcategory.title }}</a></p>
-        </div>
-        <div class="card mv3">
             <div class="flex justify-between items-center">
-                <p class="ttu col-p f6">Products</p>
+                <div class="w-50">
+                    <p class="ttu col-p f6">Products</p>
+                    <p><strong class="ff-headline col-p">{{ productCount }} products.</strong></p>
+                </div>
                 <div>
                     <a class="btn" :href="`/admin/categories/${category.id}/products?tool-group=${itemAttributes.id}`">Browse Products</a>
                     <product-form :url="`/admin/tool-groups/${itemAttributes.id}/products`"
@@ -53,13 +48,22 @@
 
             </div>
         </div>
+        <div class="card mv3">
+            <p class="ttu col-p f6">Category</p>
+            <p><a :href="`/admin/categories/${category.id}`" class="link col-d b">{{ category.title }}</a></p>
+        </div>
+        <div class="card mv3">
+            <p class="ttu col-p f6">Subcategory</p>
+            <p><a :href="`/admin/subcategories/${subcategory.id}`" class="link col-d b">{{ subcategory.title }}</a></p>
+        </div>
+
     </div>
 </template>
 
 <script type="text/babel">
     export default {
 
-        props: ['item-attributes', 'category', 'subcategory'],
+        props: ['item-attributes', 'category', 'subcategory', 'product-count'],
 
         data() {
             return {
