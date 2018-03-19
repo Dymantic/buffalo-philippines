@@ -57,6 +57,7 @@
             ></subcategories-list>
             <div class="w-50 card">
                 <p class="col-p ttu f6">Image</p>
+                <p class="mv4">Category images should be at least 300px wide and 300px tall. A square shape is best, on a white background.</p>
                 <image-upload :default="image"
                               :url="`/admin/categories/${id}/image`"
                               size="preview"

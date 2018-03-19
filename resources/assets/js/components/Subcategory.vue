@@ -38,29 +38,32 @@
             <p>{{ description }}</p>
         </div>
         <div class="card mv3">
-            <p class="ttu col-p f6">Category</p>
-            <p><a :href="`/admin/categories/${category.id}`" class="link col-d b">{{ category.title }}</a></p>
-        </div>
-        <toolgroup-list :fetch-url="`/admin/services/subcategories/${itemAttributes.id}/tool-groups`"></toolgroup-list>
-        <div class="card mv3">
             <div class="flex justify-between items-center">
-                <p class="ttu col-p f6">Products</p>
+                <div class="w-50">
+                    <p class="ttu col-p f6">Products</p>
+                    <p><strong class="ff-headline col-p">{{ productCount }} products.</strong></p>
+                </div>
                 <div>
                     <a class="btn" :href="`/admin/categories/${category.id}/products?subcategory=${itemAttributes.id}`">Browse Products</a>
                     <product-form :url="`/admin/subcategories/${itemAttributes.id}/products`"
                                   button-text="add product"
                     ></product-form>
                 </div>
-
             </div>
         </div>
+        <div class="card mv3">
+            <p class="ttu col-p f6">Category</p>
+            <p><a :href="`/admin/categories/${category.id}`" class="link col-d b">{{ category.title }}</a></p>
+        </div>
+        <toolgroup-list :fetch-url="`/admin/services/subcategories/${itemAttributes.id}/tool-groups`"></toolgroup-list>
+
     </div>
 </template>
 
 <script type="text/babel">
     export default {
 
-        props: ['item-attributes', 'category'],
+        props: ['item-attributes', 'category', 'product-count'],
 
         data() {
             return {

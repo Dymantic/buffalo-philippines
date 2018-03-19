@@ -13,9 +13,11 @@ class SubcategoriesController extends Controller
     public function show(Subcategory $subcategory)
     {
         $category = $subcategory->category;
+        $product_count = $subcategory->descendants()->count();
         return view('admin.subcategories.show', [
             'subcategory' => $subcategory->toJsonableArray(),
-            'category' => ['id' => $category->id, 'title' => $category->title]
+            'category' => ['id' => $category->id, 'title' => $category->title],
+            'product_count' => $product_count
         ]);
     }
 
