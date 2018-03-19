@@ -16,7 +16,7 @@ class CategoriesController extends Controller
 
     public function show($slug)
     {
-        $category = Category::published()->where('slug', $slug)->first();
+        $category = Category::published()->where('slug', $slug)->firstOrFail();
 
         return view('front.categories.show', [
             'category' => $category,

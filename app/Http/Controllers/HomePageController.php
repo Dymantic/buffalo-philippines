@@ -14,7 +14,7 @@ class HomePageController extends Controller
     {
         $slides = Slide::where('published', true)->ordered()->get();
         $featured = Product::featured()->take(8)->get();
-        $articles = Article::where('is_draft', false)->where('published_on', '<=' ,Carbon::today())->take(4)->get();
+        $articles = Article::latest()->where('is_draft', false)->where('published_on', '<=' ,Carbon::today())->take(4)->get();
 
         return view('front.home.page', [
             'banner_slides' => $slides,
