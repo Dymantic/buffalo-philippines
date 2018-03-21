@@ -6,6 +6,5 @@
     </header>
     <show-category :menu-structure='{{ json_encode($categoryMenu) }}'
                    products-fetch-url="/services/categories/{{ $slug }}/products"
-                   category-title="{{ $category->title }}"
     ></show-category>
 @endsection

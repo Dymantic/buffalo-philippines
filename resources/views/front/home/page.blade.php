@@ -28,9 +28,7 @@
     <section class="col-d-bg pv6 ph3 location-watermark-bg">
         <h3 class="tc ff-headline col-w ma0">Locations</h3>
         <p class="ff-large-body col-w tc measure-wide lh-copy center">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium asperiores debitis deserunt ducimus
-            excepturi itaque iure minus officia optio, quod quos ratione sit suscipit tempora unde? Dolore laborum
-            molestias nam!
+            Buffalo products can be found in over 135 stores throughout the Philippines. Use our handy store locator to find a Buffalo stockist near you.
         </p>
         @include('front.partials.button-link', [
             'link' => '/stores',

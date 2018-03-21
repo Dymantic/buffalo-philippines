@@ -100,6 +100,7 @@ class Category extends Model implements HasMediaConversions, Stockable
         return [
             'id'       => $this->id,
             'title'    => $this->title,
+            'slug'     => $this->slug,
             'link'     => "/categories/{$this->slug}",
             'children' => $children
         ];
@@ -108,12 +109,12 @@ class Category extends Model implements HasMediaConversions, Stockable
     public function descendants()
     {
         $direct_children = $this->products;
-        $subcategory_products = $this->subcategories->flatMap(function($subcategory) {
+        $subcategory_products = $this->subcategories->flatMap(function ($subcategory) {
             return $subcategory->products;
         });
-        $tool_group_products = $this->subcategories->flatMap(function($subcategory) {
+        $tool_group_products = $this->subcategories->flatMap(function ($subcategory) {
             return $subcategory->toolGroups;
-        })->flatMap(function($tool_group) {
+        })->flatMap(function ($tool_group) {
             return $tool_group->products;
         });
 

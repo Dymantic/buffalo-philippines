@@ -176,6 +176,7 @@ class CategoriesTest extends TestCase
         $expected = [
             'id'       => $category->id,
             'title'    => 'TEST CATEGORY TITLE',
+            'slug'     => $category->slug,
             'link'     => "/categories/{$category->slug}",
             'children' => [
                 [

@@ -13,14 +13,16 @@
                     <p class="ff-title hv-col-p col-d mb0">{{ product.title }}</p>
                     <p class="ff-fine-body col-mg hv-col-d mb0 mt2">{{ product.code }}</p>
                 </a>
-                <p v-if="product.is_new" class="absolute col-p-bg col-w ttu ph2 py1 top-0 left-0">New</p>
+                <p v-if="product.is_new"
+                   class="absolute col-p-bg col-w ttu ph2 py1 top-0 left-0">New</p>
             </div>
         </div>
-        <div v-show="number_of_pages > 1" class="pa3 col-lg-bg ma4">
+        <div v-show="number_of_pages > 1"
+             class="pa3 col-lg-bg ma4">
             <p class="ff-title">Pages</p>
             <div class="flex flex-wrap">
                 <div v-for="page_number in number_of_pages"
-                     @click="page = (page_number - 1)"
+                     @click="setPage(page_number - 1)"
                      class="mh2 mb3 b cursor-point hv-col-p"
                      :class="{'col-p': page_number === (page + 1)}"
                      :disabled="page_number === (page + 1)"
@@ -40,15 +42,11 @@
 
     export default {
 
-        props: ['fetch-url', 'parent-type', 'subcategory-id', 'tool-groups', 'link-to-admin'],
+        props: ['fetch-url', 'filter-type', 'subcategory', 'tool-groups', 'link-to-admin'],
 
         data() {
             return {
                 products: [],
-                subcategory_type: '',
-                subcategory_id: null,
-                show_subcategory: null,
-                show_tool_groups: [],
                 page: 0,
                 page_size: 15
             };
@@ -57,19 +55,18 @@
         computed: {
 
 
-
             matching_products() {
                 return this.products
                            .filter(product => this.belongsToSelectedParent(product))
-                    .sort((a, b) => {
-                        if(a.is_new) {
-                            return -1;
-                        }
-                        if(b.is_new) {
-                            return 1;
-                        }
-                        return 0;
-                    })
+                           .sort((a, b) => {
+                               if (a.is_new) {
+                                   return -1;
+                               }
+                               if (b.is_new) {
+                                   return 1;
+                               }
+                               return 0;
+                           })
             },
 
             page_of_products() {
@@ -90,6 +87,8 @@
 
         mounted() {
             this.fetchProducts();
+
+            eventHub.$on('request-product-page', (page_number) => this.page = page_number);
         },
 
         methods: {
@@ -100,44 +99,34 @@
                      .catch(err => console.log(err));
             },
 
-            resetList() {
-                this.show_subcategory = null;
-                this.show_tool_groups = [];
-            },
-
-            showSubcategory({id, tool_groups}) {
-                this.show_subcategory = id;
-                this.show_tool_groups = tool_groups || [];
-            },
-
-            showToolGroup({id}) {
-                this.show_tool_groups = [id];
-                this.show_subcategory = null;
-            },
-
             belongsToSelectedParent(product) {
-                if(this.parentType === 'Category') {
+                if (this.filterType === 'category') {
                     return true;
                 }
-                if (this.parentType === 'Subcategory') {
+                if (this.filterType === 'subcategory') {
                     return this.belongsToSubcategory(product) || this.belongsToToolGroup(product);
                 }
 
-                if (this.parentType === 'Tool Group') {
+                if (this.filterType === 'tool_group') {
                     return this.belongsToToolGroup(product);
                 }
             },
 
             belongsToSubcategory(product) {
-                return product.parents.some(parent => parent.type === 'Subcategory' && parent.id === this.subcategoryId);
+                return product.parents.some(parent => parent.type === 'Subcategory' && parent.id === this.subcategory.id);
             },
 
             belongsToToolGroup(product) {
-                return product.parents.some(parent => (parent.type === 'Tool Group') && (this.toolGroups.indexOf(parent.id) !== -1))
+                return product.parents.some(parent => (parent.type === 'Tool Group') && (this.toolGroups.find(tg => tg.id === parent.id)));
+            },
+
+            setPage(page_number) {
+                this.page = page_number;
+                this.$emit('page-selected', page_number);
             },
 
             productLink(product) {
-                if(this.linkToAdmin) {
+                if (this.linkToAdmin) {
                     return `/admin/products/${product.id}`;
                 }
 
