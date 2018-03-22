@@ -12,9 +12,5 @@
                    products-fetch-url="/admin/services/categories/{{ $category->id }}/products"
                    category-title="{{ $category->title }}"
                    :for-admin="true"
-                   :show-subcategory='{{ json_encode($subcategory) }}'
-                   :show-tool-group='{{ json_encode($toolGroup) }}'
-                   showing-type="{{ $showType }}"
-                   :menu-subcategory="{{ $menuSubcategory ?? 'null' }}"
     ></show-category>
 @endsection

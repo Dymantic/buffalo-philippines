@@ -40,7 +40,7 @@
                     <p><strong class="ff-headline col-p">{{ productCount }} products.</strong></p>
                 </div>
                 <div>
-                    <a class="btn" :href="`/admin/categories/${category.id}/products?tool-group=${itemAttributes.id}`">Browse Products</a>
+                    <a class="btn" :href="`/admin/categories/${category.id}/products?toolgroup=${itemAttributes.id}`">Browse Products</a>
                     <product-form :url="`/admin/tool-groups/${itemAttributes.id}/products`"
                                   button-text="add product"
                     ></product-form>

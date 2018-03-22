@@ -136,12 +136,14 @@
 
             setSubcategory({id: subcategory_id}) {
                 const subcategory = this.getSubcategoryById(subcategory_id);
+                this.showSelectedSubcategory(subcategory);
+
                 this.pushHistoryState(
                     'subcategory',
                     subcategory_id,
-                    `/categories/${this.category_slug}?subcategory=${subcategory.id}`
+                    this.makeUrlPath('subcategory')
                 );
-                this.showSelectedSubcategory(subcategory);
+
             },
 
             showSelectedSubcategory(subcategory) {
@@ -155,12 +157,12 @@
             },
 
             setToolGroup(toolgroup) {
+                this.showSelectedToolGroup(toolgroup);
                 this.pushHistoryState(
                     'tool_group',
                     toolgroup.id,
-                    `/categories/${this.category_slug}?toolgroup=${toolgroup.id}`
+                    this.makeUrlPath('tool_group')
                 );
-                this.showSelectedToolGroup(toolgroup);
             },
 
             showSelectedToolGroup(toolgroup) {
@@ -173,7 +175,7 @@
             },
 
             resetToCategory() {
-                this.pushHistoryState('category', null, `/categories/${this.category_slug}`);
+                this.pushHistoryState('category', null, this.makeUrlPath('category'));
                 this.showCategory();
             },
 
@@ -184,16 +186,18 @@
             },
 
             pushHistoryState(filter_type, group_id, path, page = 0) {
+                console.log('pushing');
                 window.history.pushState({filter_type, group_id, page}, null, path);
             },
 
             setFromState(state) {
-                if (state.page !== null) {
-                    eventHub.$emit('request-product-page', state.page);
-                }
-
+                console.log('setting', state);
                 if (state === null) {
                     return this.showCategory();
+                }
+
+                if (state.page !== null) {
+                    eventHub.$emit('request-product-page', state.page);
                 }
 
                 if (state.filter_type === 'subcategory') {
@@ -203,26 +207,42 @@
                 if (state.filter_type === 'tool_group') {
                     return this.showSelectedToolGroup(this.getToolGroupById(state.group_id));
                 }
+
+                this.showCategory();
             },
 
             handlePageChange(page_number) {
                 const group = this.filter_type === 'subcategory' ? this.selected_subcategory.id : (this.selected_toolgroup && this.selected_toolgroup.id);
-                this.pushHistoryState(this.filter_type, group, this.makePath(this.filter_type, page_number + 1), page_number);
+                this.pushHistoryState(this.filter_type, group, this.makeUrlPath(this.filter_type, page_number + 1), page_number);
             },
 
-            makePath(filter_type, page_number) {
-                let path = ''
-                if (filter_type === 'category') {
-                    return `/categories/${this.category_slug}?page=${page_number}`;
+            makeUrlPath(filter_type, page_number = 1) {
+                const base = this.forAdmin ? 'admin/categories' : 'categories';
+                const category_identitifier = this.forAdmin ? `${this.menuStructure.id}/products` : this.menuStructure.slug;
+
+                switch (filter_type) {
+                    case 'subcategory':
+                        return this.withPage(`/${base}/${category_identitifier}?subcategory=${this.selected_subcategory.id}`, page_number);
+                        break;
+                    case 'tool_group':
+                        return this.withPage(`/${base}/${category_identitifier}?toolgroup=${this.selected_toolgroup.id}`, page_number);
+                        break;
+                    default:
+                        return this.withPage(`/${base}/${category_identitifier}`, page_number);
                 }
-                if (filter_type === 'subcategory') {
-                    path = `/categories/${this.category_slug}?subcategory=${this.selected_subcategory.id}`;
+            },
+
+            withPage(path, page_number) {
+                if (page_number < 2) {
+                    return path;
                 }
-                if (filter_type === 'tool_group') {
-                    path = `/categories/${this.category_slug}?toolgroup=${this.selected_toolgroup.id}`;
+
+                if (path.indexOf('?') === -1) {
+                    return `${path}?page=${page_number}`;
                 }
+
                 return `${path}&page=${page_number}`;
-            }
+            },
         }
     }
 </script>

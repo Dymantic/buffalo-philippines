@@ -28,7 +28,9 @@
     <section class="col-d-bg pv6 ph3 location-watermark-bg">
         <h3 class="tc ff-headline col-w ma0">Locations</h3>
         <p class="ff-large-body col-w tc measure-wide lh-copy center">
-            Buffalo products can be found in over 135 stores throughout the Philippines. Use our handy store locator to find a Buffalo stockist near you.
+            Are you looking for a specific hand tool? Let us help.<br>
+            Buffalo products can be found in over 137 stores throughout the Philippines.
+            We recommend you call the store first before visiting just to make sure they have what you’re looking for in stock.
         </p>
         @include('front.partials.button-link', [
             'link' => '/stores',
