@@ -129,6 +129,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
         Route::get('search/products', 'ProductSearchController@index');
 
+        Route::post('stockables/categories/{category}', 'CategoryStockController@store');
+        Route::post('stockables/subcategories/{subcategory}', 'SubcategoryStockController@store');
+        Route::post('stockables/tool-groups/{toolgroup}', 'ToolGroupStockController@store');
+
     });
 
     Route::group(['middleware' => 'auth', 'prefix' => 'services', 'namespace' => 'Services'], function () {
