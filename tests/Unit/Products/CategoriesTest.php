@@ -224,4 +224,101 @@ class CategoriesTest extends TestCase
 
         $this->assertEquals($expected, $category->menu());
     }
+
+    /**
+     * @test
+     */
+    public function a_list_of_all_categories_with_subcategories_and_tool_groups_can_be_presented()
+    {
+        $categoryA = factory(Category::class)->create();
+        $categoryB = factory(Category::class)->create();
+
+        $subcategoryA = factory(Subcategory::class)->create(['category_id' => $categoryA->id]);
+        $subcategoryB = factory(Subcategory::class)->create(['category_id' => $categoryA->id]);
+        $subcategoryC = factory(Subcategory::class)->create(['category_id' => $categoryB->id]);
+        $subcategoryD = factory(Subcategory::class)->create(['category_id' => $categoryB->id]);
+
+        $toolgroupA = factory(ToolGroup::class)->create(['subcategory_id' => $subcategoryA]);
+        $toolgroupB = factory(ToolGroup::class)->create(['subcategory_id' => $subcategoryA]);
+        $toolgroupC = factory(ToolGroup::class)->create(['subcategory_id' => $subcategoryB]);
+        $toolgroupD = factory(ToolGroup::class)->create(['subcategory_id' => $subcategoryD]);
+        $toolgroupE = factory(ToolGroup::class)->create(['subcategory_id' => $subcategoryD]);
+        $toolgroupF = factory(ToolGroup::class)->create(['subcategory_id' => $subcategoryD]);
+
+        $expected = [
+            [
+                'id'            => $categoryA->id,
+                'title'         => $categoryA->title,
+                'slug'          => $categoryA->slug,
+                'subcategories' => [
+                    [
+                        'id'         => $subcategoryA->id,
+                        'title'      => $subcategoryA->title,
+                        'slug'       => $subcategoryA->slug,
+                        'toolgroups' => [
+                            [
+                                'id'    => $toolgroupA->id,
+                                'title' => $toolgroupA->title,
+                                'slug'  => $toolgroupA->slug,
+                            ],
+                            [
+                                'id'    => $toolgroupB->id,
+                                'title' => $toolgroupB->title,
+                                'slug'  => $toolgroupB->slug,
+                            ]
+                        ]
+                    ],
+                    [
+                        'id'         => $subcategoryB->id,
+                        'title'      => $subcategoryB->title,
+                        'slug'       => $subcategoryB->slug,
+                        'toolgroups' => [
+                            [
+                                'id'    => $toolgroupC->id,
+                                'title' => $toolgroupC->title,
+                                'slug'  => $toolgroupC->slug,
+                            ]
+                        ]
+                    ]
+                ]
+            ],
+            [
+                'id'            => $categoryB->id,
+                'title'         => $categoryB->title,
+                'slug'          => $categoryB->slug,
+                'subcategories' => [
+                    [
+                        'id'         => $subcategoryC->id,
+                        'title'      => $subcategoryC->title,
+                        'slug'       => $subcategoryC->slug,
+                        'toolgroups' => [],
+                    ],
+                    [
+                        'id'         => $subcategoryD->id,
+                        'title'      => $subcategoryD->title,
+                        'slug'       => $subcategoryD->slug,
+                        'toolgroups' => [
+                            [
+                                'id'    => $toolgroupD->id,
+                                'title' => $toolgroupD->title,
+                                'slug'  => $toolgroupD->slug,
+                            ],
+                            [
+                                'id'    => $toolgroupE->id,
+                                'title' => $toolgroupE->title,
+                                'slug'  => $toolgroupE->slug,
+                            ],
+                            [
+                                'id'    => $toolgroupF->id,
+                                'title' => $toolgroupF->title,
+                                'slug'  => $toolgroupF->slug,
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        $this->assertEquals($expected, Category::completeList());
+    }
 }

@@ -125,4 +125,29 @@ class Category extends Model implements HasMediaConversions, Stockable
     {
         return null;
     }
+
+    public static function completeList()
+    {
+        return static::with('subcategories.toolGroups')->get()->map(function($category) {
+            return [
+                'id' => $category->id,
+                'title' => $category->title,
+                'slug' => $category->slug,
+                'subcategories' => $category->subcategories->map(function($subcategory) {
+                    return [
+                        'id' => $subcategory->id,
+                        'title' => $subcategory->title,
+                        'slug' => $subcategory->slug,
+                        'toolgroups' => $subcategory->toolGroups->map(function($toolgroup) {
+                            return [
+                                'id' => $toolgroup->id,
+                                'title' => $toolgroup->title,
+                                'slug' => $toolgroup->slug,
+                            ];
+                        })->all()
+                    ];
+                })->all()
+            ];
+        })->all();
+    }
 }
