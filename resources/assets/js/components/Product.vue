@@ -31,9 +31,15 @@
         </div>
         <div class="card mv3">
             <p class="ttu col-p f6">Belongs to</p>
-            <p v-for="parent in parents" v-html="parentBreadcrumbs(parent)">
+            <p v-for="parent in parents"
+               v-html="parentBreadcrumbs(parent)">
             </p>
             <div>
+                <remove-parent :product-id="itemAttributes.id"
+                               :product-name="title"
+                               :parents="parents"
+                               @product-parents-updated="updateParents"
+                ></remove-parent>
                 <add-stock :categories="categoryList"
                            :product-id="itemAttributes.id"
                            :product-name="title"
@@ -226,12 +232,12 @@
             parentBreadcrumbs(parent) {
                 let html = this.stockableLink(parent);
 
-                if(parent.parent) {
-                    html =  `${this.stockableLink(parent.parent)} >> ${html}`;
+                if (parent.parent) {
+                    html = `${this.stockableLink(parent.parent)} >> ${html}`;
                 }
 
-                if(parent.parent && parent.parent.parent) {
-                    html =  `${this.stockableLink(parent.parent.parent)} >> ${html}`;
+                if (parent.parent && parent.parent.parent) {
+                    html = `${this.stockableLink(parent.parent.parent)} >> ${html}`;
                 }
 
                 return html;
@@ -241,7 +247,6 @@
             stockableLink(stockable) {
                 return `<a class="link col-d" href="${this.parentLink(stockable)}"><strong>${stockable.title}</strong> <small>(${stockable.type})</small></a>`
             },
-
 
 
             parentLink(parent) {
