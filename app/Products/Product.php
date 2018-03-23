@@ -77,11 +77,6 @@ class Product extends Model implements HasMediaConversions
         return $this->addMedia($image)->preservingOriginal()->toMediaCollection(static::GALLERY_IMGS);
     }
 
-    public function stockables()
-    {
-        return $this->morphTo();
-    }
-
     public function categories()
     {
         return $this->morphedByMany(Category::class, 'stockable');
@@ -166,11 +161,7 @@ class Product extends Model implements HasMediaConversions
         return \DB::table('stockables')->where('product_id', $this->id)->get()->map(function($stockable) {
             return (new $stockable->stockable_type)->find($stockable->stockable_id);
         })->map(function($parent) {
-            return [
-                'id' => $parent->id,
-                'type' => $parent instanceof Category ? 'Category' : ($parent instanceof Subcategory ? 'Subcategory' : 'Tool Group'),
-                'title' => $parent->title
-            ];
+            return $parent->heritage();
         })->all();
     }
 

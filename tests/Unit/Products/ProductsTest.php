@@ -189,8 +189,23 @@ class ProductsTest extends TestCase
             'is_new'         => true,
             'new_until'      => Carbon::parse('+1 month')->format('Y-m-d'),
             'parents'        => [
-                ['id' => $category->id, 'type' => 'Category', 'title' => 'TEST CATEGORY TITLE'],
-                ['id' => $tool_group->id, 'type' => 'Tool Group', 'title' => 'TEST TOOL GROUP TITLE']
+                ['id' => $category->id, 'type' => 'Category', 'title' => 'TEST CATEGORY TITLE', 'parent' => null],
+                [
+                    'id' => $tool_group->id,
+                    'type' => 'ToolGroup',
+                    'title' => 'TEST TOOL GROUP TITLE',
+                    'parent' => [
+                        'id' => $tool_group->subcategory->id,
+                        'type' => 'Subcategory',
+                        'title' => $tool_group->subcategory->title,
+                        'parent' => [
+                            'id' => $tool_group->subcategory->category->id,
+                            'type' => 'Category',
+                            'title' => $tool_group->subcategory->category->title,
+                            'parent' => null
+                        ]
+                    ]
+                ]
             ],
             'main_image'     => [
                 'id'       => $main_image->id,

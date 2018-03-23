@@ -17,8 +17,15 @@ class ToolGroupStockController extends Controller
 
         $product = Product::findOrFail(request("product_id"));
 
-        $toolgroup->addProduct($product);
+        $product = $toolgroup->addProduct($product);
 
-        return $product->fresh()->toJsonableArray();
+        return $product->toJsonableArray();
+    }
+
+    public function delete(ToolGroup $toolgroup, Product $product)
+    {
+        $product = $toolgroup->removeProduct($product);
+
+        return $product->toJsonableArray();
     }
 }

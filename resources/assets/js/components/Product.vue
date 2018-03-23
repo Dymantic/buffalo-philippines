@@ -31,8 +31,8 @@
         </div>
         <div class="card mv3">
             <p class="ttu col-p f6">Belongs to</p>
-            <p v-for="parent in parents"><a :href="parentLink(parent)"
-                                            class="link b col-d">({{ parent.type }}) {{ parent.title }}</a></p>
+            <p v-for="parent in parents" v-html="parentBreadcrumbs(parent)">
+            </p>
             <div>
                 <add-stock :categories="categoryList"
                            :product-id="itemAttributes.id"
@@ -223,13 +223,34 @@
                 eventHub.$emit('user-error', 'Unable to update product. Please refresh and try again.');
             },
 
+            parentBreadcrumbs(parent) {
+                let html = this.stockableLink(parent);
+
+                if(parent.parent) {
+                    html =  `${this.stockableLink(parent.parent)} >> ${html}`;
+                }
+
+                if(parent.parent && parent.parent.parent) {
+                    html =  `${this.stockableLink(parent.parent.parent)} >> ${html}`;
+                }
+
+                return html;
+
+            },
+
+            stockableLink(stockable) {
+                return `<a class="link col-d" href="${this.parentLink(stockable)}"><strong>${stockable.title}</strong> <small>(${stockable.type})</small></a>`
+            },
+
+
+
             parentLink(parent) {
                 switch (parent.type) {
                     case 'Category':
                         return `/admin/categories/${parent.id}`;
                     case 'Subcategory':
                         return `/admin/subcategories/${parent.id}`;
-                    case 'Tool Group':
+                    case 'ToolGroup':
                         return `/admin/tool-groups/${parent.id}`;
                     default:
                         return '#';

@@ -133,6 +133,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::post('stockables/subcategories/{subcategory}', 'SubcategoryStockController@store');
         Route::post('stockables/tool-groups/{toolgroup}', 'ToolGroupStockController@store');
 
+        Route::delete('stockables/categories/{category}/products/{product}', 'CategoryStockController@delete');
+        Route::delete('stockables/subcategories/{subcategory}/products/{product}', 'SubcategoryStockController@delete');
+        Route::delete('stockables/tool-groups/{toolgroup}/products/{product}', 'ToolGroupStockController@delete');
+
     });
 
     Route::group(['middleware' => 'auth', 'prefix' => 'services', 'namespace' => 'Services'], function () {

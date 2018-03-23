@@ -17,8 +17,15 @@ class CategoryStockController extends Controller
 
         $product = Product::findOrFail(request("product_id"));
 
-        $category->addProduct($product);
+        $product = $category->addProduct($product);
 
-        return $product->fresh()->toJsonableArray();
+        return $product->toJsonableArray();
+    }
+
+    public function delete(Category $category, Product $product)
+    {
+        $product = $category->removeProduct($product);
+
+        return $product->toJsonableArray();
     }
 }

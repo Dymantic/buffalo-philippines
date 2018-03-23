@@ -28,4 +28,22 @@ trait StockableTrait
 
         return $product->fresh();
     }
+
+    public function removeProduct(Product $product)
+    {
+        $this->products()->detach($product);
+
+        return $product->fresh();
+    }
+
+    public function heritage()
+    {
+
+        return [
+            'id' => $this->id,
+            'type' => class_basename($this),
+            'title' => $this->title,
+            'parent' => $this->parent() ? $this->parent()->heritage() : null
+        ];
+    }
 }
