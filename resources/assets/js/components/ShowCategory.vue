@@ -186,12 +186,10 @@
             },
 
             pushHistoryState(filter_type, group_id, path, page = 0) {
-                console.log('pushing');
                 window.history.pushState({filter_type, group_id, page}, null, path);
             },
 
             setFromState(state) {
-                console.log('setting', state);
                 if (state === null) {
                     return this.showCategory();
                 }

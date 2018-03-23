@@ -117,7 +117,7 @@
             },
 
             belongsToToolGroup(product) {
-                return product.parents.some(parent => (parent.type === 'Tool Group') && (this.toolGroups.find(tg => tg.id === parent.id)));
+                return product.parents.some(parent => (parent.type === 'ToolGroup') && (this.toolGroups.find(tg => tg.id === parent.id)));
             },
 
             setPage(page_number) {
