@@ -18,5 +18,7 @@ class SubcategoryStockController extends Controller
         $product = Product::findOrFail(request("product_id"));
 
         $subcategory->addProduct($product);
+
+        return $product->fresh()->toJsonableArray();
     }
 }

@@ -34,6 +34,26 @@ class AddProductToSubcategoryStockTest extends TestCase
     /**
      *@test
      */
+    public function successfully_adding_a_product_to_the_subcategory_responds_with_fresh_product_data()
+    {
+        $this->disableExceptionHandling();
+
+        $product = factory(Product::class)->create();
+        $subcategory = factory(Subcategory::class)->create();
+
+        $response = $this->asLoggedInUser()->json("POST", "/admin/stockables/subcategories/{$subcategory->id}", [
+            'product_id' => $product->id
+        ]);
+        $response->assertStatus(200);
+
+        $this->assertEquals($product->fresh()->toJsonableArray(), $response->decodeResponseJson());
+
+        $this->assertTrue($subcategory->fresh()->products->contains($product));
+    }
+
+    /**
+     *@test
+     */
     public function the_product_id_is_required()
     {
         $subcategory = factory(Subcategory::class)->create();

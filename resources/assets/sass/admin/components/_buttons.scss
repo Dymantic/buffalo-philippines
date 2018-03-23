@@ -19,6 +19,15 @@
     border-color: $admin-primary;
     color: $white;
   }
+
+  &:disabled {
+    opacity: .6;
+
+    &:hover {
+      background-color: $white;
+      color: $admin-primary;
+    }
+  }
 }
 
 .btn.btn-grey {

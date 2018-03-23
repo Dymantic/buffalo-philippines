@@ -33,6 +33,23 @@ class AddProductToCategoryStockTest extends TestCase
     /**
      *@test
      */
+    public function successfully_adding_the_product_to_the_category_stock_responds_with_fresh_product_data()
+    {
+        $this->disableExceptionHandling();
+        $category = factory(Category::class)->create();
+        $product = factory(Product::class)->create();
+
+        $response = $this->asLoggedInUser()->json("POST", "/admin/stockables/categories/{$category->id}", [
+            'product_id' => $product->id
+        ]);
+        $response->assertStatus(200);
+        $response_data = $response->decodeResponseJson();
+        $this->assertEquals($product->fresh()->toJsonableArray(), $response_data);
+    }
+
+    /**
+     *@test
+     */
     public function the_product_id_is_required()
     {
         $category = factory(Category::class)->create();

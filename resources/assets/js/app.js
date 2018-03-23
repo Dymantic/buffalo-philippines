@@ -61,6 +61,7 @@ Vue.component('product-search', require('./components/ProductSearch.vue'));
 Vue.component('show-category', require('./components/ShowCategory'));
 Vue.component('nested-menu', require('./components/NestedMenu'));
 Vue.component('products-list', require('./components/ProductsList'));
+Vue.component('add-stock', require('./components/AddToStock'));
 Vue.component('wysiwyg-editor', Wysiwyg);
 
 

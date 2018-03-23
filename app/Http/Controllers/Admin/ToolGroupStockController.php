@@ -18,5 +18,7 @@ class ToolGroupStockController extends Controller
         $product = Product::findOrFail(request("product_id"));
 
         $toolgroup->addProduct($product);
+
+        return $product->fresh()->toJsonableArray();
     }
 }

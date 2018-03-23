@@ -33,6 +33,23 @@ class AddProductToToolGroupStockTest extends TestCase
     /**
      *@test
      */
+    public function successfully_adding_a_product_to_a_toolgroup_responds_with_fresh_product_data()
+    {
+        $this->disableExceptionHandling();
+        $product = factory(Product::class)->create();
+        $toolgroup = factory(ToolGroup::class)->create();
+
+        $response = $this->asLoggedInUser()->json("POST", "/admin/stockables/tool-groups/{$toolgroup->id}", [
+            'product_id' => $product->id
+        ]);
+        $response->assertStatus(200);
+
+        $this->assertEquals($product->fresh()->toJsonableArray(), $response->decodeResponseJson());
+    }
+
+    /**
+     *@test
+     */
     public function the_product_id_is_required()
     {
         $toolgroup = factory(ToolGroup::class)->create();

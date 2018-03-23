@@ -33,6 +33,13 @@
             <p class="ttu col-p f6">Belongs to</p>
             <p v-for="parent in parents"><a :href="parentLink(parent)"
                                             class="link b col-d">({{ parent.type }}) {{ parent.title }}</a></p>
+            <div>
+                <add-stock :categories="categoryList"
+                           :product-id="itemAttributes.id"
+                           :product-name="title"
+                           @product-parents-updated="updateParents"
+                ></add-stock>
+            </div>
         </div>
         <div class="card mv3">
             <p class="ttu f6 col-p">Published</p>
@@ -103,7 +110,8 @@
             </div>
             <div class="card mv3 ml3 w-50">
                 <p class="ttu col-p f6">Main Image</p>
-                <p class="mv4">Product images should be at least 300px wide and 300px tall. A square shape is best, on a white background.</p>
+                <p class="mv4">Product images should be at least 300px wide and 300px tall. A square shape is best, on a
+                               white background.</p>
                 <image-upload :default="itemAttributes.main_image.web"
                               :url="`/admin/products/${itemAttributes.id}/main-image`"
                               size="preview"
@@ -122,8 +130,11 @@
             </div>
             <p v-show="!itemAttributes.gallery_images.length">This product has no gallery images</p>
             <div>
-                <img v-for="gal_img in itemAttributes.gallery_images" :key="gal_img.id" :src="gal_img.thumb"
-                     alt="" class="w3 h3 ma3">
+                <img v-for="gal_img in itemAttributes.gallery_images"
+                     :key="gal_img.id"
+                     :src="gal_img.thumb"
+                     alt=""
+                     class="w3 h3 ma3">
             </div>
         </div>
     </div>
@@ -137,7 +148,7 @@
 
         mixins: [textFormat],
 
-        props: ['item-attributes'],
+        props: ['item-attributes', 'category-list'],
 
         data() {
             return {
@@ -223,6 +234,10 @@
                     default:
                         return '#';
                 }
+            },
+
+            updateParents({parents}) {
+                this.parents = parents;
             }
         }
 
