@@ -20,7 +20,7 @@ class CategoryProductsController extends Controller
     {
         return view('admin.categories.products.index', [
             'category'        => $category,
-            'categoryMenu'    => $category->menu(),
+            'categoryMenu'    => $category->completeMenu(),
         ]);
     }
 }

@@ -106,6 +106,34 @@ class Category extends Model implements HasMediaConversions, Stockable
         ];
     }
 
+    public function completeMenu()
+    {
+        $this->load('subcategories.toolGroups');
+
+        $children = $this->subcategories->map(function ($subcategory) {
+            return [
+                'id'       => $subcategory->id,
+                'title'    => $subcategory->title,
+                'link'     => "/subcategories/{$subcategory->slug}",
+                'children' => $subcategory->toolGroups->map(function ($toolGroup) {
+                    return [
+                        'id'    => $toolGroup->id,
+                        'title' => $toolGroup->title,
+                        'link'  => "/tool-groups/{$toolGroup->slug}"
+                    ];
+                })->all()
+            ];
+        })->all();
+
+        return [
+            'id'       => $this->id,
+            'title'    => $this->title,
+            'slug'     => $this->slug,
+            'link'     => "/categories/{$this->slug}",
+            'children' => $children
+        ];
+    }
+
     public function descendants()
     {
         $this->load('subcategories.toolGroups');
