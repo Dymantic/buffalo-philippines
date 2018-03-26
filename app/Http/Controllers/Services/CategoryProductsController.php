@@ -6,6 +6,7 @@ use App\Products\Category;
 use App\Products\ProductsRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Cache;
 
 class CategoryProductsController extends Controller
 {
@@ -13,13 +14,6 @@ class CategoryProductsController extends Controller
     {
         $category = Category::where('slug', $slug)->firstOrFail();
 
-        return $productsRepository->publishedProductsUnder($category)
-                                  ->filter(function ($product) {
-                                      return $product->published;
-                                  })
-                                  ->values()
-                                  ->map(function ($product) {
-                                      return $product->toJsonableArray();
-                                  });
+        return $productsRepository->publicCatalogForCategory($category);
     }
 }

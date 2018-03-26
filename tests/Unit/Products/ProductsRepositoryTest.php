@@ -73,29 +73,6 @@ class ProductsRepositoryTest extends TestCase
     /**
      *@test
      */
-    public function the_repository_caches_the_category_products()
-    {
-        $category = factory(Category::class)->create();
-        $subcategory = factory(Subcategory::class)->create(['category_id' => $category->id]);
-        $tool_group = factory(ToolGroup::class)->create(['subcategory_id' => $subcategory->id]);
-
-        $productA = $category->addProduct(factory(Product::class)->create());
-        $productB = $subcategory->addProduct(factory(Product::class)->create());
-        $productC = $subcategory->addProduct(factory(Product::class)->create());
-        $productD = $tool_group->addProduct(factory(Product::class)->create());
-        $productE = $tool_group->addProduct(factory(Product::class)->create());
-
-        $this->assertFalse(cache()->has($category->slug));
-
-
-        $fetched_products = (new ProductsRepository())->productsUnder($category);
-
-        $this->assertTrue(cache()->has($category->slug));
-    }
-
-    /**
-     *@test
-     */
     public function it_returns_the_products_under_a_given_subcategory()
     {
         $subcategory = factory(Subcategory::class)->create();
@@ -233,5 +210,53 @@ class ProductsRepositoryTest extends TestCase
         $matching->each(function($match) use ($search_results) {
             $this->assertTrue($search_results->contains($match));
         });
+    }
+
+    /**
+     *@test
+     */
+    public function it_gets_the_public_catalog_for_a_category()
+    {
+        $category = factory(Category::class)->create(['published' => true]);
+        $subcategory = factory(Subcategory::class)->create(['category_id' => $category->id, 'published' => true]);
+        $tool_group = factory(ToolGroup::class)->create(['subcategory_id' => $subcategory->id, 'published' => true]);
+
+        $productA = $category->addProduct(factory(Product::class)->create(['published' => true]));
+        $productB = $subcategory->addProduct(factory(Product::class)->create(['published' => true]));
+        $productC = $subcategory->addProduct(factory(Product::class)->create(['published' => false]));
+        $productD = $tool_group->addProduct(factory(Product::class)->create(['published' => false]));
+        $productE = $tool_group->addProduct(factory(Product::class)->create(['published' => false]));
+
+        $fetched_products = app()->make(ProductsRepository::class)->publicCatalogForCategory($category);
+
+        $this->assertCount(2, $fetched_products);
+
+        $this->assertContains($productA->toJsonableArray(), $fetched_products);
+        $this->assertContains($productB->toJsonableArray(), $fetched_products);
+        $this->assertNotContains($productC->toJsonableArray(), $fetched_products);
+        $this->assertNotContains($productD->toJsonableArray(), $fetched_products);
+        $this->assertNotContains($productE->toJsonableArray(), $fetched_products);
+    }
+
+    /**
+     *@test
+     */
+    public function the_public_catalog_for_a_category_is_cached()
+    {
+        $category = factory(Category::class)->create(['published' => true]);
+        $subcategory = factory(Subcategory::class)->create(['category_id' => $category->id, 'published' => true]);
+        $tool_group = factory(ToolGroup::class)->create(['subcategory_id' => $subcategory->id, 'published' => true]);
+
+        $productA = $category->addProduct(factory(Product::class)->create(['published' => true]));
+        $productB = $subcategory->addProduct(factory(Product::class)->create(['published' => true]));
+        $productC = $subcategory->addProduct(factory(Product::class)->create(['published' => false]));
+        $productD = $tool_group->addProduct(factory(Product::class)->create(['published' => false]));
+        $productE = $tool_group->addProduct(factory(Product::class)->create(['published' => false]));
+
+        $this->assertFalse(cache()->has($category->slug));
+
+        $fetched_products = app()->make(ProductsRepository::class)->publicCatalogForCategory($category);
+
+        $this->assertEquals($fetched_products, cache()->get($category->slug));
     }
 }

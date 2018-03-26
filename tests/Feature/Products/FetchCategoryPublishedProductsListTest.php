@@ -76,4 +76,31 @@ class FetchCategoryPublishedProductsListTest extends TestCase
         $this->assertNotContains($productD->toJsonableArray(), $fetched_products);
         $this->assertNotContains($productE->toJsonableArray(), $fetched_products);
     }
+
+    /**
+     *@test
+     */
+    public function the_category_products_response_is_cached()
+    {
+        $this->disableExceptionHandling();
+
+        $category = factory(Category::class)->create(['published' => true]);
+        $subcategory = factory(Subcategory::class)->create(['category_id' => $category->id, 'published' => true]);
+        $tool_group = factory(ToolGroup::class)->create(['subcategory_id' => $subcategory->id, 'published' => true]);
+
+        $productA = $category->addProduct(factory(Product::class)->create(['published' => true]));
+        $productB = $subcategory->addProduct(factory(Product::class)->create(['published' => true]));
+        $productC = $subcategory->addProduct(factory(Product::class)->create(['published' => true]));
+        $productD = $tool_group->addProduct(factory(Product::class)->create(['published' => true]));
+        $productE = $tool_group->addProduct(factory(Product::class)->create(['published' => true]));
+
+        $this->assertFalse(cache()->has($category->slug));
+
+        $response = $this->json("GET", "/services/categories/{$category->slug}/products");
+        $response->assertStatus(200);
+
+        $fetched_products = $response->decodeResponseJson();
+
+        $this->assertEquals($fetched_products, cache()->get($category->slug));
+    }
 }

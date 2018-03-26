@@ -10,14 +10,26 @@ class ProductsRepository
 {
     public function productsUnder(Stockable $stockable)
     {
-        return Cache::remember($stockable->slug, 60*24, function() use ($stockable) {
             return $stockable->descendants();
-        });
     }
 
     public function publishedProductsUnder(Stockable $stockable)
     {
         return $stockable->publishedDescendants();
+    }
+
+    public function publicCatalogForCategory(Category $category)
+    {
+        return Cache::remember($category->slug, 120, function () use ($category) {
+            return $this->publishedProductsUnder($category)
+                                      ->filter(function ($product) {
+                                          return $product->published;
+                                      })
+                                      ->values()
+                                      ->map(function ($product) {
+                                          return $product->toJsonableArray();
+                                      })->all();
+        });
     }
 
     public function searchByName($search_term)

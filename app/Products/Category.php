@@ -108,6 +108,7 @@ class Category extends Model implements HasMediaConversions, Stockable
 
     public function descendants()
     {
+        $this->load('subcategories.toolGroups');
         $direct_children = $this->products;
         $subcategory_products = $this->subcategories->flatMap(function ($subcategory) {
             return $subcategory->products;
