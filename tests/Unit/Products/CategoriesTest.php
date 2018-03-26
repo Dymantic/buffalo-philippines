@@ -146,31 +146,38 @@ class CategoriesTest extends TestCase
         $category = factory(Category::class)->create(['title' => 'TEST CATEGORY TITLE']);
         $subcategoryA = factory(Subcategory::class)->create([
             'title'       => 'TEST SUBCATEGORY_A',
-            'category_id' => $category->id
+            'category_id' => $category->id,
+            'published' => true
         ]);
         $subcategoryB = factory(Subcategory::class)->create([
             'title'       => 'TEST SUBCATEGORY_B',
-            'category_id' => $category->id
+            'category_id' => $category->id,
+            'published' => true
         ]);
         $subcategoryC = factory(Subcategory::class)->create([
             'title'       => 'TEST SUBCATEGORY_C',
-            'category_id' => $category->id
+            'category_id' => $category->id,
+            'published' => true
         ]);
         $tool_groupA = factory(ToolGroup::class)->create([
             'title'          => 'TEST TOOL_GROUP_A',
-            'subcategory_id' => $subcategoryA->id
+            'subcategory_id' => $subcategoryA->id,
+            'published' => true
         ]);
         $tool_groupB = factory(ToolGroup::class)->create([
             'title'          => 'TEST TOOL_GROUP_B',
-            'subcategory_id' => $subcategoryA->id
+            'subcategory_id' => $subcategoryA->id,
+            'published' => true
         ]);
         $tool_groupC = factory(ToolGroup::class)->create([
             'title'          => 'TEST TOOL_GROUP_C',
-            'subcategory_id' => $subcategoryC->id
+            'subcategory_id' => $subcategoryC->id,
+            'published' => true
         ]);
         $tool_groupD = factory(ToolGroup::class)->create([
             'title'          => 'TEST TOOL_GROUP_D',
-            'subcategory_id' => $subcategoryC->id
+            'subcategory_id' => $subcategoryC->id,
+            'published' => true
         ]);
 
         $expected = [
@@ -216,6 +223,89 @@ class CategoriesTest extends TestCase
                             'id'    => $tool_groupD->id,
                             'title' => 'TEST TOOL_GROUP_D',
                             'link'  => "/tool-groups/{$tool_groupD->slug}"
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        $this->assertEquals($expected, $category->menu());
+    }
+
+    /**
+     * @test
+     */
+    public function the_menu_does_not_include_unpublished_stockables()
+    {
+        $category = factory(Category::class)->create(['title' => 'TEST CATEGORY TITLE']);
+        $subcategoryA = factory(Subcategory::class)->create([
+            'title'       => 'TEST SUBCATEGORY_A',
+            'category_id' => $category->id,
+            'published' => true
+        ]);
+        $subcategoryB = factory(Subcategory::class)->create([
+            'title'       => 'TEST SUBCATEGORY_B',
+            'category_id' => $category->id,
+            'published' => false
+        ]);
+        $subcategoryC = factory(Subcategory::class)->create([
+            'title'       => 'TEST SUBCATEGORY_C',
+            'category_id' => $category->id,
+            'published' => true
+        ]);
+        $tool_groupA = factory(ToolGroup::class)->create([
+            'title'          => 'TEST TOOL_GROUP_A',
+            'subcategory_id' => $subcategoryA->id,
+            'published' => true
+        ]);
+        $tool_groupB = factory(ToolGroup::class)->create([
+            'title'          => 'TEST TOOL_GROUP_B',
+            'subcategory_id' => $subcategoryA->id,
+            'published' => true
+        ]);
+        $tool_groupC = factory(ToolGroup::class)->create([
+            'title'          => 'TEST TOOL_GROUP_C',
+            'subcategory_id' => $subcategoryC->id,
+            'published' => true
+        ]);
+        $tool_groupD = factory(ToolGroup::class)->create([
+            'title'          => 'TEST TOOL_GROUP_D',
+            'subcategory_id' => $subcategoryC->id,
+            'published' => false
+        ]);
+
+        $expected = [
+            'id'       => $category->id,
+            'title'    => 'TEST CATEGORY TITLE',
+            'slug'     => $category->slug,
+            'link'     => "/categories/{$category->slug}",
+            'children' => [
+                [
+                    'id'       => $subcategoryA->id,
+                    'title'    => 'TEST SUBCATEGORY_A',
+                    'link'     => "/subcategories/{$subcategoryA->slug}",
+                    'children' => [
+                        [
+                            'id'    => $tool_groupA->id,
+                            'title' => 'TEST TOOL_GROUP_A',
+                            'link'  => "/tool-groups/{$tool_groupA->slug}"
+                        ],
+                        [
+                            'id'    => $tool_groupB->id,
+                            'title' => 'TEST TOOL_GROUP_B',
+                            'link'  => "/tool-groups/{$tool_groupB->slug}"
+                        ]
+                    ]
+                ],
+                [
+                    'id'       => $subcategoryC->id,
+                    'title'    => 'TEST SUBCATEGORY_C',
+                    'link'     => "/subcategories/{$subcategoryC->slug}",
+                    'children' => [
+                        [
+                            'id'    => $tool_groupC->id,
+                            'title' => 'TEST TOOL_GROUP_C',
+                            'link'  => "/tool-groups/{$tool_groupC->slug}"
                         ]
                     ]
                 ]

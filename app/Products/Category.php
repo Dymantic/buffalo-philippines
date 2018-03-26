@@ -82,12 +82,12 @@ class Category extends Model implements HasMediaConversions, Stockable
     {
         $this->load('subcategories.toolGroups');
 
-        $children = $this->subcategories->map(function ($subcategory) {
+        $children = $this->subcategories()->where('published', true)->get()->map(function ($subcategory) {
             return [
                 'id'       => $subcategory->id,
                 'title'    => $subcategory->title,
                 'link'     => "/subcategories/{$subcategory->slug}",
-                'children' => $subcategory->toolGroups->map(function ($toolGroup) {
+                'children' => $subcategory->toolGroups()->where('published', true)->get()->map(function ($toolGroup) {
                     return [
                         'id'    => $toolGroup->id,
                         'title' => $toolGroup->title,
