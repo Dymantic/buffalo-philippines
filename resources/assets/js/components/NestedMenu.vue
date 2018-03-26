@@ -7,7 +7,7 @@
                  class="flex justify-between items-center pv2 hv-bg-grey"
             >
                 <a :href="subcategory.link"
-                   class="link col-d hv-col-p">{{ subcategory.title }}</a>
+                   class="link col-d hv-col-p cursor-point">{{ subcategory.title }}</a>
                 <span v-if="subcategory.has_toolgroups" class="strong-type b f4">&raquo;</span>
             </div>
         </div>
@@ -24,7 +24,7 @@
                  @click.stop.prevent="showToolGroup(toolgroup)"
             >
                 <a :href="toolgroup.link"
-                   class="link col-d hv-col-p">{{ toolgroup.title }}</a>
+                   class="link col-d hv-col-p cursor-point">{{ toolgroup.title }}</a>
             </div>
         </div>
     </div>
