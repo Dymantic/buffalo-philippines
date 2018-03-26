@@ -22,8 +22,8 @@ class ProductsRepositoryTest extends TestCase
     public function it_returns_the_products_belonging_to_a_given_category()
     {
         $category = factory(Category::class)->create();
-        $subcategory = factory(Subcategory::class)->create(['category_id' => $category->id]);
-        $tool_group = factory(ToolGroup::class)->create(['subcategory_id' => $subcategory->id]);
+        $subcategory = factory(Subcategory::class)->create(['published' => true, 'category_id' => $category->id]);
+        $tool_group = factory(ToolGroup::class)->create(['published' => true, 'subcategory_id' => $subcategory->id]);
 
         $productA = $category->addProduct(factory(Product::class)->create());
         $productB = $subcategory->addProduct(factory(Product::class)->create());
@@ -41,6 +41,33 @@ class ProductsRepositoryTest extends TestCase
         $this->assertTrue($fetched_products->contains($productC));
         $this->assertTrue($fetched_products->contains($productD));
         $this->assertTrue($fetched_products->contains($productE));
+    }
+
+    /**
+     *@test
+     */
+    public function it_can_return_only_published_descendants()
+    {
+        $category = factory(Category::class)->create(['published' => true]);
+        $subcategory = factory(Subcategory::class)->create(['published' => false, 'category_id' => $category->id]);
+        $tool_group = factory(ToolGroup::class)->create(['published' => false, 'subcategory_id' => $subcategory->id]);
+
+        $productA = $category->addProduct(factory(Product::class)->create());
+        $productB = $subcategory->addProduct(factory(Product::class)->create());
+        $productC = $subcategory->addProduct(factory(Product::class)->create());
+        $productD = $tool_group->addProduct(factory(Product::class)->create());
+        $productE = $tool_group->addProduct(factory(Product::class)->create());
+
+
+        $fetched_products = (new ProductsRepository())->publishedProductsUnder($category);
+
+        $this->assertCount(1, $fetched_products);
+
+        $this->assertTrue($fetched_products->contains($productA));
+        $this->assertFalse($fetched_products->contains($productB));
+        $this->assertFalse($fetched_products->contains($productC));
+        $this->assertFalse($fetched_products->contains($productD));
+        $this->assertFalse($fetched_products->contains($productE));
     }
 
     /**

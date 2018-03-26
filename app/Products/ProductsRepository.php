@@ -15,6 +15,11 @@ class ProductsRepository
         });
     }
 
+    public function publishedProductsUnder(Stockable $stockable)
+    {
+        return $stockable->publishedDescendants();
+    }
+
     public function searchByName($search_term)
     {
         return Product::where('title', 'LIKE', "%{$search_term}%")->get();

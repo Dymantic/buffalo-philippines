@@ -42,6 +42,11 @@ class ToolGroup extends Model implements Stockable
         return $this->products;
     }
 
+    public function publishedDescendants()
+    {
+
+    }
+
     public function parent()
     {
         return $this->subcategory;

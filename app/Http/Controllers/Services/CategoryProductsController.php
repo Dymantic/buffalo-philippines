@@ -13,7 +13,7 @@ class CategoryProductsController extends Controller
     {
         $category = Category::where('slug', $slug)->firstOrFail();
 
-        return $productsRepository->productsUnder($category)
+        return $productsRepository->publishedProductsUnder($category)
                                   ->filter(function ($product) {
                                       return $product->published;
                                   })

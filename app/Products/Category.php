@@ -121,6 +121,25 @@ class Category extends Model implements HasMediaConversions, Stockable
         return $direct_children->merge($subcategory_products)->merge($tool_group_products);
     }
 
+    public function publishedDescendants()
+    {
+        $direct_children = $this->products;
+        $subcategory_products = $this->subcategories()->where('published', true)->get()->flatMap(function ($subcategory) {
+            return $subcategory->products;
+        });
+        $tool_group_products = $this->subcategories()->where('published', true)->get()->flatMap(function ($subcategory) {
+            return $subcategory->toolGroups;
+        })->filter(function($tool_group) {
+            return $tool_group->published;
+        })->flatMap(function ($tool_group) {
+            return $tool_group->products;
+        });
+
+        return $direct_children->merge($subcategory_products)->merge($tool_group_products);
+    }
+
+
+
     public function parent()
     {
         return null;

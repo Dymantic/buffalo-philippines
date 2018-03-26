@@ -22,9 +22,9 @@ class FetchCategoryPublishedProductsListTest extends TestCase
     {
         $this->disableExceptionHandling();
 
-        $category = factory(Category::class)->create();
-        $subcategory = factory(Subcategory::class)->create(['category_id' => $category->id]);
-        $tool_group = factory(ToolGroup::class)->create(['subcategory_id' => $subcategory->id]);
+        $category = factory(Category::class)->create(['published' => true]);
+        $subcategory = factory(Subcategory::class)->create(['category_id' => $category->id, 'published' => true]);
+        $tool_group = factory(ToolGroup::class)->create(['subcategory_id' => $subcategory->id, 'published' => true]);
 
         $productA = $category->addProduct(factory(Product::class)->create(['published' => true]));
         $productB = $subcategory->addProduct(factory(Product::class)->create(['published' => true]));
@@ -53,9 +53,9 @@ class FetchCategoryPublishedProductsListTest extends TestCase
     {
         $this->disableExceptionHandling();
 
-        $category = factory(Category::class)->create();
-        $subcategory = factory(Subcategory::class)->create(['category_id' => $category->id]);
-        $tool_group = factory(ToolGroup::class)->create(['subcategory_id' => $subcategory->id]);
+        $category = factory(Category::class)->create(['published' => true]);
+        $subcategory = factory(Subcategory::class)->create(['category_id' => $category->id, 'published' => true]);
+        $tool_group = factory(ToolGroup::class)->create(['subcategory_id' => $subcategory->id, 'published' => true]);
 
         $productA = $category->addProduct(factory(Product::class)->create(['published' => true]));
         $productB = $subcategory->addProduct(factory(Product::class)->create(['published' => true]));

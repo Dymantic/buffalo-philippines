@@ -57,6 +57,11 @@ class Subcategory extends Model implements Stockable
         return $direct_children->merge($descendants);
     }
 
+    public function publishedDescendants()
+    {
+
+    }
+
     public function parent()
     {
         return $this->category;
