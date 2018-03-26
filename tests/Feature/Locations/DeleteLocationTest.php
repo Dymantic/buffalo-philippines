@@ -23,6 +23,6 @@ class DeleteLocationTest extends TestCase
         $response = $this->asLoggedInUser()->json('DELETE', "/admin/locations/{$location->id}");
         $response->assertStatus(200);
 
-        $this->assertDatabaseMissing('locations', ['id' => $location->id]);
+        $this->assertDatabaseMissing('store_locations', ['id' => $location->id]);
     }
 }

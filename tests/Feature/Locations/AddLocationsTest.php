@@ -23,7 +23,7 @@ class AddLocationsTest extends TestCase
         ]);
         $response->assertStatus(200);
 
-        $this->assertDatabaseHas('locations', [
+        $this->assertDatabaseHas('store_locations', [
             'name' => 'TEST LOCATION NAME',
             'address' => 'TEST LOCATION ADDRESS',
             'lat' => 88.88888,

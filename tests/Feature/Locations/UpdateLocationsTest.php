@@ -26,7 +26,7 @@ class UpdateLocationsTest extends TestCase
         ]);
         $response->assertStatus(200);
 
-        $this->assertDatabaseHas('locations', [
+        $this->assertDatabaseHas('store_locations', [
             'id' => $location->id,
             'name' => 'UPDATED NAME',
             'address' => 'UPDATED ADDRESS'
@@ -96,7 +96,7 @@ class UpdateLocationsTest extends TestCase
         ]);
         $response->assertStatus(200);
 
-        $this->assertDatabaseHas('locations', [
+        $this->assertDatabaseHas('store_locations', [
             'id' => $location->id,
             'name' => 'NEW NAME',
             'address' => 'NEW ADDRESS',
