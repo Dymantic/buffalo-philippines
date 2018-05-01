@@ -1,5 +1,17 @@
 @extends('front.base', ['pageName' => 'col-lg-bg'])
 
+@section('title')
+    News from Buffalo Tools Philippines
+@endsection
+
+@section('head')
+    @include('front.partials.ogmeta', [
+        'ogTitle' => 'News from Buffalo Tools Philippines',
+        'ogImage' => url('/images/facebook_og.jpg'),
+        'ogDescription' => 'Find out the latest news, views and stories from Buffalo Tools Philippines. From new products to events in our industry, you will find it here.'
+    ])
+@endsection
+
 @section('content')
     <header class="banner-heading mesh-bg col-w-bg bb bw2 mb4 mb5 flex items-center justify-center tc">
         <h1 class="ff-headline">Buffalo News</h1>

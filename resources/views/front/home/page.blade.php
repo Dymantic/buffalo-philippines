@@ -1,5 +1,17 @@
 @extends('front.base', ['pageName' => 'home-page'])
 
+@section('title')
+    Buffalo Tools Philippines
+@endsection
+
+@section('head')
+    @include('front.partials.ogmeta', [
+        'ogTitle' => 'Buffalo Tools Philippines',
+        'ogImage' => url('/images/facebook_og.jpg'),
+        'ogDescription' => 'Buffalo Tools always has the right tool for the job. We believe that good tools can heighten a worker\'s professional performance and improve the quality of their daily work.'
+    ])
+@endsection
+
 @section('content')
     <section class="col-d-bg"
              id="hero-banner">

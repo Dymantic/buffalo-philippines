@@ -1,5 +1,17 @@
 @extends('front.base', ['pageName' => 'tool-bg'])
 
+@section('title')
+    {{ $article->title }}
+@endsection
+
+@section('head')
+    @include('front.partials.ogmeta', [
+        'ogTitle' => $article->title,
+        'ogImage' => url($article->titleImage()),
+        'ogDescription' => $article->description
+    ])
+@endsection
+
 @section('content')
     <div class="mw8 pv5 center-ns w-100">
         <header class="banner-heading mt0 flex flex-column items-center justify-center tc">

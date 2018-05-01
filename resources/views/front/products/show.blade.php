@@ -1,5 +1,17 @@
 @extends('front.base')
 
+@section('title')
+    {{ $product['title'] }} - Buffalo Tools Philippines
+@endsection
+
+@section('head')
+    @include('front.partials.ogmeta', [
+        'ogTitle' => $product['title'] . 'Buffalo Tools Philippines',
+        'ogImage' => url($product['main_image']['original']),
+        'ogDescription' => $product['description']
+    ])
+@endsection
+
 @section('content')
 
     <section class="mt5 mw8 center-ns mh3 flex flex-column flex-row-ns justify-between">
