@@ -8,6 +8,6 @@
         </div>
     </div>
     <div>
-        <location-index :list='@json($locations->map->toJsonableArray())'></location-index>
+        <location-index :list='{{ json_encode($locations->map->toJsonableArray())  }}'></location-index>
     </div>
 @endsection

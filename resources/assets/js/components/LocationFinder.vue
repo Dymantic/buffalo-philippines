@@ -14,6 +14,9 @@
             </div>
         </div>
         <div class="card mt4">
+            <div class="flex justify-end">
+                <manual-location @location-entered="onPlaceManullyAdded"></manual-location>
+            </div>
             <p class="f6 ttu col-p mb0">Name</p>
             <input type="text"
                    v-model="name"
@@ -28,19 +31,18 @@
                 <div class="mr3">
                     <span class="f6 ttu col-p">Latitude:</span>
                     <input type="text"
-                           v-model="lat">
+                           v-model="lat" disabled>
                 </div>
                 <div>
                     <span class="f6 ttu col-p">Longitude:</span>
                     <input type="text"
-                           v-model="lng">
+                           v-model="lng" disabled>
                 </div>
             </div>
             <div class="flex justify-end">
                 <div class="btn" @click="saveLocation">Save</div>
             </div>
         </div>
-
     </div>
 </template>
 
@@ -85,21 +87,41 @@
             },
 
             onPlaceChanged() {
-                console.log('change in the house of flies');
                 const place = this.autocomplete.getPlace();
                 if (place.geometry) {
                     this.map.panTo(place.geometry.location);
                     this.map.setZoom(15);
                 } else {
-                    document.getElementById('address-input').placeholder = 'Enter a city';
+                    eventHub.$emit('user-error', 'Please select one of the options from the map suggestions.');
+                    return document.getElementById('address-input').placeholder = 'Enter a place';
+                }
+                if(this.marker) {
+                    this.marker.setMap(null);
                 }
                 this.marker = new google.maps.Marker({
                     position: place.geometry.location,
                     map: this.map
                 });
-                console.log(place);
                 this.setLocationData(place);
             },
+
+            onPlaceManullyAdded(place) {
+                if (place.geometry) {
+                    this.map.panTo(place.geometry.location);
+                    this.map.setZoom(15);
+                } else {
+                    eventHub.$emit('user-error', 'Please select one of the options from the map suggestions.');
+                }
+                if(this.marker) {
+                    this.marker.setMap(null);
+                }
+                this.marker = new google.maps.Marker({
+                    position: place.geometry.location,
+                    map: this.map
+                });
+                this.setLocationData(place);
+            },
+
 
             setLocationData(place) {
                 this.formatted_address = place.formatted_address;
