@@ -19,7 +19,7 @@
         "vue": "^2.5.13"
     },
     "dependencies": {
-        "@dymantic/trix-vue-wysiwyg": "0.0.2",
+        "@dymantic/trix-vue-wysiwyg": "^0.1.0",
         "flickity": "^2.0.10",
         "flickity-imagesloaded": "^2.0.0",
         "geolib": "^2.0.24",
