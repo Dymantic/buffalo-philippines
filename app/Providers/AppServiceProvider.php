@@ -5,7 +5,9 @@ namespace App\Providers;
 use App\Observers\CategoryObserver;
 use App\Observers\SubcategoryObserver;
 use App\Products\Category;
+use App\Products\StockablesObserver;
 use App\Products\Subcategory;
+use App\Products\ToolGroup;
 use App\Secretary;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
@@ -27,6 +29,10 @@ class AppServiceProvider extends ServiceProvider
 
         Subcategory::observe(SubcategoryObserver::class);
         Category::observe(CategoryObserver::class);
+
+        Subcategory::observe(StockablesObserver::class);
+        Category::observe(StockablesObserver::class);
+        ToolGroup::observe(StockablesObserver::class);
     }
 
     /**

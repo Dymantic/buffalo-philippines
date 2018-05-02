@@ -4,11 +4,11 @@
 namespace App\Products;
 
 
+use App\Events\StockableDeleted;
 use Illuminate\Support\Carbon;
 
 trait StockableTrait
 {
-
     public function products()
     {
         return $this->morphToMany(Product::class, 'stockable');

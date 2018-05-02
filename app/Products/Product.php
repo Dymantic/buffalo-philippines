@@ -36,7 +36,7 @@ class Product extends Model implements HasMediaConversions
     {
         $this->addMediaConversion('thumb')
              ->fit(Manipulations::FIT_FILL, 300, 300)
-            ->background('#FFFFFF')
+             ->background('#FFFFFF')
              ->keepOriginalImageFormat()
              ->optimize()
              ->performOnCollections(static::MAIN_IMG, static::GALLERY_IMGS);
@@ -158,11 +158,18 @@ class Product extends Model implements HasMediaConversions
     private function parentsJson()
     {
 
-        return \DB::table('stockables')->where('product_id', $this->id)->get()->map(function($stockable) {
-            return (new $stockable->stockable_type)->find($stockable->stockable_id);
-        })->map(function($parent) {
-            return $parent->heritage();
-        })->all();
+        return \DB::table('stockables')->where('product_id', $this->id)
+                  ->get()
+                  ->map(function ($stockable) {
+                      return (new $stockable->stockable_type)->find($stockable->stockable_id);
+                  })
+                  ->reject(function ($stockable) {
+                      return !$stockable;
+                  })
+                  ->map(function ($parent) {
+                      return $parent->heritage();
+                  })
+                  ->all();
     }
 
     private function galleryJson()

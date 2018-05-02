@@ -231,4 +231,66 @@ class ProductsTest extends TestCase
 
         $this->assertEquals($expected, $product->fresh()->toJsonableArray());
     }
+
+    /**
+     *@test
+     */
+    public function a_product_with_a_deleted_parent_can_still_be_represented()
+    {
+        $product = factory(Product::class)->create([
+            'title'       => 'TEST PRODUCT TITLE',
+            'code'        => 'TEST CODE',
+            'description' => 'TEST PRODUCT DESCRIPTION',
+            'writeup'     => 'TEST PRODUCT WRITEUP',
+            'price'       => 'TEST PRODUCT PRICE'
+        ]);
+        $category = factory(Category::class)->create(['title' => 'TEST CATEGORY TITLE']);
+        $tool_group = factory(ToolGroup::class)->create(['title' => 'TEST TOOL GROUP TITLE']);
+        $category->addProduct($product);
+        $tool_group->addProduct($product);
+        $main_image = $product->setMainImage(UploadedFile::fake()->image('main_image.jpg'));
+        $gallery_imageA = $product->addGalleryImage(UploadedFile::fake()->image('gallery_imageA.jpg'));
+        $gallery_imageB = $product->addGalleryImage(UploadedFile::fake()->image('gallery_imageB.jpg'));
+
+        $tool_group->delete();
+
+        $expected = [
+            'id'             => $product->id,
+            'title'          => 'TEST PRODUCT TITLE',
+            'code'           => 'TEST CODE',
+            'slug'           => 'test-product-title',
+            'description'    => 'TEST PRODUCT DESCRIPTION',
+            'writeup'        => 'TEST PRODUCT WRITEUP',
+            'price'          => 'TEST PRODUCT PRICE',
+            'published'      => false,
+            'featured'       => false,
+            'is_new'         => true,
+            'new_until'      => Carbon::parse('+1 month')->format('Y-m-d'),
+            'parents'        => [
+                ['id' => $category->id, 'type' => 'Category', 'title' => 'TEST CATEGORY TITLE', 'parent' => null]
+            ],
+            'main_image'     => [
+                'id'       => $main_image->id,
+                'thumb'    => $main_image->getUrl('thumb'),
+                'web'      => $main_image->getUrl('web'),
+                'original' => $main_image->getUrl()
+            ],
+            'gallery_images' => [
+                [
+                    'id'       => $gallery_imageA->id,
+                    'thumb'    => $gallery_imageA->getUrl('thumb'),
+                    'web'      => $gallery_imageA->getUrl('web'),
+                    'original' => $gallery_imageA->getUrl()
+                ],
+                [
+                    'id'       => $gallery_imageB->id,
+                    'thumb'    => $gallery_imageB->getUrl('thumb'),
+                    'web'      => $gallery_imageB->getUrl('web'),
+                    'original' => $gallery_imageB->getUrl()
+                ]
+            ]
+        ];
+
+        $this->assertEquals($expected, $product->fresh()->toJsonableArray());
+    }
 }

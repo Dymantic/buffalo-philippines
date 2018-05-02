@@ -98,4 +98,18 @@ class StockablesTest extends TestCase
 
         $this->assertFalse($category->fresh()->products->contains($product));
     }
+
+    /**
+     *@test
+     */
+    public function deleting_a_stockable_also_deletes_any_associated_rows_in_stockable_pivot()
+    {
+        $category = factory(Category::class)->create();
+        $product = factory(Product::class)->create();
+        $category->addProduct($product);
+
+        $category->delete();
+
+        $this->assertDatabaseMissing('stockables', ['stockable_id' => $category->id]);
+    }
 }
