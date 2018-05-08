@@ -1,7 +1,8 @@
 <template>
     <div>
         <form action=""
-              @submit.stop.prevent="submit" class="mb5">
+              @submit.stop.prevent="submit"
+              class="mb5">
             <p></p>
             <div class="form-group mv3"
                  :class="{'has-error': form.errors.name}">
@@ -65,27 +66,49 @@
 
         mixins: [formMixin],
 
+        props: {
+
+            url: {
+                required: true,
+                type: String
+            },
+            'form-type': {
+                type: String,
+                default: 'create'
+            },
+            'button-text': {
+                type: String,
+                required: true
+            }
+        },
+
         data() {
             return {
                 form: new Form({
                     name: '',
                     email: '',
                     message_body: ''
-                })
+                }),
+                waiting: false,
+                mainError: ''
             };
         },
 
         computed: {
-          button_msg() {
-              return this.waiting ? 'Sending...' : 'Send Enquiry';
-          }
+            button_msg() {
+                return this.waiting ? 'Sending...' : 'Send Enquiry';
+            }
+        },
+
+        mounted() {
+            this.$on("successfully-submitted", () => console.log('hey'));
         },
 
         methods: {
             canSubmit() {
                 const missing_fields = ['name', 'email', 'enquiry'].filter(field => this.form.data[field] === '');
 
-                if(missing_fields.length) {
+                if (missing_fields.length) {
                     this.alertMissingFields(missing_fields);
 
                     return false;
@@ -112,6 +135,54 @@
 
             handleFailure() {
                 eventHub.$emit('user-error', 'Unable to send your message. Please refresh the page and try again later.');
+            },
+
+            submit() {
+                this.clearErrors();
+
+                if (!this.canSubmit()) {
+                    return;
+                }
+
+                this.waiting = true;
+                axios.post(this.url, this.form.data)
+                     .then(({data}) => this.onSuccess(data))
+                     .catch(({response}) => this.onFailure(response));
+            },
+
+            onSuccess(data) {
+                const updated_data = this.getUpdatedDataFromResponseData(data);
+                this.waiting = false;
+                this.form.clearForm(this.formType === 'create' ? {} : updated_data);
+                this.emitEvent(updated_data);
+                eventHub.$emit('user-alert', {
+                    type: 'success',
+                    title: 'Message Sent',
+                    text: 'Thank you. We have received your message.'
+                });
+            },
+
+            onFailure(res) {
+                this.waiting = false;
+                if (res.status === 422) {
+                    return this.form.setValidationErrors(res.data.errors);
+                }
+
+                this.mainError = 'Unable to complete action. Please refresh and try again later.';
+                this.handleFailure();
+            },
+
+            emitEvent(updated_data) {
+                if (this.formType === 'create') {
+                    return eventHub.$emit(this.getStoreActionEventName(), updated_data);
+                }
+
+                this.$emit(this.getUpdateActionEventName(), updated_data);
+            },
+
+            clearErrors() {
+                this.form.clearErrors();
+                this.mainError = '';
             }
         }
     }

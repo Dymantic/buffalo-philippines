@@ -18,7 +18,9 @@
     </header>
     <section class="mw6 center-ns mh3">
         <p class="ff-body tc mv5 lh-copy">Leave a message and we will get back to you as soon a possible.</p>
-        <contact-form url="/contact" button-text=""></contact-form>
+        <contact-form url="/contact"
+                      button-text=""
+        ></contact-form>
     </section>
 
 @endsection
