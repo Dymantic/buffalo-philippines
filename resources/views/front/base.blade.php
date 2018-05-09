@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700" rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @yield('head')
+    <meta name="google-site-verification" content="MIrhMAqopiaIC_-gZHlmffp456ZZ94GUsDj83YmA02g" />
 </head>
 <body  class="{{ $pageName ?? '' }} body-type flex flex-column min-h-100">
 <!--[if lte IE 9]>
