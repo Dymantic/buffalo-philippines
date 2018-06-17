@@ -18,7 +18,7 @@
                 <a href="https://www.facebook.com/buffalotoolsph" target="_blank" class="mr3 col-w hv-col-p link">
                     @include('svgicons.facebook', ['height' => '20px'])
                 </a>
-                <a href="https://www.linkedin.com/company/huang-buffalo-co.-ltd" target="_blank" class="mr3 col-w hv-col-p link">
+                <a href="https://www.instagram.com/huangbuffalotools/" target="_blank" class="mr3 col-w hv-col-p link">
                     @include('svgicons.instagram', ['height' => '20px'])
                 </a>
             </div>
@@ -28,9 +28,9 @@
             <div class="tc">
                 <p class="ttu b mb0">Quicklinks</p>
                 <ul class="list pl0 pt0 mt2">
-                    <li class="mb1 mt0"><a class="col-w hv-col-p link" href="#">Locations</a></li>
-                    <li class="mb1 mt0"><a class="col-w hv-col-p link" href="#">Products</a></li>
-                    <li class="mb1 mt0"><a class="col-w hv-col-p link" href="#">Contact</a></li>
+                    <li class="mb1 mt0"><a class="col-w hv-col-p link" href="/stores">Locations</a></li>
+                    <li class="mb1 mt0"><a class="col-w hv-col-p link" href="/categories">Products</a></li>
+                    <li class="mb1 mt0"><a class="col-w hv-col-p link" href="/contact">Contact</a></li>
                 </ul>
             </div>
 
