@@ -26,6 +26,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('backup:run')->dailyAt('12:00');
         $schedule->command('backup:clean')->dailyAt('12:30');
+        $schedule->command('sitemap:generate')->dailyAt('13:00');
     }
 
     /**
