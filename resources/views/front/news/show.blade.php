@@ -26,17 +26,17 @@
             <section class="col-w-bg mw7 ff-body center-ns lh-copy mh3 ph3 article-body">
                 {!! $article->body !!}
             </section>
-            <section class="tc mv5 mw7">
+            <section class="tc mv5 mw7 center">
                 <p class="tc ff-title col-mg">Share this article</p>
-                <a href="#"
+                <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(Request::url()) }}"
                    class="link col-d hv-col-p mh2">
                     @include('svgicons.facebook', ['classes' => 'icon ih5 hv-col-p'])
                 </a>
-                <a href="#"
+                <a href="https://twitter.com/home?status={{ urlencode($article->title . ' ' . Request::url()) }}"
                    class="link col-d hv-col-p mh2">
                     @include('svgicons.twitter', ['classes' => 'icon ih5'])
                 </a>
-                <a href="#"
+                <a href="mailto:?&subject=Read&body={{ Request::url() }}"
                    class="link col-d hv-col-p mh2">
                     @include('svgicons.email', ['classes' => 'icon ih5'])
                 </a>
