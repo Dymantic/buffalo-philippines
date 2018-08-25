@@ -15,7 +15,7 @@
         </div>
         <div class="flex relative">
             <div class="menu-bar absolute relative-ns w-90 w-25-ns"
-                 :class="{'expose': show_menu}">
+                 :class="{'expose z-999': show_menu}">
                 <nested-menu class="min-h-100 col-w-bg"
                              :subcategories="subcategories"
                              :subcategory="selected_subcategory"
@@ -27,7 +27,7 @@
                              :menu-type="menu_type"
                 ></nested-menu>
             </div>
-            <div class="w-100 w-75-ns">
+            <div class="w-100 w-75-ns" :class="{'z-0': show_menu}">
                 <products-list :fetch-url="productsFetchUrl"
                                :filter-type="filter_type"
                                :subcategory="selected_subcategory"
