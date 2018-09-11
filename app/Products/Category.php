@@ -6,11 +6,11 @@ use App\Publishable;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Image\Manipulations;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
-use Spatie\MediaLibrary\HasMedia\Interfaces\HasMediaConversions;
-use Spatie\MediaLibrary\Media;
+use Spatie\MediaLibrary\Models\Media;
 
-class Category extends Model implements HasMediaConversions, Stockable
+class Category extends Model implements HasMedia, Stockable
 {
     use Sluggable, StockableTrait, Publishable, HasMediaTrait;
 

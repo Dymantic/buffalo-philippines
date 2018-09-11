@@ -7,11 +7,11 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use Spatie\Image\Manipulations;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
-use Spatie\MediaLibrary\HasMedia\Interfaces\HasMediaConversions;
-use Spatie\MediaLibrary\Media;
+use Spatie\MediaLibrary\Models\Media;
 
-class Product extends Model implements HasMediaConversions
+class Product extends Model implements HasMedia
 {
     use Sluggable, Publishable, HasMediaTrait;
 

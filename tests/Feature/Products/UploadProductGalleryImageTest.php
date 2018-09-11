@@ -8,7 +8,7 @@ use App\Products\Product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
-use Spatie\MediaLibrary\Media;
+use Spatie\MediaLibrary\Models\Media;
 use Tests\TestCase;
 
 class UploadProductGalleryImageTest extends TestCase
