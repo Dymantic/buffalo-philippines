@@ -17,7 +17,7 @@
         <h1 class="ff-headline">About Buffalo</h1>
     </header>
     <div>
-        <p class="ff-body tc mv5 lh-copy measure-ultra ph4 center">Buffalo® was established in 1964 in the United States during the industrial progress of the 20th century with the intention of bringing high quality tools and related products to customers. Buffalo® believes that good tools can heighten a workers professional performance and improve the quality of their daily work.</p>
+        <p class="ff-body tc mv5 lh-copy measure-ultra ph4 center">Buffalo® is a tool supplier established in 1964 in the United States during the industrial progress of the 20th century. Buffalo® believes the industrial progression would not have been possible without the hard work of its technicians. </p>
     </div>
     <div class="flex justify-between measure-wide ph2 center-ns timeline">
         <div class="history-point">
@@ -41,4 +41,6 @@
             <p class="tc b">1990 - now</p>
         </div>
     </div>
+    <p class="ff-body tc mv5 lh-copy measure-ultra ph4 center">Buffalo® values and believes technicians play an essential role throughout the development of our society. For this reason, Buffalo® is dedicated to continually bringing high quality tools to serve the particular needs of all technicians, who hope to improve the efficiency and quality of their daily work.</p>
+    <p class="ff-body tc mv5 lh-copy measure-ultra ph4 center">Buffalo® provides customers a long-lasting and trustworthy product with consistent innovation and improvements. Buffalo®’s products manifest the spirit of each worker, our tools play an important role in every craftsman’s daily working life just as craftsman are to our society.</p>
 @endsection
