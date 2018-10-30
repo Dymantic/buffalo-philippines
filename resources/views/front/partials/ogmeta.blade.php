@@ -6,3 +6,5 @@
 <meta name="og:description" content="{{ $ogDescription }}"/>
 <meta name="description" content="{{ $ogDescription }}">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="canonical"
+      href="https://global.buffalo-tools.com/{{ ltrim(Request::path(), '/') }}">
