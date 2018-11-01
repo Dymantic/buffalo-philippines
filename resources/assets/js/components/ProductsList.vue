@@ -3,7 +3,7 @@
         <div class="flex flex-wrap justify-around">
             <div v-for="product in page_of_products"
                  :key="product.id"
-                 class="w-40 w-20-ns mh2 mb3 col-w-bg pa3 relative">
+                 class="w-40 w-20-l mh2 mb3 col-w-bg pa3 relative">
                 <a :href="productLink(product)">
                     <img :src="product.main_image.thumb"
                          :alt="product.title">
