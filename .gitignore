@@ -11,6 +11,7 @@ npm-debug.log
 yarn-error.log
 .env
 /public/media/**/*
+/public/test_media/**/*
 /public/sitemap.xml
 /public/js/**/*
 /public/css/**/*
