@@ -133,4 +133,16 @@ class ProductMainImagesTest extends TestCase
         $this->assertEquals(Product::DEFAULT_MAIN_IMG, $product->imageUrl('thumb'));
         $this->assertEquals(Product::DEFAULT_MAIN_IMG, $product->imageUrl('web'));
     }
+
+    /**
+     *@test
+     */
+    public function new_images_do_not_keep_their_original_filename()
+    {
+        $product = factory(Product::class)->create();
+        $image = $product->setMainImage(UploadedFile::fake()->image('original_name.png'));
+
+
+        $this->assertNotEquals($image->file_name, 'original_name.png');
+    }
 }

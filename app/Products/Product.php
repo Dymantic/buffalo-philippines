@@ -64,7 +64,10 @@ class Product extends Model implements HasMedia
     {
         $this->clearMainImage();
 
-        return $this->addMedia($image)->preservingOriginal()->toMediaCollection(static::MAIN_IMG);
+        return $this->addMedia($image)
+                    ->usingFileName(str_random(10))
+                    ->preservingOriginal()
+                    ->toMediaCollection(static::MAIN_IMG);
     }
 
     public function clearMainImage()
@@ -74,7 +77,10 @@ class Product extends Model implements HasMedia
 
     public function addGalleryImage($image)
     {
-        return $this->addMedia($image)->preservingOriginal()->toMediaCollection(static::GALLERY_IMGS);
+        return $this->addMedia($image)
+                    ->usingFileName(str_random(10))
+                    ->preservingOriginal()
+                    ->toMediaCollection(static::GALLERY_IMGS);
     }
 
     public function categories()

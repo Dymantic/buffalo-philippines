@@ -60,4 +60,16 @@ class ProductGalleryImagesTest extends TestCase
 
         $this->assertTrue(file_exists($image->getPath('web')));
     }
+
+    /**
+     *@test
+     */
+    public function new_gallery_images_not_keep_their_original_file_names()
+    {
+        $product = factory(Product::class)->create();
+
+        $image = $product->addGalleryImage(UploadedFile::fake()->image('original_name.png'));
+
+        $this->assertNotEquals($image->file_name, 'original_name.png');
+    }
 }
