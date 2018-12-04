@@ -25,6 +25,7 @@ Vue.component('contact-form', require('./components/ContactForm.vue'));
 Vue.component('search-bar', require('./components/SearchBar.vue'));
 Vue.component('related-products', require('./components/RelatedProducts.vue'));
 Vue.component('image-gallery', require('./components/ProductImageGallery'));
+Vue.component('distributor-map', require('./components/WorldMap'));
 
 
 window.eventHub = new Vue();

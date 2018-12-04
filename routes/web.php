@@ -30,6 +30,7 @@ Route::get('news/{slug}', 'NewsController@show');
 Route::get('contact', 'ContactMessageController@create');
 Route::post('contact', 'ContactMessageController@store');
 
+Route::view('distributors', 'front.distributors.page');
 Route::post('distributors/applications', 'DistributorApplicationsController@store');
 
 $this->get('admin/login', 'Auth\LoginController@showLoginForm')->name('login');

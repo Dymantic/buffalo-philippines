@@ -1,0 +1,49 @@
+.banner-flag {
+  background: $site_primary;
+  max-width: 60rem;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  padding: 1rem;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media screen and (max-width: 576px) {
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    height: auto;
+    margin-top: 0;
+  }
+}
+
+.banner-flag::before {
+  content: "";
+  display: block;
+  position: absolute;
+  border: 2rem solid $site_primary;
+  border-right-width: 1.5rem;
+  border-left-color: transparent;
+  left: -3rem;
+  bottom: 0;
+
+  @media screen and (max-width: 576px) {
+    display: none;
+  }
+}
+
+.banner-flag::after {
+  content: "";
+  display: block;
+  position: absolute;
+  border: 2rem solid $site_primary;
+  border-left-width: 1.5rem;
+  border-right-color: transparent;
+  right: -3rem;
+  bottom: 0;
+
+  @media screen and (max-width: 576px) {
+    display: none;
+  }
+}
