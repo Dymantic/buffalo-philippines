@@ -8,7 +8,7 @@
         "php": ">=7.0.0",
         "cviebrock/eloquent-sluggable": "^4.3",
         "dymantic/articles": "^1.0",
-        "dymantic/secretary": "^0.1.2",
+        "dymantic/secretary": "^0.2",
         "dymantic/slideshow": "^1.0",
         "fideloper/proxy": "4.0",
         "laravel/framework": "5.7.*",
