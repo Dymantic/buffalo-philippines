@@ -8,7 +8,7 @@ use Dymantic\Secretary\SecretaryMessage;
 
 class DistributorApplicationMessage implements SecretaryMessage
 {
-    private $data;
+    public $data;
 
     public function __construct($data)
     {
@@ -33,8 +33,13 @@ class DistributorApplicationMessage implements SecretaryMessage
     public function messageNotes()
     {
         return [
-            'country' => $this->data['country'],
-            'message' => $this->data['application_message']
+            'name'     => $this->data['name'] ?? '',
+            'email'    => $this->data['email'] ?? '',
+            'country'  => $this->data['country'] ?? '',
+            'company'  => $this->data['company'] ?? '',
+            'website'  => $this->data['website'] ?? '',
+            'referrer' => $this->data['referrer'] ?? '',
+            'message'  => $this->data['application_message'] ?? ''
         ];
     }
 

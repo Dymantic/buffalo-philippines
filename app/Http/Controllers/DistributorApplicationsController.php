@@ -12,9 +12,12 @@ class DistributorApplicationsController extends Controller
     {
         $data = request()->validate([
             'name' => 'required',
-            'email' => 'required',
-            'country' => 'required',
-            'application_message' => 'required'
+            'email' => ['required', 'email'],
+            'country' => '',
+            'company' => '',
+            'website' => '',
+            'application_message' => 'required',
+            'referrer' => '',
         ]);
 
         $message = new DistributorApplicationMessage($data);
