@@ -1,7 +1,7 @@
 @extends('front.base', ['pageName' => 'col-lg-bg'])
 
 @section('title')
-    Store Locations - Buffalo Tools Philippines
+    Store Locations - BUFFALO® Tools
 @endsection
 
 @section('head')

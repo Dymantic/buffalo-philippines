@@ -1,7 +1,7 @@
 @extends('front.base')
 
 @section('title')
-    Contact Buffalo Tools Philippines
+    Contact BUFFALO® Tools
 @endsection
 
 @section('head')

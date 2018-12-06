@@ -1,7 +1,7 @@
 @extends('front.base', ['pageName' => 'home-page'])
 
 @section('title')
-    Buffalo Tools Philippines
+    BUFFALO® Tools: Professional Hand Tools & Industrial Supplies
 @endsection
 
 @section('head')

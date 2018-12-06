@@ -1,7 +1,7 @@
 @extends('front.base', ['pageName' => 'col-lg-bg'])
 
 @section('title')
-    Categories - Buffalo Tools Philippines
+    Product Categories - BUFFALO® Tools
 @endsection
 
 @section('head')

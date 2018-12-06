@@ -1,7 +1,7 @@
 @extends('front.base', ['pageName' => 'col-lg-bg'])
 
 @section('title')
-    News from Buffalo Tools Philippines
+    News from BUFFALO® Tools
 @endsection
 
 @section('head')

@@ -1,7 +1,7 @@
 @extends('front.base', ['pageName' => ''])
 
 @section('title')
-    {{ $category->title }} - Buffalo Tools Philippines
+    {{ $category->title }} - BUFFALO® Tools
 @endsection
 
 @section('head')

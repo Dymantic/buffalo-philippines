@@ -1,7 +1,7 @@
 @extends('front.base')
 
 @section('title')
-    {{ $product['title'] }} - Buffalo Tools Philippines
+    {{ $product['title'] }} - BUFFALO® Tools
 @endsection
 
 @section('head')
