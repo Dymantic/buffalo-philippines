@@ -11,7 +11,6 @@ class DistributorApplicationsController extends Controller
 {
     public function store(Secretary $secretary)
     {
-        Notification::fake();
         $data = request()->validate([
             'name' => 'required',
             'email' => ['required', 'email'],
