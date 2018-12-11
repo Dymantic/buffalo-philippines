@@ -92,6 +92,13 @@ if(document.querySelector('.top-button')) {
     document.querySelector('.top-button').addEventListener('click', () => jump(document.body));
 }
 
+[...document.querySelectorAll('.jump-to-form')].forEach(a => {
+    a.addEventListener('click', ev => {
+        ev.preventDefault();
+        jump(document.querySelector('.distributor-form-section'))
+    });
+});
+
 window.addEventListener('scroll', throttle(() => {
     if(window.scrollY > 100) {
         return document.body.classList.add('scrolled');

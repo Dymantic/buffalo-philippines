@@ -1,4 +1,4 @@
-<section class="ph1 pv4 col-d-bg mt5">
+<section class="ph1 pv4 col-d-bg">
     <p class="ff-headline-small tc col-w">Distributor Benefits</p>
     <div class="flex flex-wrap justify-around mw-large center pv4">
         @include('front.distributors.benefit', [

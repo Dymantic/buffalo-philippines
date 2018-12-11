@@ -30,7 +30,7 @@ Route::get('news/{slug}', 'NewsController@show');
 Route::get('contact', 'ContactMessageController@create');
 Route::post('contact', 'ContactMessageController@store');
 
-Route::view('distributors', 'front.distributors.page');
+
 Route::post('distributors/applications', 'DistributorApplicationsController@store');
 
 $this->get('admin/login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -54,6 +54,8 @@ Route::get('foo/{slug}/boo', 'Services\CategoryProductsController@index');
 
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
+
+    Route::view('distributors', 'front.distributors.page');
 
     Route::group(['middleware' => 'auth'], function () {
         Route::get('/', 'DashboardController@show');

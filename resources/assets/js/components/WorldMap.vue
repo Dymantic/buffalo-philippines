@@ -1,5 +1,5 @@
 <template>
-    <div class="overflow-hidden">
+    <div class="world-map-outer overflow-hidden">
         <div class="map-container">
             <svg class="map-svg"
                  ref="world"
@@ -775,7 +775,10 @@
                 const countries = ["taiwan", "philippines", "new_zealand", "vietnam", "india"];
 
                 countries.forEach((country, index) => {
-                    this.wait(index).then(()=> this.$refs[country].style.fill = "#22d17d")
+                    this.wait(index).then(()=>  {
+                        this.$refs[country].style.fill = "#22d17d";
+                    })
+
                 });
 
                 window.setTimeout(this.zoomBackOut, 3000);
@@ -803,15 +806,20 @@
         transition-timing-function: ease-in-out;
     }
 
+    .world-map-outer {
+        max-width: 80rem;
+        margin: 0 auto;
+    }
+
     .map-container {
         max-width: 50rem;
         margin: 0 auto;
     }
 
     .land {
-        fill: #eeeeee;
+        fill: grey;
         fill-opacity: 1;
-        stroke: white;
+        stroke: #333;
         stroke-opacity: 1;
         stroke-width: 0.5;
     }

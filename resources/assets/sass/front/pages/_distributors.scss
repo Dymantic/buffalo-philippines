@@ -1,0 +1,49 @@
+.distributor-process {
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+
+
+
+  .process-grid-box {
+    width: 300px;
+    height: 300px;
+  }
+
+  @media screen and (min-width: 750px) and (max-width: 899px) {
+    .process-grid-box {
+      width: 250px;
+      height: 250px;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .grid-row {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .process-grid-box.empty, .circles {
+      display: none;
+    }
+
+    .process-grid-box {
+      order: 0;
+    }
+
+    .step-1 {
+      order: 1;
+    }
+
+    .step-2 {
+      order: 2;
+    }
+    .step-3 {
+      order: 3;
+    }
+    .step-4 {
+      order: 4;
+    }
+  }
+}
+

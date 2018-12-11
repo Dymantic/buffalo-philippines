@@ -11,7 +11,6 @@ class DistributorApplicationsController extends Controller
 {
     public function store(Secretary $secretary)
     {
-        sleep(3);
         Notification::fake();
         $data = request()->validate([
             'name' => 'required',
@@ -21,7 +20,12 @@ class DistributorApplicationsController extends Controller
             'website' => '',
             'application_message' => 'required',
             'referrer' => '',
+            'referrer_other' => ''
         ]);
+
+        if($data['referrer'] === 'other' && request('referrer_other', false)) {
+            $data['referrer'] = request('referrer_other');
+        }
 
         $message = new DistributorApplicationMessage($data);
 

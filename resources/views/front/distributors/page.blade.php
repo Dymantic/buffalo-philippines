@@ -19,6 +19,6 @@
     @include('front.distributors.banner')
     @include('front.distributors.map')
     @include('front.distributors.benefits')
-
+    @include('front.distributors.process')
     @include('front.distributors.form')
 @endsection
