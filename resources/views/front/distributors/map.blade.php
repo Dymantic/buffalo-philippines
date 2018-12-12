@@ -1,7 +1,7 @@
 <section class="pv5 col-d-bg">
-    <p class="ff-headline-small tc col-w">A Global Network</p>
-    <p class="tc ff-title mv4 col-p">More than 400 stores around the world!</p>
-    <p class="mv5 ff-body measure-ultra col-w center tc">Buffalo has exclusive and general distributors in different regions. With technical and
+    <p class="ff-headline-small tc col-w ph2">A Global Network</p>
+    <p class="tc ff-title mv4 col-p ph3">More than 400 stores around the world!</p>
+    <p class="mv5 ff-body measure-ultra ph3 col-w center tc">Buffalo has exclusive and general distributors in different regions. With technical and
        sales support to our entire distribution network, we are proud that our products sell to many big malls and home centers.</p>
     <distributor-map class="pt"></distributor-map>
 
