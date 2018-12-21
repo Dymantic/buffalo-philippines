@@ -64,6 +64,18 @@
             'buttonText' => 'More News'
         ])
     </section>
+    {{--<section class="col-d-bg pv6 ph3 chevron-watermark-bg">--}}
+        {{--<h3 class="tc ff-headline col-w ma0">Become a Buffalo Distributor</h3>--}}
+        {{--<p class="ff-large-body col-w tc measure-wide lh-copy center">--}}
+            {{--We are always looking for new distributors in different regions of the world that would like to be associated with the Buffalo brand and share in its  reputation and profitability.--}}
+        {{--</p>--}}
+        {{--@include('front.partials.button-link', [--}}
+            {{--'link' => '/distibutors',--}}
+            {{--'block' => true,--}}
+            {{--'buttonText' => 'Find out more',--}}
+            {{--'classes' => 'col-p'--}}
+        {{--])--}}
+    {{--</section>--}}
 @endsection
 
 @section('bodyscripts')

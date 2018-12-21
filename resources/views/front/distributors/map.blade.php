@@ -1,5 +1,5 @@
 <section class="pv5 col-d-bg">
-    <p class="ff-headline-small tc col-w ph2">A Global Network</p>
+    <p class="ff-headline tc col-w ph2">Our Global Network</p>
     <p class="tc ff-title mv4 col-p ph3">More than 400 stores around the world!</p>
     <p class="mv5 ff-body measure-ultra ph3 col-w center tc">Buffalo has exclusive and general distributors in different regions. With technical and
        sales support to our entire distribution network, we are proud that our products sell to many big malls and home centers.</p>
@@ -7,7 +7,7 @@
 
 </section>
 <section class="pv5">
-    <p class="mv4 ff-title tc">Some of our renowned distributors</p>
+    <p class="mvt mb5 ff-headline tc">Some of our renowned distributors</p>
     <div class="mv8 tc">
         <div>
             <img src="/images/distributor_logos/robinsons.png"
@@ -26,6 +26,6 @@
         'link' => '',
         'block' => true,
         'buttonText' => 'Join our network',
-        'classes' => 'col-d mt5 jump-to-form'
+        'classes' => 'col-p mt5 jump-to-form'
     ])
 </section>

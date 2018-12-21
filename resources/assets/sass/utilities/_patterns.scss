@@ -36,3 +36,15 @@
   background-image: url(./images/blog_pattern.png);
   background-size: 400px;
 }
+
+.chevron-watermark-bg {
+  background-image: url(./images/double_chevron.svg);
+  background-position: 5% 50%;
+  background-repeat: no-repeat;
+  background-size: auto 200px;
+
+  @include respond-to(small) {
+    background-position: 5% 90%;
+    background-size: 40%;
+  }
+}

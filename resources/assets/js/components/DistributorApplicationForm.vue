@@ -121,7 +121,7 @@
                         :disabled="waiting"
                         class="ff-sub-headline mt4 link center db flex items-center justify-center hv-col-pd col-d-bg pv2 col-p bn"
                 >
-                    <span>Apply</span>
+                    <span>Send Application</span>
                     <span>
                         <svg class="icon ih4 ml3 pt1"
                              xmlns="http://www.w3.org/2000/svg"

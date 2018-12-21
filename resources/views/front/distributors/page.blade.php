@@ -14,7 +14,7 @@
 
 @section('content')
     <header class="banner-heading mesh-bg bb bw2 flex items-center justify-center tc">
-        <h1 class="ff-headline">Become a Distributor</h1>
+        <h1 class="ff-headline">Become a Buffalo Distributor</h1>
     </header>
     @include('front.distributors.banner')
     @include('front.distributors.map')
