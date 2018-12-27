@@ -8,7 +8,7 @@
                        for="name">Name:</label>
                 <span class="col-r f7">{{ form.errors.name }}</span>
                 <input type="text"
-                       class="w-100 ba b--white-30 col-w h2 pl2 col-d-bg"
+                       class="w-100 ba b--white-30 col-w h2 pl2 col-tr-bg"
                        name="name"
                        id="name"
                        v-model="form.data.name">
@@ -18,7 +18,7 @@
                        for="email">Email:</label>
                 <span class="col-r f7">{{ form.errors.email }}</span>
                 <input type="email"
-                       class="w-100 ba b--white-30 col-w h2 pl2 col-d-bg"
+                       class="w-100 ba b--white-30 col-w h2 pl2 col-tr-bg"
                        name="email"
                        id="email"
                        v-model="form.data.email">
@@ -28,7 +28,7 @@
                        for="country">country:</label>
                 <span class="col-r f7">{{ form.errors.country }}</span>
                 <input type="text"
-                       class="w-100 ba b--white-30 col-w h2 pl2 col-d-bg"
+                       class="w-100 ba b--white-30 col-w h2 pl2 col-tr-bg"
                        name="country"
                        id="country"
                        v-model="form.data.country">
@@ -38,7 +38,7 @@
                        for="company">company:</label>
                 <span class="col-r f7">{{ form.errors.company }}</span>
                 <input type="text"
-                       class="w-100 ba b--white-30 col-w h2 pl2 col-d-bg"
+                       class="w-100 ba b--white-30 col-w h2 pl2 col-tr-bg"
                        name="company"
                        id="company"
                        v-model="form.data.company">
@@ -48,7 +48,7 @@
                        for="website">company website:</label>
                 <span class="col-r f7">{{ form.errors.website }}</span>
                 <input type="text"
-                       class="w-100 ba b--white-30 col-w h2 pl2 col-d-bg"
+                       class="w-100 ba b--white-30 col-w h2 pl2 col-tr-bg"
                        name="website"
                        id="website"
                        v-model="form.data.website">
@@ -58,7 +58,7 @@
                        for="application_message">Message:</label>
                 <span class="col-r f7">{{ form.errors.application_message }}</span>
                 <textarea name="application_message"
-                          class="ba b--white-30 col-w col-d-bg h4 w-100 pa2"
+                          class="ba b--white-30 col-w col-tr-bg h4 w-100 pa2"
                           id="application_message"
                           v-model="form.data.application_message"></textarea>
             </div>
