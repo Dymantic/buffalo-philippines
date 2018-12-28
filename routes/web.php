@@ -55,9 +55,10 @@ Route::get('foo/{slug}/boo', 'Services\CategoryProductsController@index');
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
-    Route::view('distributors', 'front.distributors.page');
+
 
     Route::group(['middleware' => 'auth'], function () {
+        Route::view('distributors', 'front.distributors.page');
         Route::get('/', 'DashboardController@show');
 
         Route::get('users', 'UsersController@index');
