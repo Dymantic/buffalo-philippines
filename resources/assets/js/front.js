@@ -27,6 +27,7 @@ Vue.component('related-products', require('./components/RelatedProducts.vue'));
 Vue.component('image-gallery', require('./components/ProductImageGallery'));
 Vue.component('distributor-map', require('./components/WorldMap'));
 Vue.component('distributor-application', require('./components/DistributorApplicationForm'));
+Vue.component('distributor-process', require('./components/DistributorProcess'));
 
 
 window.eventHub = new Vue();

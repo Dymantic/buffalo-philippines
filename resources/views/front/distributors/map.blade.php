@@ -7,7 +7,7 @@
 
 </section>
 <section class="pv5">
-    <p class="mvt mb5 ff-headline tc">Some of our renowned distributors</p>
+    <p class="mvt mb5 ff-headline tc">Associated Stores</p>
     <div class="mv8 tc">
         <div>
             <img src="/images/distributor_logos/robinsons.png"

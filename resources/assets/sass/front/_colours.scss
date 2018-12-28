@@ -26,6 +26,10 @@
   background-color: $site_dark;
 }
 
+.col-d-bg-o {
+  background: rgba(0,0,0,.7);
+}
+
 .col-s-bg {
   background-color: $site_secondary;
 }
@@ -44,5 +48,13 @@
 
 .col-tr-bg {
   background-color: transparent;
+}
+
+.col-bb-p {
+  border-color: $site_primary;
+}
+
+.col-bb-d {
+  border-color: $site_dark;
 }
 

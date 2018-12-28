@@ -3,10 +3,25 @@
   background-size: cover;
   background-position: 50% 80%;
 
-  .banner-headline {
-    background: rgba(255,255,255,.8);
-    padding: 1.5rem 6rem 1rem;
-    border-radius: 4px;
+  width: 100%;
+  height: 40vw;
+  overflow: hidden;
+
+  @include respond-to(small) {
+    height: 140vw;
+  }
+  @include respond-to(medium) {
+    height: 60vw;
+  }
+
+  .banner-headline.ff-headline {
+    font-size: 2rem;
+  }
+
+  .distributor-banner-inner {
+    max-width: 500px;
+    padding: 0 2rem;
+    margin: 0 auto;
   }
 }
 
@@ -18,7 +33,7 @@
 }
 
 .distributor-process {
-  max-width: 1100px;
+  max-width: 1300px;
   margin-left: auto;
   margin-right: auto;
 
@@ -27,6 +42,125 @@
     display: block;
   }
 
+  .process-steps {
+    position: relative;
+    display: flex;
+    justify-content: center;
+
+    & > div {
+      position: relative;
+      padding-bottom: 15px;
+      width: 20%;
+    }
+
+    & > div > * {
+      opacity: 0;
+      transform: scale(0);
+    }
+
+    &.animate > div > * {
+      animation-name: fadeIn;
+      animation-fill-mode: both;
+      animation-duration: 1s;
+    }
+
+    & > div::after {
+      content: '';
+      height: 2rem;
+      width: .25rem;
+      background-color: $site_dark;
+      position: absolute;
+      left: 50%;
+      bottom: -2rem;
+      transform-origin: center bottom;
+      transform: scale(0);
+    }
+
+    &.animate > div::after {
+      animation-name: grow-up;
+      animation-duration: 1s;
+      animation-fill-mode: both;
+    }
+
+
+    .step-one {
+      &::after {
+        animation-delay: 0s;
+      }
+
+      & > * {
+        animation-delay: 0s;
+      }
+    }
+
+    .step-two {
+      &::after {
+        animation-delay: 1s;
+      }
+
+      & > * {
+        animation-delay: 1s;
+      }
+    }
+
+    .step-three {
+      &::after {
+        animation-delay: 2s;
+      }
+
+      & > * {
+        animation-delay: 2s;
+      }
+    }
+
+    .step-four {
+      &::after {
+        animation-delay: 3s;
+      }
+
+      & > * {
+        animation-delay: 3s;
+      }
+    }
+
+    .step-five {
+      &::after {
+        animation-delay: 4s;
+      }
+
+      & > * {
+        animation-delay: 4s;
+      }
+    }
+
+
+    @media screen and (max-width: 850px) {
+      max-width: 300px;
+      margin-right: auto;
+      margin-left: auto;
+      flex-direction: column;
+      border-bottom: none;
+      //border-left: .25rem solid $site_dark;
+      padding-left: 20px;
+
+      & > div {
+        width: 100%;
+      }
+
+      & > div::after {
+        display: none;
+        //content: '';
+        //height: .25rem;
+        //width: 30px;
+        //background-color: $site_dark;
+        //position: absolute;
+        //top: 24px;
+        //left: -20px;
+        //transform: none;
+      }
+
+    }
+  }
 
 
   .process-grid-box {
