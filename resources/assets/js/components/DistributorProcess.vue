@@ -48,7 +48,6 @@
 
         methods: {
             watchScroll() {
-                console.log({top: this.top, scroll: window.scrollY});
                 if(this.top && window.scrollY > this.top) {
                     this.$refs.container.classList.add("animate");
                     window.removeEventListener("scroll", this.watchScroll);
