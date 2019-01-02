@@ -812,7 +812,7 @@
     .land {
         fill: grey;
         fill-opacity: 1;
-        stroke: #333;
+        stroke: grey;
         stroke-opacity: 1;
         stroke-width: 0.5;
     }
