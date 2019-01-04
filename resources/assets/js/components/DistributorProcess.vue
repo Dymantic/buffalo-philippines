@@ -13,19 +13,19 @@
             <p class="col-d mv2 tc ph4">We recommend suitable products for your market and provide pricing structure.</p>
         </div>
         <div class="flex flex-column items-center step-three">
-            <img src="/images/distributors_process/step_3A.png"
+            <img src="/images/distributors_process/step_4A.png"
                  alt="Step three in the distributor process cycle" class="dist-process-image">
             <p class="f5 f4-ns strong-type">Step 3</p>
             <p class="col-d mv2 tc ph4">Promotion support (Google Ads, Facebook, EDM, etc)</p>
         </div>
         <div class="flex flex-column items-center step-four">
-            <img src="/images/distributors_process/step_4A.png"
+            <img src="/images/distributors_process/step_3A.png"
                  alt="Step four in the distributor process cycle" class="dist-process-image">
             <p class="f5 f4-ns strong-type">Step 4</p>
             <p class="col-d mv2 tc ph4">Business growth and optimization.</p>
         </div>
         <div class="flex flex-column items-center step-five">
-            <img src="/images/distributors_process/step_1A.png"
+            <img src="/images/distributors_process/step_5A.png"
                  alt="Step one in the distributor process cycle" class="dist-process-image">
             <p class="f5 f4-ns strong-type">Step 5</p>
             <p class="col-d mv2 tc ph4">We continuously re-evaluate your needs and support your enterprise.</p>

@@ -16,8 +16,7 @@
     </div>
 
 </section>
-<section class="distributors-sub-banner-section flex justify-start">
-    <div class="pv4-ns w-100 w-50-l col-w-bg-o flex flex-column justify-center">
+<section class="distributors-sub-banner-section flex flex-column justify-center">
         <div class="measure-ultra center pt2 tc ph4 col-d">
 
             <p class="mv4 ff-body">We’re always looking for potential and reliable distributor partners that want to
@@ -29,6 +28,4 @@
         <div class="tc">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36"><path fill="#232220" d="M15.3 9.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z"/></svg>
         </div>
-    </div>
-
 </section>
