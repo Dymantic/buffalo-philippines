@@ -30,6 +30,8 @@ Route::get('news/{slug}', 'NewsController@show');
 Route::get('contact', 'ContactMessageController@create');
 Route::post('contact', 'ContactMessageController@store');
 
+Route::view('distributors', 'front.distributors.page');
+
 
 Route::post('distributors/applications', 'DistributorApplicationsController@store');
 
@@ -58,7 +60,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
 
     Route::group(['middleware' => 'auth'], function () {
-        Route::view('distributors', 'front.distributors.page');
+
         Route::get('/', 'DashboardController@show');
 
         Route::get('users', 'UsersController@index');

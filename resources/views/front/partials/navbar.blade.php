@@ -18,6 +18,8 @@
            href="/categories">Products</a>
         <a class="ph4-ns link ff-sub-headline col-w hv-col-p @activeclass('news')"
            href="/news">News</a>
+        <a class="ph4-ns link ff-sub-headline col-w hv-col-p @activeclass('distributors')"
+           href="/distributors">Agents</a>
         <a class="ph4-ns link ff-sub-headline col-w hv-col-p @activeclass('contact')"
            href="/contact">Contact</a>
         <search-bar></search-bar>
