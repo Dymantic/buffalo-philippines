@@ -11,16 +11,16 @@
            id="nav-trigger"
            class="dn">
     <nav class="nav-list flex justify-end pr2 items-center strong-type col-d-bg">
-        <a class="ph4-ns link ff-sub-headline col-w hv-col-p @activeclass('about')"
+        <a class="ph3-ns link ff-sub-headline col-w hv-col-p @activeclass('about')"
            href="/about">About</a>
-        <a class="ph4-ns link ff-sub-headline col-w hv-col-p @activeclass('stores')" href="/stores">Stores</a>
-        <a class="ph4-ns link ff-sub-headline col-w hv-col-p @activeclass('categories')"
+        <a class="ph3-ns link ff-sub-headline col-w hv-col-p @activeclass('stores')" href="/stores">Stores</a>
+        <a class="ph3-ns link ff-sub-headline col-w hv-col-p @activeclass('categories')"
            href="/categories">Products</a>
-        <a class="ph4-ns link ff-sub-headline col-w hv-col-p @activeclass('news')"
+        <a class="ph3-ns link ff-sub-headline col-w hv-col-p @activeclass('news')"
            href="/news">News</a>
-        <a class="ph4-ns link ff-sub-headline col-w hv-col-p @activeclass('distributors')"
+        <a class="ph3-ns link ff-sub-headline col-w hv-col-p @activeclass('distributors')"
            href="/distributors">Agents</a>
-        <a class="ph4-ns link ff-sub-headline col-w hv-col-p @activeclass('contact')"
+        <a class="ph3-ns link ff-sub-headline col-w hv-col-p @activeclass('contact')"
            href="/contact">Contact</a>
         <search-bar></search-bar>
         <label class="dn-ns ph4-ns f3 link ttu col-w"
