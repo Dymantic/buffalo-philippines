@@ -31,5 +31,7 @@ class ProductsController extends Controller
     public function delete(Product $product)
     {
         $product->delete();
+
+        return redirect('/admin/categories');
     }
 }
