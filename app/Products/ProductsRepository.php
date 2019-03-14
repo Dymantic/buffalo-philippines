@@ -20,7 +20,7 @@ class ProductsRepository
 
     public function publicCatalogForCategory(Category $category)
     {
-        return Cache::remember($category->slug, 120, function () use ($category) {
+        return Cache::remember($category->slug, 7200, function () use ($category) {
             return $this->publishedProductsUnder($category)
                                       ->filter(function ($product) {
                                           return $product->published;
