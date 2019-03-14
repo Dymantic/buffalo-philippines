@@ -22,7 +22,7 @@ class DeleteProductTest extends TestCase
         $product = factory(Product::class)->create();
 
         $response = $this->asLoggedInUser()->json("DELETE", "/admin/products/{$product->id}");
-        $response->assertStatus(200);
+        $response->assertStatus(302);
 
         $this->assertDatabaseMissing('products', ['id' => $product->id]);
     }
