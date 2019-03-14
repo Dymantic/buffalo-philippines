@@ -16,7 +16,7 @@ class SendContactMessageTest extends TestCase
 
     private $secretary;
 
-    public function setUp()
+    public function setUp() :void
     {
         parent::setUp();
 
