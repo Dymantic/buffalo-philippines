@@ -6,13 +6,13 @@ use App\Publishable;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Image\Manipulations;
-use Spatie\MediaLibrary\HasMedia\HasMedia;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
-use Spatie\MediaLibrary\Models\Media;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Category extends Model implements HasMedia, Stockable
 {
-    use Sluggable, StockableTrait, Publishable, HasMediaTrait;
+    use Sluggable, StockableTrait, Publishable, InteractsWithMedia;
 
     const MAIN_IMG = 'main-image';
     const DEFAULT_IMG_SRC = '/images/defaults/category.png';
@@ -29,7 +29,7 @@ class Category extends Model implements HasMedia, Stockable
         ];
     }
 
-    public function registerMediaConversions(Media $media = null)
+    public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumb')
              ->fit(Manipulations::FIT_CROP, 300, 300)
