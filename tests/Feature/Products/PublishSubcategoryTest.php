@@ -42,7 +42,7 @@ class PublishSubcategoryTest extends TestCase
         ]);
         $response->assertStatus(422);
 
-        $this->assertArrayHasKey('subcategory_id', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('subcategory_id', $response->json()['errors']);
     }
 
     /**
@@ -55,7 +55,7 @@ class PublishSubcategoryTest extends TestCase
         ]);
         $response->assertStatus(422);
 
-        $this->assertArrayHasKey('subcategory_id', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('subcategory_id', $response->json()['errors']);
     }
 
     /**
@@ -68,7 +68,7 @@ class PublishSubcategoryTest extends TestCase
         ]);
         $response->assertStatus(422);
 
-        $this->assertArrayHasKey('subcategory_id', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('subcategory_id', $response->json()['errors']);
     }
 
     /**

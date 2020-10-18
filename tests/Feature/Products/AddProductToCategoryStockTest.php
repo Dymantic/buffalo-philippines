@@ -43,7 +43,7 @@ class AddProductToCategoryStockTest extends TestCase
             'product_id' => $product->id
         ]);
         $response->assertStatus(200);
-        $response_data = $response->decodeResponseJson();
+        $response_data = $response->json();
         $this->assertEquals($product->fresh()->toJsonableArray(), $response_data);
     }
 

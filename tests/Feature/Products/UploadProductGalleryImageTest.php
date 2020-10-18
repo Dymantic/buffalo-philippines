@@ -65,7 +65,7 @@ class UploadProductGalleryImageTest extends TestCase
         $this->assertEquals([
             'image_id'   => Media::first()->id,
             'delete_url' => '/admin/gallery-images/' . Media::first()->id
-        ], $response->decodeResponseJson());
+        ], $response->json());
     }
 
     /**
@@ -80,7 +80,7 @@ class UploadProductGalleryImageTest extends TestCase
         ]);
         $response->assertStatus(422);
 
-        $this->assertArrayHasKey('image', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('image', $response->json()['errors']);
     }
 
     /**
@@ -95,7 +95,7 @@ class UploadProductGalleryImageTest extends TestCase
         ]);
         $response->assertStatus(422);
 
-        $this->assertArrayHasKey('image', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('image', $response->json()['errors']);
     }
 
     /**
@@ -110,6 +110,6 @@ class UploadProductGalleryImageTest extends TestCase
         ]);
         $response->assertStatus(422);
 
-        $this->assertArrayHasKey('image', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('image', $response->json()['errors']);
     }
 }

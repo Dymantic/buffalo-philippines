@@ -31,11 +31,11 @@ class AdminProductSearchTest extends TestCase
         $response = $this->asLoggedInUser()->json("GET", "/admin/services/search/products?q=match");
         $response->assertStatus(200);
 
-        $fetched_products = $response->decodeResponseJson();
+        $fetched_products = $response->json();
 
         $this->assertCount(2, $fetched_products);
         $matching->each(function($match) use ($fetched_products) {
-            $this->assertContains($match->toJsonableArray(), $fetched_products);
+            $this->assertEquals($match->toJsonableArray(), collect($fetched_products)->first(fn($item) => $item['id'] == $match->id));
         });
     }
 }

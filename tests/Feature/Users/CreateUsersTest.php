@@ -95,7 +95,7 @@ class CreateUsersTest extends TestCase
 
         $response->assertStatus(422);
 
-        $this->assertArrayHasKey('name', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('name', $response->json()['errors']);
     }
 
     /**
@@ -113,7 +113,7 @@ class CreateUsersTest extends TestCase
 
         $response->assertStatus(422);
 
-        $this->assertArrayHasKey('name', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('name', $response->json()['errors']);
     }
 
     /**
@@ -131,7 +131,7 @@ class CreateUsersTest extends TestCase
 
         $response->assertStatus(422);
 
-        $this->assertArrayHasKey('email', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('email', $response->json()['errors']);
     }
 
     /**
@@ -149,7 +149,7 @@ class CreateUsersTest extends TestCase
 
         $response->assertStatus(422);
 
-        $this->assertArrayHasKey('email', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('email', $response->json()['errors']);
     }
 
     /**
@@ -167,7 +167,7 @@ class CreateUsersTest extends TestCase
 
         $response->assertStatus(422);
 
-        $this->assertArrayHasKey('password', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('password', $response->json()['errors']);
     }
 
     /**
@@ -185,7 +185,7 @@ class CreateUsersTest extends TestCase
 
         $response->assertStatus(422);
 
-        $this->assertArrayHasKey('password', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('password', $response->json()['errors']);
     }
 
     /**

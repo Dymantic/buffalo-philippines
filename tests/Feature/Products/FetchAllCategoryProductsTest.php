@@ -35,7 +35,7 @@ class FetchAllCategoryProductsTest extends TestCase
         $response = $this->asLoggedInUser()->json("GET", "/admin/services/categories/{$category->id}/products");
         $response->assertStatus(200);
 
-        $fetched_products = $response->decodeResponseJson();
+        $fetched_products = $response->json();
 
         $this->assertCount(5, $fetched_products);
 
@@ -62,7 +62,7 @@ class FetchAllCategoryProductsTest extends TestCase
         $response = $this->asLoggedInUser()->json("GET", "/admin/services/categories/{$category->id}/products");
         $response->assertStatus(200);
 
-        $fetched_products = $response->decodeResponseJson();
+        $fetched_products = $response->json();
 
         $this->assertCount(1, $fetched_products);
 

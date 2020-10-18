@@ -42,7 +42,7 @@ class PublishToolGroupTest extends TestCase
         ]);
         $response->assertStatus(422);
 
-        $this->assertArrayHasKey('tool_group_id', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('tool_group_id', $response->json()['errors']);
     }
 
     /**
@@ -55,7 +55,7 @@ class PublishToolGroupTest extends TestCase
         ]);
         $response->assertStatus(422);
 
-        $this->assertArrayHasKey('tool_group_id', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('tool_group_id', $response->json()['errors']);
     }
 
     /**
@@ -68,7 +68,7 @@ class PublishToolGroupTest extends TestCase
         ]);
         $response->assertStatus(422);
 
-        $this->assertArrayHasKey('tool_group_id', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('tool_group_id', $response->json()['errors']);
     }
 
     /**

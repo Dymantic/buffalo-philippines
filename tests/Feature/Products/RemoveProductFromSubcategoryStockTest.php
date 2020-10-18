@@ -46,6 +46,6 @@ class RemoveProductFromSubcategoryStockTest extends TestCase
         $response = $this->asLoggedInUser()->json("DELETE", $delete_url);
         $response->assertStatus(200);
 
-        $this->assertEquals($product->fresh()->toJsonableArray(), $response->decodeResponseJson());
+        $this->assertEquals($product->fresh()->toJsonableArray(), $response->json());
     }
 }

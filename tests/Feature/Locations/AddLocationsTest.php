@@ -45,7 +45,7 @@ class AddLocationsTest extends TestCase
         ]);
         $response->assertStatus(200);
 
-        $this->assertEquals(['redirect_url' => '/admin/locations'], $response->decodeResponseJson());
+        $this->assertEquals(['redirect_url' => '/admin/locations'], $response->json());
     }
 
     /**
@@ -60,7 +60,7 @@ class AddLocationsTest extends TestCase
             'lng' => 33.33333
         ]);
         $response->assertStatus(422);
-        $this->assertArrayHasKey('name', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('name', $response->json()['errors']);
     }
 
     /**
@@ -75,7 +75,7 @@ class AddLocationsTest extends TestCase
             'lng' => 33.33333
         ]);
         $response->assertStatus(422);
-        $this->assertArrayHasKey('name', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('name', $response->json()['errors']);
     }
 
     /**
@@ -90,7 +90,7 @@ class AddLocationsTest extends TestCase
             'lng' => 33.33333
         ]);
         $response->assertStatus(422);
-        $this->assertArrayHasKey('address', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('address', $response->json()['errors']);
     }
 
     /**
@@ -105,7 +105,7 @@ class AddLocationsTest extends TestCase
             'lng' => 33.33333
         ]);
         $response->assertStatus(422);
-        $this->assertArrayHasKey('address', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('address', $response->json()['errors']);
     }
 
     /**
@@ -120,7 +120,7 @@ class AddLocationsTest extends TestCase
             'lng' => 33.33333
         ]);
         $response->assertStatus(422);
-        $this->assertArrayHasKey('lat', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('lat', $response->json()['errors']);
     }
 
     /**
@@ -135,7 +135,7 @@ class AddLocationsTest extends TestCase
             'lng' => 33.33333
         ]);
         $response->assertStatus(422);
-        $this->assertArrayHasKey('lat', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('lat', $response->json()['errors']);
     }
     
     /**
@@ -150,7 +150,7 @@ class AddLocationsTest extends TestCase
             'lng' => 33.33333
         ]);
         $response->assertStatus(422);
-        $this->assertArrayHasKey('lat', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('lat', $response->json()['errors']);
     }
 
     /**
@@ -165,7 +165,7 @@ class AddLocationsTest extends TestCase
             'lng' => 33.33333
         ]);
         $response->assertStatus(422);
-        $this->assertArrayHasKey('lat', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('lat', $response->json()['errors']);
     }
 
     /**
@@ -180,7 +180,7 @@ class AddLocationsTest extends TestCase
             'lng' => ''
         ]);
         $response->assertStatus(422);
-        $this->assertArrayHasKey('lng', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('lng', $response->json()['errors']);
     }
 
     /**
@@ -195,7 +195,7 @@ class AddLocationsTest extends TestCase
             'lng' => 'NOT-A-NUMBER'
         ]);
         $response->assertStatus(422);
-        $this->assertArrayHasKey('lng', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('lng', $response->json()['errors']);
     }
 
     /**
@@ -210,7 +210,7 @@ class AddLocationsTest extends TestCase
             'lng' => -185.55
         ]);
         $response->assertStatus(422);
-        $this->assertArrayHasKey('lng', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('lng', $response->json()['errors']);
     }
 
     /**
@@ -225,6 +225,6 @@ class AddLocationsTest extends TestCase
             'lng' => 185.55
         ]);
         $response->assertStatus(422);
-        $this->assertArrayHasKey('lng', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('lng', $response->json()['errors']);
     }
 }

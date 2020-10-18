@@ -26,11 +26,14 @@ class ListToolGroupsServiceTest extends TestCase
                          ->json('GET', "/admin/services/subcategories/{$subcategory->id}/tool-groups");
         $response->assertStatus(200);
 
-        $fetched_tool_groups = $response->decodeResponseJson();
+        $fetched_tool_groups = collect($response->json());
 
         $this->assertCount(10, $fetched_tool_groups);
         $tool_groups->each(function($tool_group) use ($fetched_tool_groups) {
-            $this->assertContains($tool_group->toJsonableArray(), $fetched_tool_groups);
+            $this->assertEquals(
+                $tool_group->toJsonableArray(),
+                $fetched_tool_groups->first(fn ($item) => $item['id'] == $tool_group->id)
+            );
         });
     }
 }

@@ -59,7 +59,7 @@ class UpdateUsersTest extends TestCase
             'superadmin' => true
         ];
 
-        $this->assertEquals($expected, $response->decodeResponseJson());
+        $this->assertEquals($expected, $response->json());
     }
 
     /**
@@ -75,7 +75,7 @@ class UpdateUsersTest extends TestCase
         ]);
         $response->assertStatus(422);
 
-        $this->assertArrayHasKey('name', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('name', $response->json()['errors']);
     }
 
     /**
@@ -91,7 +91,7 @@ class UpdateUsersTest extends TestCase
         ]);
         $response->assertStatus(422);
 
-        $this->assertArrayHasKey('email', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('email', $response->json()['errors']);
     }
 
     /**
@@ -107,6 +107,6 @@ class UpdateUsersTest extends TestCase
         ]);
         $response->assertStatus(422);
 
-        $this->assertArrayHasKey('email', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('email', $response->json()['errors']);
     }
 }

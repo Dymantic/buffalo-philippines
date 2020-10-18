@@ -53,7 +53,7 @@ class UpdateProductNewUntilDateTest extends TestCase
             'new_until'  => $product->fresh()->new_until->format('Y-m-d')
         ];
 
-        $this->assertEquals($expected, $response->decodeResponseJson());
+        $this->assertEquals($expected, $response->json());
     }
 
     /**
@@ -108,7 +108,7 @@ class UpdateProductNewUntilDateTest extends TestCase
         ]);
         $response->assertStatus(422);
 
-        $this->assertArrayHasKey('add_days', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('add_days', $response->json()['errors']);
     }
 
     /**
@@ -123,6 +123,6 @@ class UpdateProductNewUntilDateTest extends TestCase
         ]);
         $response->assertStatus(422);
 
-        $this->assertArrayHasKey('add_days', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('add_days', $response->json()['errors']);
     }
 }

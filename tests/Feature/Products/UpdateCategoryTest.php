@@ -52,7 +52,7 @@ class UpdateCategoryTest extends TestCase
         ]);
         $response->assertStatus(200);
 
-        $this->assertEquals($category->fresh()->toJsonableArray(), $response->decodeResponseJson());
+        $this->assertEquals($category->fresh()->toJsonableArray(), $response->json());
     }
 
     /**
@@ -71,7 +71,7 @@ class UpdateCategoryTest extends TestCase
         ]);
         $response->assertStatus(422);
 
-        $this->assertArrayHasKey('title', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('title', $response->json()['errors']);
     }
 
     /**
@@ -90,7 +90,7 @@ class UpdateCategoryTest extends TestCase
         ]);
         $response->assertStatus(422);
 
-        $this->assertArrayHasKey('title', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('title', $response->json()['errors']);
     }
 
     /**

@@ -26,12 +26,14 @@ class ListSubcategoriesServiceTest extends TestCase
                          ->json("GET", "/admin/services/categories/{$category->id}/subcategories");
         $response->assertStatus(200);
 
-        $fetched_subcategories = $response->decodeResponseJson();
+        $fetched_subcategories = collect($response->json());
 
         $this->assertCount(10, $fetched_subcategories);
 
         $subcategories->each(function($subcategory) use ($fetched_subcategories) {
-            $this->assertContains($subcategory->toJsonableArray(), $fetched_subcategories);
+            $this->assertEquals(
+                $subcategory->toJsonableArray(), $fetched_subcategories->first(fn ($item) => $item['id'] == $subcategory->id)
+            );
         });
     }
 }

@@ -15,32 +15,7 @@ class ListProductsServiceTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     *@test
-     */
-//    public function a_paginated_list_of_category_products_can_be_fetched()
-//    {
-//        $this->disableExceptionHandling();
-//
-//        $category = factory(Category::class)->create();
-//        $products = factory(Product::class, 50)->create();
-//        $products->each(function($product) use ($category) {
-//            $category->addProduct($product);
-//        });
-//
-//        $response = $this->asLoggedInUser()->json("GET", "/admin/services/categories/{$category->id}/products");
-//        $response->assertStatus(200);
-//
-//        $response_data = $response->decodeResponseJson();
-//
-//        $this->assertCount(40, $response_data['products']);
-//        $this->assertEquals(2, $response_data['total_pages']);
-//        $this->assertEquals(1, $response_data['current_page']);
-//
-//        $products->take(40)->each(function($product) use ($response_data) {
-//            $this->assertContains($product->toJsonableArray(), $response_data['products']);
-//        });
-//    }
+
 
     /**
      *@test
@@ -59,14 +34,15 @@ class ListProductsServiceTest extends TestCase
                          ->json("GET", "/admin/services/subcategories/{$subcategory->id}/products");
         $response->assertStatus(200);
 
-        $response_data = $response->decodeResponseJson();
+        $response_data = $response->json();
+        $listed_products = collect($response_data['products']);
 
         $this->assertCount(40, $response_data['products']);
         $this->assertEquals(2, $response_data['total_pages']);
         $this->assertEquals(1, $response_data['current_page']);
 
-        $products->take(40)->each(function($product) use ($response_data) {
-            $this->assertContains($product->toJsonableArray(), $response_data['products']);
+        $products->take(40)->each(function($product) use ($listed_products) {
+            $this->assertEquals($product->toJsonableArray(), $listed_products->first(fn ($item) => $item['id'] == $product->id));
         });
     }
 
@@ -87,14 +63,15 @@ class ListProductsServiceTest extends TestCase
                          ->json("GET", "/admin/services/tool-groups/{$tool_group->id}/products");
         $response->assertStatus(200);
 
-        $response_data = $response->decodeResponseJson();
+        $response_data = $response->json();
+        $listed_products = collect($response_data['products']);
 
         $this->assertCount(40, $response_data['products']);
         $this->assertEquals(2, $response_data['total_pages']);
         $this->assertEquals(1, $response_data['current_page']);
 
-        $products->take(40)->each(function($product) use ($response_data) {
-            $this->assertContains($product->toJsonableArray(), $response_data['products']);
+        $products->take(40)->each(function($product) use ($listed_products) {
+            $this->assertEquals($product->toJsonableArray(), $listed_products->first(fn ($item) => $item['id'] == $product->id));
         });
     }
 }

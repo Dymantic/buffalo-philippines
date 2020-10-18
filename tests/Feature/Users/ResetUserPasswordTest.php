@@ -46,7 +46,7 @@ class ResetUserPasswordTest extends TestCase
         ]);
         $response->assertStatus(422);
 
-        $this->assertArrayHasKey('current_password', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('current_password', $response->json()['errors']);
     }
 
     /**
@@ -64,7 +64,7 @@ class ResetUserPasswordTest extends TestCase
         ]);
         $response->assertStatus(422);
 
-        $this->assertArrayHasKey('password', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('password', $response->json()['errors']);
     }
 
     /**
@@ -82,6 +82,6 @@ class ResetUserPasswordTest extends TestCase
         ]);
         $response->assertStatus(422);
 
-        $this->assertArrayHasKey('password', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('password', $response->json()['errors']);
     }
 }

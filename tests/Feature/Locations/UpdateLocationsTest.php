@@ -44,7 +44,7 @@ class UpdateLocationsTest extends TestCase
             'name' => ''
         ]);
         $response->assertStatus(422);
-        $this->assertArrayHasKey('name', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('name', $response->json()['errors']);
     }
 
     /**
@@ -58,7 +58,7 @@ class UpdateLocationsTest extends TestCase
             'address' => ''
         ]);
         $response->assertStatus(422);
-        $this->assertArrayHasKey('address', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('address', $response->json()['errors']);
     }
 
     /**
@@ -72,7 +72,7 @@ class UpdateLocationsTest extends TestCase
             'name' => str_repeat('X', 260)
         ]);
         $response->assertStatus(422);
-        $this->assertArrayHasKey('name', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('name', $response->json()['errors']);
     }
 
     /**
@@ -132,6 +132,6 @@ class UpdateLocationsTest extends TestCase
             'lng' => 66.66
         ];
 
-        $this->assertEquals($expected, $response->decodeResponseJson());
+        $this->assertEquals($expected, $response->json());
     }
 }

@@ -41,7 +41,7 @@ class PublishCategoryTest extends TestCase
             'category_id' => ''
         ]);
         $response->assertStatus(422);
-        $this->assertArrayHasKey('category_id', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('category_id', $response->json()['errors']);
     }
 
     /**
@@ -53,7 +53,7 @@ class PublishCategoryTest extends TestCase
             'category_id' => 'NOT-AN-INTEGER'
         ]);
         $response->assertStatus(422);
-        $this->assertArrayHasKey('category_id', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('category_id', $response->json()['errors']);
     }
 
     /**
@@ -65,7 +65,7 @@ class PublishCategoryTest extends TestCase
             'category_id' => 999
         ]);
         $response->assertStatus(422);
-        $this->assertArrayHasKey('category_id', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('category_id', $response->json()['errors']);
     }
 
     /**

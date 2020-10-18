@@ -34,12 +34,12 @@ class FetchRelatedProductsTest extends TestCase
         $response = $this->json('GET', "/services/products/{$product->slug}/related-products");
         $response->assertStatus(200);
 
-        $fetched_products = $response->decodeResponseJson();
+        $fetched_products = collect($response->json());
 
         $this->assertCount(4, $fetched_products);
 
         $related_products->each(function($product) use ($fetched_products) {
-           $this->assertContains($product->toJsonableArray(), $fetched_products);
+           $this->assertEquals($product->toJsonableArray(), $fetched_products->first(fn ($item) => $item['id'] == $product->id));
         });
     }
 }

@@ -35,7 +35,7 @@ class FetchCategoryPublishedProductsListTest extends TestCase
         $response = $this->json("GET", "/services/categories/{$category->slug}/products");
         $response->assertStatus(200);
 
-        $fetched_products = $response->decodeResponseJson();
+        $fetched_products = $response->json();
 
         $this->assertCount(5, $fetched_products);
 
@@ -66,7 +66,7 @@ class FetchCategoryPublishedProductsListTest extends TestCase
         $response = $this->json("GET", "/services/categories/{$category->slug}/products");
         $response->assertStatus(200);
 
-        $fetched_products = $response->decodeResponseJson();
+        $fetched_products = $response->json();
 
         $this->assertCount(2, $fetched_products);
 
@@ -99,7 +99,7 @@ class FetchCategoryPublishedProductsListTest extends TestCase
         $response = $this->json("GET", "/services/categories/{$category->slug}/products");
         $response->assertStatus(200);
 
-        $fetched_products = $response->decodeResponseJson();
+        $fetched_products = $response->json();
 
         $this->assertEquals($fetched_products, cache()->get($category->slug));
     }

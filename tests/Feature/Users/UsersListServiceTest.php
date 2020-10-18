@@ -25,7 +25,7 @@ class UsersListServiceTest extends TestCase
         $response = $this->actingAs($users->first())->get('/admin/services/users');
         $response->assertStatus(200);
 
-        $fetched_users = $response->decodeResponseJson();
+        $fetched_users = $response->json();
 
         $this->assertCount(10, $fetched_users);
         $users->each(function($user) use ($fetched_users) {

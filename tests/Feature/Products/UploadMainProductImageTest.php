@@ -53,7 +53,7 @@ class UploadMainProductImageTest extends TestCase
         ]);
         $response->assertStatus(422);
 
-        $this->assertArrayHasKey('image', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('image', $response->json()['errors']);
     }
 
     /**
@@ -68,7 +68,7 @@ class UploadMainProductImageTest extends TestCase
         ]);
         $response->assertStatus(422);
 
-        $this->assertArrayHasKey('image', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('image', $response->json()['errors']);
     }
 
     /**
@@ -83,6 +83,6 @@ class UploadMainProductImageTest extends TestCase
         ]);
         $response->assertStatus(422);
 
-        $this->assertArrayHasKey('image', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('image', $response->json()['errors']);
     }
 }

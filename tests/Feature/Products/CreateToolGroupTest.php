@@ -96,7 +96,7 @@ class CreateToolGroupTest extends TestCase
                          ]);
         $response->assertStatus(422);
 
-        $this->assertArrayHasKey('title', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('title', $response->json()['errors']);
     }
 
     /**
@@ -113,6 +113,6 @@ class CreateToolGroupTest extends TestCase
                          ]);
         $response->assertStatus(422);
 
-        $this->assertArrayHasKey('title', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('title', $response->json()['errors']);
     }
 }

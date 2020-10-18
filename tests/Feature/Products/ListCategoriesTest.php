@@ -23,7 +23,7 @@ class ListCategoriesTest extends TestCase
         $response = $this->asLoggedInUser()->json("GET", "/admin/services/categories");
         $response->assertStatus(200);
 
-        $fetched_categories = $response->decodeResponseJson();
+        $fetched_categories = $response->json();
 
         $this->assertCount(10, $fetched_categories);
 

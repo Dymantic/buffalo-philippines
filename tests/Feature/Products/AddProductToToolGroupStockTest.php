@@ -44,7 +44,7 @@ class AddProductToToolGroupStockTest extends TestCase
         ]);
         $response->assertStatus(200);
 
-        $this->assertEquals($product->fresh()->toJsonableArray(), $response->decodeResponseJson());
+        $this->assertEquals($product->fresh()->toJsonableArray(), $response->json());
     }
 
     /**

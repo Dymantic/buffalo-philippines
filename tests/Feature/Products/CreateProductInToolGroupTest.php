@@ -94,7 +94,7 @@ class CreateProductInToolGroupTest extends TestCase
         ]);
         $response->assertStatus(422);
 
-        $this->assertArrayHasKey('title', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('title', $response->json()['errors']);
     }
 
     /**
@@ -113,7 +113,7 @@ class CreateProductInToolGroupTest extends TestCase
         ]);
         $response->assertStatus(422);
 
-        $this->assertArrayHasKey('title', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('title', $response->json()['errors']);
     }
 
     /**
@@ -132,7 +132,7 @@ class CreateProductInToolGroupTest extends TestCase
         ]);
         $response->assertStatus(422);
 
-        $this->assertArrayHasKey('code', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('code', $response->json()['errors']);
     }
 
     /**
@@ -151,7 +151,7 @@ class CreateProductInToolGroupTest extends TestCase
         ]);
         $response->assertStatus(422);
 
-        $this->assertArrayHasKey('code', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('code', $response->json()['errors']);
     }
 
     /**
@@ -251,6 +251,6 @@ class CreateProductInToolGroupTest extends TestCase
         ]);
         $response->assertStatus(422);
 
-        $this->assertArrayHasKey('price', $response->decodeResponseJson()['errors']);
+        $this->assertArrayHasKey('price', $response->json()['errors']);
     }
 }
