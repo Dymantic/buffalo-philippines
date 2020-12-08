@@ -15,6 +15,9 @@ mix.js('resources/assets/js/app.js', 'public/js')
     .js('resources/assets/js/front.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css')
     .sass('resources/assets/sass/fapp.scss', 'public/css')
+   .options({
+       processCssUrls: false,
+   })
     .webpackConfig({
         resolve: {
             alias: {

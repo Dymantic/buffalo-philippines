@@ -7,7 +7,8 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue');
+import Vue from "vue";
+window.Vue = Vue;
 
 import swal from "sweetalert";
 window.swal = swal;
@@ -16,18 +17,31 @@ import jump from "jump.js";
 import {throttle} from "lodash";
 
 
-Vue.component('modal', require('./components/Modal.vue'));
-Vue.component('nested-menu', require('./components/NestedMenu.vue'));
-Vue.component('products-list', require('./components/ProductsList.vue'));
-Vue.component('show-category', require('./components/ShowCategory'));
-Vue.component('store-locator', require('./components/Locator.vue'));
-Vue.component('contact-form', require('./components/ContactForm.vue'));
-Vue.component('search-bar', require('./components/SearchBar.vue'));
-Vue.component('related-products', require('./components/RelatedProducts.vue'));
-Vue.component('image-gallery', require('./components/ProductImageGallery'));
-Vue.component('distributor-map', require('./components/WorldMap'));
-Vue.component('distributor-application', require('./components/DistributorApplicationForm'));
-Vue.component('distributor-process', require('./components/DistributorProcess'));
+import Modal from './components/Modal.vue';
+import NestedMenu from './components/NestedMenu.vue';
+import ProductsList from './components/ProductsList.vue';
+import ShowCategory from './components/ShowCategory';
+import StoreLocator from './components/Locator.vue';
+import ContactForm from './components/ContactForm.vue';
+import SearchBar from './components/SearchBar.vue';
+import RelatedProducts from './components/RelatedProducts.vue';
+import ImageGallery from './components/ProductImageGallery';
+import DistributorMap from './components/WorldMap';
+import DistributorApplication from './components/DistributorApplicationForm';
+import DistributorProcess from './components/DistributorProcess';
+
+Vue.component('modal', Modal)
+Vue.component('nested-menu', NestedMenu)
+Vue.component('products-list', ProductsList)
+Vue.component('show-category', ShowCategory)
+Vue.component('store-locator', StoreLocator)
+Vue.component('contact-form', ContactForm)
+Vue.component('search-bar', SearchBar)
+Vue.component('related-products', RelatedProducts)
+Vue.component('image-gallery', ImageGallery)
+Vue.component('distributor-map', DistributorMap)
+Vue.component('distributor-application', DistributorApplication)
+Vue.component('distributor-process', DistributorProcess)
 
 
 window.eventHub = new Vue();

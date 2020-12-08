@@ -14,7 +14,7 @@ class Subcategory extends Model implements Stockable
 
     protected $casts = ['published' => 'boolean'];
 
-    public function sluggable()
+    public function sluggable(): array
     {
         return [
             'slug' => ['source' => 'title']

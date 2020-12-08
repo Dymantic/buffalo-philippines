@@ -29,6 +29,7 @@
         <server name="MAIL_DRIVER" value="array"/>
         <server name="QUEUE_CONNECTION" value="sync"/>
         <server name="DB_CONNECTION" value="testing"/>
+        <server name="DB_DATABASE" value=":memory:"/>
         <server name="SESSION_DRIVER" value="array"/>
         <server name="MEDIA_FILESYSTEM" value="test_media"/>
         <server name="SITEMAP_NAME" value="test_sitemap.xml"/>

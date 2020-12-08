@@ -25,7 +25,7 @@ class Product extends Model implements HasMedia
 
     protected $dates = ['new_until'];
 
-    public function sluggable()
+    public function sluggable(): array
     {
         return [
             'slug' => ['source' => 'title']
